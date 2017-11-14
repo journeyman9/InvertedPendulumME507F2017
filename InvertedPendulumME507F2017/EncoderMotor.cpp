@@ -55,13 +55,13 @@ void EncoderMotor::run (void)
 		// Read value from hardware counter
 		count = TCC0.CNT;
 		
-		if(zero = true) // (just a placeholder parameter name) - checks if the "zero" flag is set by some other task (like when the limit switch is triggered)
+		if(motor_enc_zero = true) // (just a placeholder parameter name) - checks if the "zero" flag is set by some other task (like when the limit switch is triggered)
 		{
 			// Reset ticks to 0 (there may be a better way to do this)
 			TCC0.CNT = 0;
 			
 			// Reset the flag
-			zero = false;
+			motor_enc_zero = false;
 		}
 		
 		// Increment counter for debugging
