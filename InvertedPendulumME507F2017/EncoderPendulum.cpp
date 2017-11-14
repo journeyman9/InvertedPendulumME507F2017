@@ -1,4 +1,4 @@
-﻿#include <stdlib.h>                         // Prototype declarations for I/O functions
+#include <stdlib.h>                         // Prototype declarations for I/O functions
 #include <avr/io.h>                         // Port I/O for SFR's
 #include <avr/wdt.h>                        // Watchdog timer header
 #include <avr/interrupt.h>
@@ -23,6 +23,7 @@
 #include "UserInterface.h"
 #include "PWMdriver.h"
 
-EncoderPendulum::EncoderPendulum{
-	
+EncoderPendulum::EncoderPendulum
+	{
+	// Hello friends.
 	}
