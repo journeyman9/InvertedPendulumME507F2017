@@ -42,8 +42,36 @@ LimitSwitches::LimitSwitches(const char* a_name,
 void LimitSwitches::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
+	
+	// Setup pins for Limit Switch (PK0 & PK2) and LED output
+	PORTK.DIRCLR = PIN0_bm;									// set K0 as input
+	PORTK.PIN0CTRL = PORT_OPC_PULLUP_gc;					// set K0 as pullup
+	PORTK.DIRCLR = PIN2_bm;									// set K2 as input
+	PORTK.PIN2CTRL = PORT_OPC_PULLUP_gc;					// set K2 as pullup
+	
+	bool rightLimit;
+	bool leftLimit;
 
 	while(1){
+		
+		if(!(PORTK_IN & PIN0_bm))							// check whether limit is pressed (pin K0 is high)
+		{	
+			rightLimit = 1;
+			*p_serial << "rightLimit: " << rightLimit << endl;
+			
+		}
+		else if (!(PORTK_IN & PIN2_bm))						// check whether limit is pressed (pin K2 is high)
+		{
+			leftLimit = 1;
+			*p_serial << "leftLimit: " << leftLimit << endl;
+		}
+		else
+		{
+			rightLimit = 0;
+			leftLimit = 0;
+			//*p_serial << "limits: " << rightLimit << leftLimit << endl;
+		}
+		
 		// Increment counter for debugging
 		runs++;
 		

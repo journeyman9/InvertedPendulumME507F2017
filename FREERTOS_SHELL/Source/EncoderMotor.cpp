@@ -46,16 +46,16 @@ void EncoderMotor::run (void)
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 	
-	PORTC.DIRCLR = PIN0_bm | PIN1_bm;										// Set both CHa and CHb for input
-	PORTC.PIN0CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Cha
-	PORTC.PIN1CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Chb
+	PORTE.DIRCLR = PIN4_bm | PIN5_bm;										// Set both CHa and CHb for input
+	PORTE.PIN4CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Cha
+	PORTE.PIN5CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Chb
 	
-	EVSYS.CH0MUX = EVSYS_CHMUX_PORTC_PIN0_gc;								// Configure CHa as a multiplexer input for event channel 0
-	EVSYS.CH0CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;				// Enable the quadrature encoder
+	EVSYS.CH1MUX = EVSYS_CHMUX_PORTE_PIN4_gc;								// Configure CHa as a multiplexer input for event channel 1
+	EVSYS.CH1CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;				// Enable the quadrature encoder
 	
-	TCC0.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH0_gc;						// Set the quadrature decoding as the event action for the timer
-	TCC0.PER = 0xFFFF;														// Set the timer counter period 1000 cpr, = 1000*4-1 F9F
-	TCC0.CTRLA = TC_CLKSEL_DIV1_gc;											// Start the timer
+	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH1_gc;						// Set the quadrature decoding as the event action for the timer
+	TCC1.PER = 0xFFFF;														// Set the timer counter period 1000 cpr, = 1000*4-1 F9F
+	TCC1.CTRLA = TC_CLKSEL_DIV1_gc;											// Start the timer
 	
 	int16_t encoder_count;
 	int16_t last_encoder_count;
@@ -68,8 +68,8 @@ void EncoderMotor::run (void)
 	int16_t x;
 
 	while(1){
-		encoder_count = TCC0.CNT;											// get count
-		//*p_serial << "Econder Pulses" << encoder_count << endl;
+		encoder_count = TCC1.CNT;											// get count
+		*p_serial << "Encoder Pulses: " << encoder_count << endl;
 		
 		angularPositionCalc = (encoder_count/(4.00000*1000.00000))*360;		// convert to position [deg], quadrature = 4, cpr = 1000. (encoder_count/(4*1000))*360
 		angularPosition = angularPositionCalc;
