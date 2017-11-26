@@ -41,6 +41,6 @@
  * \brief This queue allows tasks to send characters to the user interface task for display.
  */
 extern frt_text_queue print_ser_queue;			// This queue allows tasks to send characters to the user interface task for display.
-
+extern shared_data<int16_t> linear_position;	// queue for linear position of cart
 
 #endif // _SHARES_H_

@@ -16,16 +16,25 @@
 #include "frt_queue.h"                      // Header of wrapper for FreeRTOS queues
 #include "frt_shared_data.h"                // Header for thread-safe shared data
 #include "shares.h"                         // Global ('extern') queue declarations
-#include "Motor.h"							// Inverted Pendulum file
-#include "EncoderMotor.h"					// Inverted Pendulum file
+
+#include "shared_data_sender.h"
+#include "shared_data_receiver.h"
+#include "util/delay.h"						// Header for delay
+
+#include "EncoderMotor.h"					// Header for this file
+/*#include "Motor.h"						// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
 #include "LimitSwitches.h"					// Inverted Pendulum file
 #include "UserInterface.h"					// Inverted Pendulum file
 #include "PWMdriver.h"						// Inverted Pendulum file
+*/
 
 
-EncoderMotor::EncoderMotor(void)
-
+EncoderMotor::EncoderMotor(const char* a_name,
+							unsigned portBASE_TYPE a_priority,
+							size_t a_stack_size,
+							emstream* p_ser_dev
+							)
 	// Call the parent (task base) constructor
 	: frt_task (a_name, a_priority, a_stack_size, p_ser_dev)
 {
@@ -34,27 +43,54 @@ EncoderMotor::EncoderMotor(void)
 
 
 void EncoderMotor::run (void)
-{
-	// INIT:
-	// Setup quad encoder on pins C2 & C6
-	PORTC.DIRCLR = (PIN2_bm | PIN6_bm);							// set C2 & C6 as inputs
-	PORTC.PIN2CTRL = PORT_ISC_LEVEL_gc;							// set C2 for level sensing
-	PORTC.PIN6CTRL = PORT_ISC_LEVEL_gc;							// set C6 for level sensing
-	EVSYS.CH0MUX = EVSYS_CHMUX_PORTC_PIN2_gc;					// set PC2 as Multiplexer for Event Chan 0
-	EVSYS.CH0CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;	// enable quad encoder mode with 2-sample filtering
-	TCC0.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH0_gc;			// set TCC0 event action to quad decoding, and event source as Event Chan 0
-	TCC0.PER = 0xFFFF;											// usually ticks/rev, but this doesn't matter since we're converting to linear anyway
-	TCC0.CTRLA = TC_CLKSEL_DIV1_gc;								// start TCC0 with prescaler = 1
+{ 
+	PORTC.DIRCLR = PIN0_bm | PIN1_bm;										// Set both CHa and CHb for input
+	PORTC.PIN0CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Cha
+	PORTC.PIN1CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Chb
 	
-	uint16_t count;												// contains the current encoder value
+	EVSYS.CH0MUX = EVSYS_CHMUX_PORTC_PIN0_gc;								// Configure CHa as a multiplexer input for event channel 0
+	EVSYS.CH0CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;				// Enable the quadrature encoder
 	
+	TCC0.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH0_gc;						// Set the quadrature decoding as the event action for the timer
+	TCC0.PER = 0xFFFF;														// Set the timer counter period 1000 cpr, = 1000*4-1 F9F
+	TCC0.CTRLA = TC_CLKSEL_DIV1_gc;											// Start the timer
 	
-	// LOOP (state transition loop typically goes in here):
-	while(1)
-	{
-		// Read value from hardware counter
-		count = TCC0.CNT;
+	uint16_t encoder_count;
+	uint16_t last_encoder_count;
+	float AngularPositionCalc;
+	int16_t AngularPosition;
+	float dt = .001;
+	float AngularVelocityCalc;
+	int16_t AngularVelocity;
+	float x_calc;
+	int16_t x;
+	
+	// Configure a serial port which can be used by a task to print debugging infor-
+	// mation, or to allow user interaction, or for whatever use is appropriate.  The
+	// serial port will be used by the user interface task after setup is complete and
+	// the task scheduler has been started by the function vTaskStartScheduler()
+	rs232 ser_dev(0,&USARTC0); // Create a serial device on USART E0 with always baud = 115200
+
+	while(1){
+		encoder_count = TCC0.CNT;											// get count
 		
+		AngularPositionCalc = (encoder_count/(4.00000*1000.00000))*360;		// convert to position [deg], quadrature = 4, cpr = 1000. (encoder_count/(4*1000))*360
+		AngularPosition = AngularPositionCalc;
+		//ser_dev << "Angular Position: " << AngularPosition << " [deg]" << endl;
+		
+		x_calc = encoder_count*3/100;		// PPMM  = (4*1000)/(pi*38)
+		x = x_calc;															// convert to linear position [mm]
+		//ser_dev << "Linear Position: " << x << " [mm]" << endl;
+		linear_position.put(x);
+		//ser_dev << "Linear Position: " << linear_position.get() << " [mm]" << endl;
+		
+		AngularVelocityCalc = ((encoder_count-last_encoder_count)*60/(4.00000*1000.00000))/dt;	// convert to velocity [RPM]
+		AngularVelocity = AngularVelocityCalc;
+		//ser_dev << "Angular Velocity: " << AngularVelocity << " [RPM]" << endl;
+		
+		last_encoder_count = encoder_count;									// make present encoder_count the previous for the next calculation
+		
+		/*
 		if(motor_enc_zero = true) // (just a placeholder parameter name) - checks if the "zero" flag is set by some other task (like when the limit switch is triggered)
 		{
 			// Reset ticks to 0 (there may be a better way to do this)
@@ -63,6 +99,7 @@ void EncoderMotor::run (void)
 			// Reset the flag
 			motor_enc_zero = false;
 		}
+		*/
 		
 		// Increment counter for debugging
 		runs++;
@@ -72,5 +109,10 @@ void EncoderMotor::run (void)
 		// loop every N milliseconds and let other tasks run at other times
 		delay_from_to (previousTicks, configMS_TO_TICKS (1));
 		*/
+		
+		// set dt
+		_delay_ms(1);
+		
 	}
+
 }

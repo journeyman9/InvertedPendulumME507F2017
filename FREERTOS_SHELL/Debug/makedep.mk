@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+Source\EncoderMotor.cpp
+
 Source\lib\freertos\croutine.c
 
 Source\task_LED.cpp

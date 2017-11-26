@@ -213,6 +213,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Source\EncoderMotor.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\EncoderMotor.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Source\lib\freertos\croutine.c">
       <SubType>compile</SubType>
     </Compile>
