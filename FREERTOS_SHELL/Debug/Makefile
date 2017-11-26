@@ -45,6 +45,7 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../Source/EncoderMotor.cpp \
 ../Source/lib/freertos/croutine.c \
+../Source/LimitSwitches.cpp \
 ../Source/task_LED.cpp \
 ../Source/task_user.cpp \
 ../Source/lib/freertos/heap_2.c \
@@ -103,6 +104,7 @@ ASM_SRCS +=
 OBJS +=  \
 Source/EncoderMotor.o \
 Source/lib/freertos/croutine.o \
+Source/LimitSwitches.o \
 Source/task_LED.o \
 Source/task_user.o \
 Source/lib/freertos/heap_2.o \
@@ -154,6 +156,7 @@ Source/main.o
 OBJS_AS_ARGS +=  \
 Source/EncoderMotor.o \
 Source/lib/freertos/croutine.o \
+Source/LimitSwitches.o \
 Source/task_LED.o \
 Source/task_user.o \
 Source/lib/freertos/heap_2.o \
@@ -205,6 +208,7 @@ Source/main.o
 C_DEPS +=  \
 Source/EncoderMotor.d \
 Source/lib/freertos/croutine.d \
+Source/LimitSwitches.d \
 Source/task_LED.d \
 Source/task_user.d \
 Source/lib/freertos/heap_2.d \
@@ -256,6 +260,7 @@ Source/main.d
 C_DEPS_AS_ARGS +=  \
 Source/EncoderMotor.d \
 Source/lib/freertos/croutine.d \
+Source/LimitSwitches.d \
 Source/task_LED.d \
 Source/task_user.d \
 Source/lib/freertos/heap_2.d \
@@ -318,6 +323,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

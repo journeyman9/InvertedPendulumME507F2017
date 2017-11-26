@@ -1,6 +1,5 @@
-// Prevent this .h file from being included multiple times in a .cpp file
-#ifndef ENCODERMOTOR_H
-#define ENCODERMOTOR_H
+#ifndef LIMITSWITCHES_H
+#define LIMITSWITCHES_H
 
 #include <stdlib.h>                         // Prototype declarations for I/O functions
 
@@ -19,15 +18,16 @@
 
 #include "math.h"
 
-class EncoderMotor : public frt_task{
+class LimitSwitches : public frt_task{
 	protected:
 	
-	public:
+	public: 
 		// Constructor creates a motor encoder task object
-		EncoderMotor(const char*, unsigned portBASE_TYPE, size_t, emstream*);
-	
+		LimitSwitches(const char*, unsigned portBASE_TYPE, size_t, emstream*);
+			
 		// This gets called by the RTOS once to start this task's state loop
 		void run(void);
-};
-
+	
+	};
+	
 #endif

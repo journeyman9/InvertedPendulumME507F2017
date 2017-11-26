@@ -1,4 +1,5 @@
-Source/main.d Source/main.o: ../Source/main.cpp \
+Source/LimitSwitches.d Source/LimitSwitches.o: \
+ ../Source/LimitSwitches.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
@@ -29,10 +30,13 @@ Source/main.d Source/main.o: ../Source/main.cpp \
  ../Source/lib/frtcpp/time_stamp.h ../Source/lib/frtcpp/frt_text_queue.h \
  ../Source/lib/frtcpp/frt_queue.h ../Source/lib/frtcpp/frt_base_queue.h \
  ../Source/lib/frtcpp/frt_shared_data.h ../Source/shares.h \
- ../Source/task_user.h ../Source/lib/serial/ansi_terminal.h \
- ../Source/EncoderMotor.h \
+ ../Source/lib/frtcpp/shared_data_sender.h \
+ ../Source/lib/frtcpp/shared_data_receiver.h \
+ ../Source/lib/frtcpp/base_data_receiver.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- ../Source/LimitSwitches.h
+ ../Source/EncoderMotor.h ../Source/LimitSwitches.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -116,12 +120,18 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Source/shares.h:
 
-../Source/task_user.h:
+../Source/lib/frtcpp/shared_data_sender.h:
 
-../Source/lib/serial/ansi_terminal.h:
+../Source/lib/frtcpp/shared_data_receiver.h:
 
-../Source/EncoderMotor.h:
+../Source/lib/frtcpp/base_data_receiver.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+
+../Source/EncoderMotor.h:
 
 ../Source/LimitSwitches.h:

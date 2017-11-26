@@ -6,6 +6,8 @@ Source\EncoderMotor.cpp
 
 Source\lib\freertos\croutine.c
 
+Source\LimitSwitches.cpp
+
 Source\task_LED.cpp
 
 Source\task_user.cpp

@@ -35,7 +35,8 @@
 #include "task_user.h"                      // Header for user interface task
 
 #include "EncoderMotor.h"					// Header for Encoder of Motor
-#include "util/delay.h"						// Header for delay
+#include "LimitSwitches.h"					// Header for Limit Switches
+//#include "util/delay.h"					// Header for delay
 
 volatile int counter;
 frt_text_queue print_ser_queue (32, NULL, 10);
@@ -116,6 +117,10 @@ int main (void)
 	// The Encoder Motor task is a high priority and is used for controlling the cart
 	// to ensure centering
 	new EncoderMotor ("EncMtr", task_priority(1), 260, &ser_dev);
+	
+	// The LimitSwitches Task is an extremely high priority to kill the motor if either
+	// are hit.
+	new LimitSwitches ("LimSwtch", task_priority(2), 260, &ser_dev);
 	
 	// Enable high level interrupts and gl;obal interrupts
 	PMIC_CTRL = (1 << PMIC_HILVLEN_bp | 1 << PMIC_MEDLVLEN_bp | 1 << PMIC_LOLVLEN_bp);

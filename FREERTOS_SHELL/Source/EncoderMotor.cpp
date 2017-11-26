@@ -35,6 +35,7 @@ EncoderMotor::EncoderMotor(const char* a_name,
 							size_t a_stack_size,
 							emstream* p_ser_dev
 							)
+							
 	// Call the parent (task base) constructor
 	: frt_task (a_name, a_priority, a_stack_size, p_ser_dev)
 {
@@ -44,6 +45,9 @@ EncoderMotor::EncoderMotor(const char* a_name,
 
 void EncoderMotor::run (void)
 { 
+	// Make a variable which will hold times to use for precise task scheduling
+	portTickType previousTicks = xTaskGetTickCount ();
+	
 	PORTC.DIRCLR = PIN0_bm | PIN1_bm;										// Set both CHa and CHb for input
 	PORTC.PIN0CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Cha
 	PORTC.PIN1CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Chb
@@ -55,8 +59,8 @@ void EncoderMotor::run (void)
 	TCC0.PER = 0xFFFF;														// Set the timer counter period 1000 cpr, = 1000*4-1 F9F
 	TCC0.CTRLA = TC_CLKSEL_DIV1_gc;											// Start the timer
 	
-	uint16_t encoder_count;
-	uint16_t last_encoder_count;
+	int16_t encoder_count;
+	int16_t last_encoder_count;
 	float AngularPositionCalc;
 	int16_t AngularPosition;
 	float dt = .001;
@@ -64,29 +68,24 @@ void EncoderMotor::run (void)
 	int16_t AngularVelocity;
 	float x_calc;
 	int16_t x;
-	
-	// Configure a serial port which can be used by a task to print debugging infor-
-	// mation, or to allow user interaction, or for whatever use is appropriate.  The
-	// serial port will be used by the user interface task after setup is complete and
-	// the task scheduler has been started by the function vTaskStartScheduler()
-	rs232 ser_dev(0,&USARTC0); // Create a serial device on USART E0 with always baud = 115200
 
 	while(1){
 		encoder_count = TCC0.CNT;											// get count
+		//*p_serial << "Econder Pulses" << encoder_count << endl;
 		
 		AngularPositionCalc = (encoder_count/(4.00000*1000.00000))*360;		// convert to position [deg], quadrature = 4, cpr = 1000. (encoder_count/(4*1000))*360
 		AngularPosition = AngularPositionCalc;
-		//ser_dev << "Angular Position: " << AngularPosition << " [deg]" << endl;
+		//*p_serial << "Angular Position: " << AngularPosition << " [deg]" << endl;
 		
-		x_calc = encoder_count*3/100;		// PPMM  = (4*1000)/(pi*38)
+		x_calc = ( encoder_count * 3)/100;		// PPMM  = (4*1000)/(pi*38)
 		x = x_calc;															// convert to linear position [mm]
-		//ser_dev << "Linear Position: " << x << " [mm]" << endl;
+		//*p_serial << "Linear Position: " << x << " [mm]" << endl;
 		linear_position.put(x);
-		//ser_dev << "Linear Position: " << linear_position.get() << " [mm]" << endl;
+		//*p_serial << "Linear Position: " << linear_position.get() << " [mm]" << endl;
 		
-		AngularVelocityCalc = ((encoder_count-last_encoder_count)*60/(4.00000*1000.00000))/dt;	// convert to velocity [RPM]
+		AngularVelocityCalc = ((int16_t) (encoder_count-last_encoder_count))*60/(4.00000*1000.00000)/dt;	// convert to velocity [RPM]
 		AngularVelocity = AngularVelocityCalc;
-		//ser_dev << "Angular Velocity: " << AngularVelocity << " [RPM]" << endl;
+		//*p_serial << "Angular Velocity: " << AngularVelocity << " [RPM]" << endl;
 		
 		last_encoder_count = encoder_count;									// make present encoder_count the previous for the next calculation
 		
@@ -104,14 +103,11 @@ void EncoderMotor::run (void)
 		// Increment counter for debugging
 		runs++;
 		
-		/*
+		// set dt
+		//_delay_ms(1);
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
 		delay_from_to (previousTicks, configMS_TO_TICKS (1));
-		*/
-		
-		// set dt
-		_delay_ms(1);
 		
 	}
 

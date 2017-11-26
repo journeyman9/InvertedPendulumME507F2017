@@ -231,6 +231,12 @@
     <Compile Include="Source\lib\freertos\FreeRTOSConfig.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Source\LimitSwitches.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\LimitSwitches.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Source\task_LED.cpp">
       <SubType>compile</SubType>
     </Compile>
