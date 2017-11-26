@@ -50,12 +50,12 @@ void EncoderMotor::run (void)
 	PORTE.PIN4CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Cha
 	PORTE.PIN5CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Chb
 	
-	EVSYS.CH1MUX = EVSYS_CHMUX_PORTE_PIN4_gc;								// Configure CHa as a multiplexer input for event channel 1
-	EVSYS.CH1CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;				// Enable the quadrature encoder
+	EVSYS.CH0MUX = EVSYS_CHMUX_PORTE_PIN4_gc;								// Configure CHa as a multiplexer input for event channel 1
+	EVSYS.CH0CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;				// Enable the quadrature encoder
 	
-	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH1_gc;						// Set the quadrature decoding as the event action for the timer
-	TCC1.PER = 0xFFFF;														// Set the timer counter period 1000 cpr, = 1000*4-1 F9F
-	TCC1.CTRLA = TC_CLKSEL_DIV1_gc;											// Start the timer
+	TCD0.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH0_gc;						// Set the quadrature decoding as the event action for the timer
+	TCD0.PER = 0xFFFF;														// Set the timer counter period 1000 cpr, = 1000*4-1 F9F
+	TCD0.CTRLA = TC_CLKSEL_DIV1_gc;											// Start the timer
 	
 	int16_t encoder_count;
 	int16_t last_encoder_count;
@@ -68,7 +68,7 @@ void EncoderMotor::run (void)
 	int16_t x;
 
 	while(1){
-		encoder_count = TCC1.CNT;											// get count
+		encoder_count = TCD0.CNT;											// get count
 		*p_serial << "Encoder Pulses: " << encoder_count << endl;
 		
 		angularPositionCalc = (encoder_count/(4.00000*1000.00000))*360;		// convert to position [deg], quadrature = 4, cpr = 1000. (encoder_count/(4*1000))*360
@@ -106,7 +106,7 @@ void EncoderMotor::run (void)
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (1));
+		delay_from_to (previousTicks, configMS_TO_TICKS (5));
 		
 	}
 

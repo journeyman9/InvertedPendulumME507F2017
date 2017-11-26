@@ -2131,39 +2131,39 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x124d5
+.debug_info     0x00000000    0x125c5
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x3e5a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.1.68/gcc/dev/atxmega128a1u/avrxmega7/crtatxmega128a1u.o
- .debug_info    0x00003e5a     0x137e Source/EncoderMotor.o
- .debug_info    0x000051d8      0xf95 Source/EncoderPendulum.o
- .debug_info    0x0000616d      0x748 Source/LimitSwitches.o
- .debug_info    0x000068b5      0x4b5 Source/Motor.o
- .debug_info    0x00006d6a      0x375 Source/pid.o
- .debug_info    0x000070df      0x375 Source/PWMdriver.o
- .debug_info    0x00007454     0x1a79 Source/task_user.o
- .debug_info    0x00008ecd      0x30f Source/lib/freertos/heap_2.o
- .debug_info    0x000091dc      0x2c5 Source/lib/freertos/list.o
- .debug_info    0x000094a1      0x275 Source/lib/freertos/port.o
- .debug_info    0x00009716      0xdde Source/lib/freertos/queue.o
- .debug_info    0x0000a4f4     0x1301 Source/lib/freertos/tasks.o
- .debug_info    0x0000b7f5      0x9eb Source/lib/frtcpp/frt_task.o
- .debug_info    0x0000c1e0      0x640 Source/lib/frtcpp/frt_task_stackprt.o
- .debug_info    0x0000c820     0x10e6 Source/lib/frtcpp/frt_task_status.o
- .debug_info    0x0000d906      0x410 Source/lib/frtcpp/frt_text_queue.o
- .debug_info    0x0000dd16      0x3ab Source/lib/frtcpp/time_stamp_get_us.o
- .debug_info    0x0000e0c1      0x5ae Source/lib/frtcpp/time_stamp_lshift.o
- .debug_info    0x0000e66f      0x9a8 Source/lib/frtcpp/time_stamp_to_now.o
- .debug_info    0x0000f017      0x515 Source/lib/misc/hex_dump_memory.o
- .debug_info    0x0000f52c      0x29c Source/lib/misc/mechutil.o
- .debug_info    0x0000f7c8      0x482 Source/lib/serial/base232.o
- .debug_info    0x0000fc4a      0xa2f Source/lib/serial/emstream.o
- .debug_info    0x00010679      0x113 Source/lib/serial/emstream_bool.o
- .debug_info    0x0001078c      0x27d Source/lib/serial/emstream_int16_t.o
- .debug_info    0x00010a09      0x2b8 Source/lib/serial/emstream_uint16_t.o
- .debug_info    0x00010cc1      0x2e0 Source/lib/serial/emstream_uint32_t.o
- .debug_info    0x00010fa1      0x2d8 Source/lib/serial/emstream_uint8_t.o
- .debug_info    0x00011279      0x907 Source/lib/serial/rs232int.o
- .debug_info    0x00011b80      0x955 Source/main.o
+ .debug_info    0x00003e5a     0x146e Source/EncoderMotor.o
+ .debug_info    0x000052c8      0xf95 Source/EncoderPendulum.o
+ .debug_info    0x0000625d      0x748 Source/LimitSwitches.o
+ .debug_info    0x000069a5      0x4b5 Source/Motor.o
+ .debug_info    0x00006e5a      0x375 Source/pid.o
+ .debug_info    0x000071cf      0x375 Source/PWMdriver.o
+ .debug_info    0x00007544     0x1a79 Source/task_user.o
+ .debug_info    0x00008fbd      0x30f Source/lib/freertos/heap_2.o
+ .debug_info    0x000092cc      0x2c5 Source/lib/freertos/list.o
+ .debug_info    0x00009591      0x275 Source/lib/freertos/port.o
+ .debug_info    0x00009806      0xdde Source/lib/freertos/queue.o
+ .debug_info    0x0000a5e4     0x1301 Source/lib/freertos/tasks.o
+ .debug_info    0x0000b8e5      0x9eb Source/lib/frtcpp/frt_task.o
+ .debug_info    0x0000c2d0      0x640 Source/lib/frtcpp/frt_task_stackprt.o
+ .debug_info    0x0000c910     0x10e6 Source/lib/frtcpp/frt_task_status.o
+ .debug_info    0x0000d9f6      0x410 Source/lib/frtcpp/frt_text_queue.o
+ .debug_info    0x0000de06      0x3ab Source/lib/frtcpp/time_stamp_get_us.o
+ .debug_info    0x0000e1b1      0x5ae Source/lib/frtcpp/time_stamp_lshift.o
+ .debug_info    0x0000e75f      0x9a8 Source/lib/frtcpp/time_stamp_to_now.o
+ .debug_info    0x0000f107      0x515 Source/lib/misc/hex_dump_memory.o
+ .debug_info    0x0000f61c      0x29c Source/lib/misc/mechutil.o
+ .debug_info    0x0000f8b8      0x482 Source/lib/serial/base232.o
+ .debug_info    0x0000fd3a      0xa2f Source/lib/serial/emstream.o
+ .debug_info    0x00010769      0x113 Source/lib/serial/emstream_bool.o
+ .debug_info    0x0001087c      0x27d Source/lib/serial/emstream_int16_t.o
+ .debug_info    0x00010af9      0x2b8 Source/lib/serial/emstream_uint16_t.o
+ .debug_info    0x00010db1      0x2e0 Source/lib/serial/emstream_uint32_t.o
+ .debug_info    0x00011091      0x2d8 Source/lib/serial/emstream_uint8_t.o
+ .debug_info    0x00011369      0x907 Source/lib/serial/rs232int.o
+ .debug_info    0x00011c70      0x955 Source/main.o
 
 .debug_abbrev   0x00000000     0x79f6
  *(.debug_abbrev)
@@ -2269,19 +2269,19 @@ END GROUP
 .debug_str      0x00000000     0x6e14
  *(.debug_str)
  .debug_str     0x00000000     0x2969 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.1.68/gcc/dev/atxmega128a1u/avrxmega7/crtatxmega128a1u.o
- .debug_str     0x00002969     0x1926 Source/EncoderMotor.o
-                               0x19e0 (size before relaxing)
- .debug_str     0x0000428f       0xb3 Source/EncoderPendulum.o
+ .debug_str     0x00002969     0x1930 Source/EncoderMotor.o
+                               0x19ea (size before relaxing)
+ .debug_str     0x00004299       0xfc Source/EncoderPendulum.o
                                0x1780 (size before relaxing)
- .debug_str     0x00004342      0x185 Source/LimitSwitches.o
+ .debug_str     0x00004395      0x185 Source/LimitSwitches.o
                                 0x5f4 (size before relaxing)
- .debug_str     0x000044c7       0xff Source/Motor.o
+ .debug_str     0x0000451a       0xff Source/Motor.o
                                 0x3d3 (size before relaxing)
- .debug_str     0x000045c6       0x63 Source/pid.o
+ .debug_str     0x00004619       0x63 Source/pid.o
                                 0x331 (size before relaxing)
- .debug_str     0x00004629       0x8b Source/PWMdriver.o
+ .debug_str     0x0000467c       0x8b Source/PWMdriver.o
                                 0x359 (size before relaxing)
- .debug_str     0x000046b4      0x5a7 Source/task_user.o
+ .debug_str     0x00004707      0x554 Source/task_user.o
                                 0xb6b (size before relaxing)
  .debug_str     0x00004c5b      0x27b Source/lib/freertos/heap_2.o
                                 0x328 (size before relaxing)

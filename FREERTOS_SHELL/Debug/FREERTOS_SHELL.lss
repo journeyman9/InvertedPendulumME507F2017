@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000700  00000000  00000000  000043c0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000124d5  00000000  00000000  00004ac0  2**0
+  6 .debug_info   000125c5  00000000  00000000  00004ac0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000079f6  00000000  00000000  00016f95  2**0
+  7 .debug_abbrev 000079f6  00000000  00000000  00017085  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000529f  00000000  00000000  0001e98b  2**0
+  8 .debug_line   0000529f  00000000  00000000  0001ea7b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00001370  00000000  00000000  00023c2c  2**2
+  9 .debug_frame  00001370  00000000  00000000  00023d1c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00006e14  00000000  00000000  00024f9c  2**0
+ 10 .debug_str    00006e14  00000000  00000000  0002508c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00005f16  00000000  00000000  0002bdb0  2**0
+ 11 .debug_loc    00005f16  00000000  00000000  0002bea0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000005b0  00000000  00000000  00031cc6  2**0
+ 12 .debug_ranges 000005b0  00000000  00000000  00031db6  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -510,26 +510,26 @@ void EncoderMotor::run (void)
      5f0:	83 60       	ori	r24, 0x03	; 3
      5f2:	85 8b       	std	Z+21, r24	; 0x15
 	
-	EVSYS.CH1MUX = EVSYS_CHMUX_PORTE_PIN4_gc;								// Configure CHa as a multiplexer input for event channel 1
+	EVSYS.CH0MUX = EVSYS_CHMUX_PORTE_PIN4_gc;								// Configure CHa as a multiplexer input for event channel 1
      5f4:	e0 e8       	ldi	r30, 0x80	; 128
      5f6:	f1 e0       	ldi	r31, 0x01	; 1
      5f8:	84 e7       	ldi	r24, 0x74	; 116
-     5fa:	81 83       	std	Z+1, r24	; 0x01
-	EVSYS.CH1CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;				// Enable the quadrature encoder
+     5fa:	80 83       	st	Z, r24
+	EVSYS.CH0CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;				// Enable the quadrature encoder
      5fc:	89 e0       	ldi	r24, 0x09	; 9
-     5fe:	81 87       	std	Z+9, r24	; 0x09
+     5fe:	80 87       	std	Z+8, r24	; 0x08
 	
-	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH1_gc;						// Set the quadrature decoding as the event action for the timer
-     600:	e0 e4       	ldi	r30, 0x40	; 64
-     602:	f8 e0       	ldi	r31, 0x08	; 8
-     604:	89 e6       	ldi	r24, 0x69	; 105
+	TCD0.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH0_gc;						// Set the quadrature decoding as the event action for the timer
+     600:	e0 e0       	ldi	r30, 0x00	; 0
+     602:	f9 e0       	ldi	r31, 0x09	; 9
+     604:	88 e6       	ldi	r24, 0x68	; 104
      606:	83 83       	std	Z+3, r24	; 0x03
-	TCC1.PER = 0xFFFF;														// Set the timer counter period 1000 cpr, = 1000*4-1 F9F
+	TCD0.PER = 0xFFFF;														// Set the timer counter period 1000 cpr, = 1000*4-1 F9F
      608:	8f ef       	ldi	r24, 0xFF	; 255
      60a:	9f ef       	ldi	r25, 0xFF	; 255
      60c:	86 a3       	std	Z+38, r24	; 0x26
      60e:	97 a3       	std	Z+39, r25	; 0x27
-	TCC1.CTRLA = TC_CLKSEL_DIV1_gc;											// Start the timer
+	TCD0.CTRLA = TC_CLKSEL_DIV1_gc;											// Start the timer
      610:	81 e0       	ldi	r24, 0x01	; 1
      612:	80 83       	st	Z, r24
 	int16_t angularVelocity;
@@ -537,12 +537,12 @@ void EncoderMotor::run (void)
 	int16_t x;
 
 	while(1){
-		encoder_count = TCC1.CNT;											// get count
-     614:	68 94       	set
-     616:	88 24       	eor	r8, r8
-     618:	86 f8       	bld	r8, 6
-     61a:	99 24       	eor	r9, r9
-     61c:	93 f8       	bld	r9, 3
+		encoder_count = TCD0.CNT;											// get count
+     614:	0f 2e       	mov	r0, r31
+     616:	81 2c       	mov	r8, r1
+     618:	f9 e0       	ldi	r31, 0x09	; 9
+     61a:	9f 2e       	mov	r9, r31
+     61c:	f0 2d       	mov	r31, r0
 		*  @param new_data The data which is to be written
 		*/
 		void put (data_type new_data)
@@ -697,7 +697,7 @@ void EncoderMotor::run (void)
 		void delay_from_to (portTickType& from_ticks, portTickType interval)
 		{
 			vTaskDelayUntil (&from_ticks, interval);
-     714:	41 e0       	ldi	r20, 0x01	; 1
+     714:	45 e0       	ldi	r20, 0x05	; 5
      716:	50 e0       	ldi	r21, 0x00	; 0
      718:	60 e0       	ldi	r22, 0x00	; 0
      71a:	70 e0       	ldi	r23, 0x00	; 0
@@ -779,14 +779,14 @@ void EncoderPendulum::run(void){
      76c:	84 8b       	std	Z+20, r24	; 0x14
 	PORTC.PIN5CTRL = PORT_ISC_LEVEL_gc;							// set C5 for level sensing
      76e:	85 8b       	std	Z+21, r24	; 0x15
-	EVSYS.CH0MUX = EVSYS_CHMUX_PORTC_PIN4_gc;					// set PC4 as Multiplexer for Event Chan 0
+	EVSYS.CH1MUX = EVSYS_CHMUX_PORTC_PIN4_gc;					// set PC4 as Multiplexer for Event Chan 0
      770:	e0 e8       	ldi	r30, 0x80	; 128
      772:	f1 e0       	ldi	r31, 0x01	; 1
      774:	84 e6       	ldi	r24, 0x64	; 100
-     776:	80 83       	st	Z, r24
-	EVSYS.CH0CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;	// enable quad encoder mode with 2-sample filtering
+     776:	81 83       	std	Z+1, r24	; 0x01
+	EVSYS.CH1CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;	// enable quad encoder mode with 2-sample filtering
      778:	89 e0       	ldi	r24, 0x09	; 9
-     77a:	80 87       	std	Z+8, r24	; 0x08
+     77a:	81 87       	std	Z+9, r24	; 0x09
 	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH1_gc;			// set TCC1 event action to quad decoding, and event source as Event Chan 1
      77c:	e0 e4       	ldi	r30, 0x40	; 64
      77e:	f8 e0       	ldi	r31, 0x08	; 8
@@ -805,7 +805,7 @@ void EncoderPendulum::run(void){
 	
 	while(1){
 		// Read value from hardware counter
-		count = TCC1.CNT;
+		count = TCC1.CNT; 
      790:	68 94       	set
      792:	ee 24       	eor	r14, r14
      794:	e6 f8       	bld	r14, 6
