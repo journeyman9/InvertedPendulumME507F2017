@@ -45,6 +45,8 @@ volatile int counter;
 frt_text_queue print_ser_queue (32, NULL, 10);
 
 shared_data<int16_t> linear_position;		// Establish shared variable type
+shared_data<int16_t> thMotor;
+shared_data<int16_t> thdMotor;
 
 /*! \brief CCP write helper function written in assembly.
  *
