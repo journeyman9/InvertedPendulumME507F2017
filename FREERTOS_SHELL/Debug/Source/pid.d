@@ -1,4 +1,4 @@
-Source/EncoderMotor.d Source/EncoderMotor.o: ../Source/EncoderMotor.cpp \
+Source/pid.d Source/pid.o: ../Source/pid.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
@@ -31,10 +31,12 @@ Source/EncoderMotor.d Source/EncoderMotor.o: ../Source/EncoderMotor.cpp \
  ../Source/lib/frtcpp/frt_shared_data.h ../Source/shares.h \
  ../Source/lib/frtcpp/shared_data_sender.h \
  ../Source/lib/frtcpp/shared_data_receiver.h \
- ../Source/lib/frtcpp/base_data_receiver.h ../Source/EncoderMotor.h \
+ ../Source/lib/frtcpp/base_data_receiver.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- ../Source/Motor.h ../Source/EncoderPendulum.h ../Source/LimitSwitches.h \
- ../Source/PWMdriver.h ../Source/pid.h
+ ../Source/EncoderMotor.h ../Source/Motor.h ../Source/EncoderPendulum.h \
+ ../Source/LimitSwitches.h ../Source/PWMdriver.h ../Source/pid.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -124,9 +126,13 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Source/lib/frtcpp/base_data_receiver.h:
 
-../Source/EncoderMotor.h:
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+
+../Source/EncoderMotor.h:
 
 ../Source/Motor.h:
 

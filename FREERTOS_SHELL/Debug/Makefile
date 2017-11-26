@@ -44,8 +44,12 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../Source/EncoderMotor.cpp \
+../Source/EncoderPendulum.cpp \
 ../Source/lib/freertos/croutine.c \
 ../Source/LimitSwitches.cpp \
+../Source/Motor.cpp \
+../Source/pid.cpp \
+../Source/PWMdriver.cpp \
 ../Source/task_LED.cpp \
 ../Source/task_user.cpp \
 ../Source/lib/freertos/heap_2.c \
@@ -103,8 +107,12 @@ ASM_SRCS +=
 
 OBJS +=  \
 Source/EncoderMotor.o \
+Source/EncoderPendulum.o \
 Source/lib/freertos/croutine.o \
 Source/LimitSwitches.o \
+Source/Motor.o \
+Source/pid.o \
+Source/PWMdriver.o \
 Source/task_LED.o \
 Source/task_user.o \
 Source/lib/freertos/heap_2.o \
@@ -155,8 +163,12 @@ Source/main.o
 
 OBJS_AS_ARGS +=  \
 Source/EncoderMotor.o \
+Source/EncoderPendulum.o \
 Source/lib/freertos/croutine.o \
 Source/LimitSwitches.o \
+Source/Motor.o \
+Source/pid.o \
+Source/PWMdriver.o \
 Source/task_LED.o \
 Source/task_user.o \
 Source/lib/freertos/heap_2.o \
@@ -207,8 +219,12 @@ Source/main.o
 
 C_DEPS +=  \
 Source/EncoderMotor.d \
+Source/EncoderPendulum.d \
 Source/lib/freertos/croutine.d \
 Source/LimitSwitches.d \
+Source/Motor.d \
+Source/pid.d \
+Source/PWMdriver.d \
 Source/task_LED.d \
 Source/task_user.d \
 Source/lib/freertos/heap_2.d \
@@ -259,8 +275,12 @@ Source/main.d
 
 C_DEPS_AS_ARGS +=  \
 Source/EncoderMotor.d \
+Source/EncoderPendulum.d \
 Source/lib/freertos/croutine.d \
 Source/LimitSwitches.d \
+Source/Motor.d \
+Source/pid.d \
+Source/PWMdriver.d \
 Source/task_LED.d \
 Source/task_user.d \
 Source/lib/freertos/heap_2.d \
@@ -323,6 +343,14 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
+
+
 
 
 

@@ -19,15 +19,13 @@
 
 #include "shared_data_sender.h"
 #include "shared_data_receiver.h"
-#include "util/delay.h"						// Header for delay
 
 #include "EncoderMotor.h"					// Header for this file
-/*#include "Motor.h"						// Inverted Pendulum file
+#include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
 #include "LimitSwitches.h"					// Inverted Pendulum file
-#include "UserInterface.h"					// Inverted Pendulum file
 #include "PWMdriver.h"						// Inverted Pendulum file
-*/
+#include "pid.h"							// Inverted Pendulum file
 
 
 EncoderMotor::EncoderMotor(const char* a_name,
@@ -104,7 +102,6 @@ void EncoderMotor::run (void)
 		runs++;
 		
 		// set dt
-		//_delay_ms(1);
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
 		delay_from_to (previousTicks, configMS_TO_TICKS (1));

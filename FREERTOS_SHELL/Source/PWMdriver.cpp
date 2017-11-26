@@ -27,7 +27,8 @@
 #include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 
-LimitSwitches::LimitSwitches(const char* a_name,
+
+PWMdriver::PWMdriver(const char* a_name,
 								unsigned portBASE_TYPE a_priority,
 								size_t a_stack_size,
 								emstream* p_ser_dev
@@ -39,7 +40,7 @@ LimitSwitches::LimitSwitches(const char* a_name,
 		// Nothing to do in this constructor other than call the parent constructor
 	}
 
-void LimitSwitches::run(void){
+void PWMdriver::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 
@@ -50,9 +51,9 @@ void LimitSwitches::run(void){
 		//*p_serial << "Econder Pulses" << encoder_count << endl;
 		
 		// set dt
-		//_delay_ms(1);
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
 		delay_from_to (previousTicks, configMS_TO_TICKS (1));
 	}	
 }
+

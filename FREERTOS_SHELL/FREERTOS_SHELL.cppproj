@@ -219,6 +219,12 @@
     <Compile Include="Source\EncoderMotor.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Source\EncoderPendulum.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\EncoderPendulum.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Source\lib\freertos\croutine.c">
       <SubType>compile</SubType>
     </Compile>
@@ -235,6 +241,24 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\LimitSwitches.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\Motor.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\Motor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\pid.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\pid.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\PWMdriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\PWMdriver.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\task_LED.cpp">

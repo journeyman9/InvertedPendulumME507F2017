@@ -4,9 +4,17 @@
 
 Source\EncoderMotor.cpp
 
+Source\EncoderPendulum.cpp
+
 Source\lib\freertos\croutine.c
 
 Source\LimitSwitches.cpp
+
+Source\Motor.cpp
+
+Source\pid.cpp
+
+Source\PWMdriver.cpp
 
 Source\task_LED.cpp
 

@@ -1,4 +1,4 @@
-Source/EncoderMotor.d Source/EncoderMotor.o: ../Source/EncoderMotor.cpp \
+Source/Motor.d Source/Motor.o: ../Source/Motor.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \

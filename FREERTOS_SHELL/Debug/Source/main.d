@@ -32,7 +32,8 @@ Source/main.d Source/main.o: ../Source/main.cpp \
  ../Source/task_user.h ../Source/lib/serial/ansi_terminal.h \
  ../Source/EncoderMotor.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- ../Source/LimitSwitches.h
+ ../Source/LimitSwitches.h ../Source/Motor.h ../Source/EncoderPendulum.h \
+ ../Source/PWMdriver.h ../Source/pid.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -125,3 +126,11 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
 
 ../Source/LimitSwitches.h:
+
+../Source/Motor.h:
+
+../Source/EncoderPendulum.h:
+
+../Source/PWMdriver.h:
+
+../Source/pid.h:
