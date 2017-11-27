@@ -52,15 +52,19 @@ void EncoderPendulum::run(void){
 	EVSYS.CH2MUX = EVSYS_CHMUX_PORTB_PIN4_gc;					// set PC4 as Multiplexer for Event Chan 0
 	EVSYS.CH2CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;	// enable quad encoder mode with 2-sample filtering
 	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH2_gc;			// set TCC1 event action to quad decoding, and event source as Event Chan 1
-	TCC1.PER = 0xFFFF;											// usually ticks/rev, but this doesn't matter since we're converting to linear anyway
+	TCC1.PER = 0x5A0;											// usually ticks/rev, but this doesn't matter since we're converting to linear anyway
 	TCC1.CTRLA = TC_CLKSEL_DIV1_gc;								// start TCC1 with prescaler = 1
 	
-	uint16_t count;												// contains the current encoder value
+	int16_t count;												// contains the current encoder value
+	int16_t theta_pendulum;
 	
 	while(1){
 		// Read value from hardware counter
 		count = TCC1.CNT; 
-		*p_serial << count << endl;
+		//*p_serial << count << endl;
+		theta_pendulum = ( (int32_t) count*100/4);				//count/(4*360)*360 degrees * 100
+		//*p_serial << "thetaPendulum: " <<  theta_pendulum << endl;
+		thPendulum.put(theta_pendulum);
 		
 		/*	
 		if(pendulum_enc_zero = true) // (just a placeholder parameter name) - checks if the "zero" flag is set by some other task (like when the limit switch is triggered)
@@ -81,6 +85,6 @@ void EncoderPendulum::run(void){
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (1));
+		delay_from_to (previousTicks, configMS_TO_TICKS (200));
 	}	
 }

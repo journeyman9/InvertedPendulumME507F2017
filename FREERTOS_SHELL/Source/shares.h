@@ -44,5 +44,6 @@ extern frt_text_queue print_ser_queue;			// This queue allows tasks to send char
 extern shared_data<int16_t> linear_position;	// queue for linear position of cart
 extern shared_data<int16_t> thMotor;			// queue for angular position of motor
 extern shared_data<int16_t> thdMotor;			// queue for angular velocity of motor
+extern shared_data<int16_t> thPendulum;			// queue for angular position of pendulum
 
 #endif // _SHARES_H_
