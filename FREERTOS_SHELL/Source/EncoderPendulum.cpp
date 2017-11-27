@@ -46,12 +46,12 @@ void EncoderPendulum::run(void){
 	
 	// INIT:
 	// Setup quad encoder on pins C4 & C5
-	PORTC.DIRCLR = (PIN4_bm | PIN5_bm);							// set C4 & C5 as inputs
-	PORTC.PIN4CTRL = PORT_ISC_LEVEL_gc;							// set C4 for level sensing
-	PORTC.PIN5CTRL = PORT_ISC_LEVEL_gc;							// set C5 for level sensing
-	EVSYS.CH1MUX = EVSYS_CHMUX_PORTC_PIN4_gc;					// set PC4 as Multiplexer for Event Chan 0
-	EVSYS.CH1CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;	// enable quad encoder mode with 2-sample filtering
-	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH1_gc;			// set TCC1 event action to quad decoding, and event source as Event Chan 1
+	PORTB.DIRCLR = (PIN4_bm | PIN5_bm);							// set C4 & C5 as inputs
+	PORTB.PIN4CTRL = PORT_ISC_LEVEL_gc;							// set C4 for level sensing
+	PORTB.PIN5CTRL = PORT_ISC_LEVEL_gc;							// set C5 for level sensing
+	EVSYS.CH2MUX = EVSYS_CHMUX_PORTB_PIN4_gc;					// set PC4 as Multiplexer for Event Chan 0
+	EVSYS.CH2CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;	// enable quad encoder mode with 2-sample filtering
+	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH2_gc;			// set TCC1 event action to quad decoding, and event source as Event Chan 1
 	TCC1.PER = 0xFFFF;											// usually ticks/rev, but this doesn't matter since we're converting to linear anyway
 	TCC1.CTRLA = TC_CLKSEL_DIV1_gc;								// start TCC1 with prescaler = 1
 	
@@ -60,6 +60,7 @@ void EncoderPendulum::run(void){
 	while(1){
 		// Read value from hardware counter
 		count = TCC1.CNT; 
+		*p_serial << count << endl;
 		
 		/*	
 		if(pendulum_enc_zero = true) // (just a placeholder parameter name) - checks if the "zero" flag is set by some other task (like when the limit switch is triggered)

@@ -57,13 +57,13 @@ void LimitSwitches::run(void){
 		if(!(PORTK_IN & PIN0_bm))							// check whether limit is pressed (pin K0 is high)
 		{	
 			rightLimit = 1;
-			//*p_serial << "rightLimit: " << rightLimit << endl;
+			*p_serial << "rightLimit: " << rightLimit << endl;
 			
 		}
 		else if (!(PORTK_IN & PIN2_bm))						// check whether limit is pressed (pin K2 is high)
 		{
 			leftLimit = 1;
-			//*p_serial << "leftLimit: " << leftLimit << endl;
+			*p_serial << "leftLimit: " << leftLimit << endl;
 		}
 		else
 		{

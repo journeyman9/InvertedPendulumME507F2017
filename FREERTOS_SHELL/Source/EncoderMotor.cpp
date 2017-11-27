@@ -68,8 +68,9 @@ void EncoderMotor::run (void)
 	int16_t x;
 
 	while(1){
+		
 		encoder_count = TCD0.CNT;											// get count
-		//*p_serial << "Encoder Pulses: " << encoder_count << endl;
+		*p_serial << "Encoder Pulses: " << encoder_count << endl;
 		
 		angularPositionCalc = (encoder_count/(4.00000*1000.00000))*360;		// convert to position [deg], quadrature = 4, cpr = 1000. (encoder_count/(4*1000))*360
 		angularPosition = angularPositionCalc;
@@ -84,11 +85,11 @@ void EncoderMotor::run (void)
 		
 		angularVelocityCalc = ((int16_t) (encoder_count-last_encoder_count))*60/(4.00000*1000.00000)/dt;	// convert to velocity [RPM]
 		angularVelocity = angularVelocityCalc;
-		*p_serial << "Angular Velocity: " << angularVelocity << " [RPM]" << endl;
+		//*p_serial << "Angular Velocity: " << angularVelocity << " [RPM]" << endl;
 		thdMotor.put(angularVelocity);
 		
 		last_encoder_count = encoder_count;									// make present encoder_count the previous for the next calculation
-		
+
 		/*
 		if(motor_enc_zero = true) // (just a placeholder parameter name) - checks if the "zero" flag is set by some other task (like when the limit switch is triggered)
 		{
