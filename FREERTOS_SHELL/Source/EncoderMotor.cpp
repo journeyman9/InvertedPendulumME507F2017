@@ -61,7 +61,7 @@ void EncoderMotor::run (void)
 	int16_t last_encoder_count;
 	float angularPositionCalc;
 	int16_t angularPosition;
-	float dt = .001;
+	float dt = .005;
 	float angularVelocityCalc;
 	int16_t angularVelocity;
 	float x_calc;
@@ -69,14 +69,14 @@ void EncoderMotor::run (void)
 
 	while(1){
 		encoder_count = TCD0.CNT;											// get count
-		*p_serial << "Encoder Pulses: " << encoder_count << endl;
+		//*p_serial << "Encoder Pulses: " << encoder_count << endl;
 		
 		angularPositionCalc = (encoder_count/(4.00000*1000.00000))*360;		// convert to position [deg], quadrature = 4, cpr = 1000. (encoder_count/(4*1000))*360
 		angularPosition = angularPositionCalc;
-		//*p_serial << "Angular Position: " << AngularPosition << " [deg]" << endl;
+		//*p_serial << "Angular Position: " << angularPosition << " [deg]" << endl;
 		thMotor.put(angularPosition);
 		
-		x_calc = ( encoder_count * 3)/100;		// PPMM  = (4*1000)/(pi*38)
+		x_calc = ( (int32_t) encoder_count * 3)/100;		// PPMM  = (4*1000)/(pi*38)
 		x = x_calc;															// convert to linear position [mm]
 		//*p_serial << "Linear Position: " << x << " [mm]" << endl;
 		linear_position.put(x);
@@ -84,7 +84,7 @@ void EncoderMotor::run (void)
 		
 		angularVelocityCalc = ((int16_t) (encoder_count-last_encoder_count))*60/(4.00000*1000.00000)/dt;	// convert to velocity [RPM]
 		angularVelocity = angularVelocityCalc;
-		//*p_serial << "Angular Velocity: " << AngularVelocity << " [RPM]" << endl;
+		*p_serial << "Angular Velocity: " << angularVelocity << " [RPM]" << endl;
 		thdMotor.put(angularVelocity);
 		
 		last_encoder_count = encoder_count;									// make present encoder_count the previous for the next calculation

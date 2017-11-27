@@ -1,3 +1,6 @@
+#ifndef _PID_SOURCE_
+#define _PID_SOURCE_
+
 #include <stdlib.h>                         // Prototype declarations for I/O functions
 #include <avr/io.h>                         // Port I/O for SFR's
 #include <avr/wdt.h>                        // Watchdog timer header
@@ -28,44 +31,8 @@
 #include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 
-
-pid::pid (const char* a_name,
-								unsigned portBASE_TYPE a_priority,
-								size_t a_stack_size,
-								emstream* p_ser_dev
-								)
-								
-	// Call the parent (task base) constructor
-	: frt_task (a_name, a_priority, a_stack_size, p_ser_dev)
-	{
-		// Nothing to do in this constructor other than call the parent constructor
-	}
-
-void pid::run(void){
-	// Make a variable which will hold times to use for precise task scheduling
-	portTickType previousTicks = xTaskGetTickCount ();
-
-	while(1){
-		// Increment counter for debugging
-		runs++;
-		
-		//*p_serial << "Econder Pulses" << encoder_count << endl;
-		
-		// set dt
-		// This is a method we use to cause a task to make one run through its task
-		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (1));
-	}	
-}
-
-
-/*
-#ifndef _PID_SOURCE_
-#define _PID_SOURCE_
-
-#include <iostream>
-#include <cmath>
-#include "pid.h"
+//#include <iostream>
+//#include <cmath>
 
 using namespace std;
 
@@ -86,9 +53,8 @@ class PIDImpl
         double _pre_error;
         double _integral;
 };
-*/
 
-/*
+
 PID::PID( double dt, double max, double min, double Kp, double Kd, double Ki )
 {
     pimpl = new PIDImpl(dt,max,min,Kp,Kd,Ki);
@@ -102,13 +68,11 @@ PID::~PID()
     delete pimpl;
 }
 
-*/
 
 /**
  * Implementation
  */
 
-/*
 PIDImpl::PIDImpl( double dt, double max, double min, double Kp, double Kd, double Ki ) :
     _dt(dt),
     _max(max),
@@ -158,5 +122,3 @@ PIDImpl::~PIDImpl()
 }
 
 #endif
-
-*/

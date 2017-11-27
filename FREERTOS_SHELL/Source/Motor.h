@@ -41,6 +41,8 @@ class Motor : public frt_task{
 				volatile int K_v;
 				volatile int V_m;
 				volatile int i_error_sum;
+				volatile int inc;
+				volatile float dt;
 	public:
 		// Constructor creates a motor encoder task object
 		Motor(const char*, unsigned portBASE_TYPE, size_t, emstream*);

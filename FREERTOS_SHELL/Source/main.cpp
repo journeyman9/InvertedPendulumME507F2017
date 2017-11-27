@@ -121,24 +121,18 @@ int main (void)
 	
 	// The Encoder Motor task is a high priority and is used for controlling the cart
 	// to ensure centering
-	new EncoderMotor ("EncMtr", task_priority(4), 260, &ser_dev);
+	new EncoderMotor ("EncMtr", task_priority(2), 260, &ser_dev);
 
 	// The EncoderPendulum task is a high priority and is used for controlling the balance of
 	//the pendulum
-	new EncoderPendulum ("EncPen", task_priority(5), 260, &ser_dev);
+	new EncoderPendulum ("EncPen", task_priority(3), 260, &ser_dev);
 	
 	// The LimitSwitches task is an extremely high priority to kill the motor if either
 	// are hit.
-	new LimitSwitches ("LimSwtch", task_priority(6), 260, &ser_dev);
-	
-	// The PWMdriver task converts V to a duty cycle
-	new PWMdriver ("PWMdrv", task_priority(1), 260, &ser_dev);
+	new LimitSwitches ("LimSwtch", task_priority(4), 260, &ser_dev);
 
 	// The Motor task sets velocity, position, then maybe current control
-	new Motor ("Motor", task_priority(2), 260, &ser_dev);
-
-	// The pid task takes in the error and determines the actuation signal
-	new pid ("PID", task_priority(3), 260, &ser_dev);
+	new Motor ("Motor", task_priority(1), 260, &ser_dev);
 
 	// Enable high level interrupts and gl;obal interrupts
 	PMIC_CTRL = (1 << PMIC_HILVLEN_bp | 1 << PMIC_MEDLVLEN_bp | 1 << PMIC_LOLVLEN_bp);

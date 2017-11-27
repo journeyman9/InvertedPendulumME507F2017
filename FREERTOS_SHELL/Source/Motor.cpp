@@ -44,19 +44,71 @@ void Motor::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 
+	dt = .008;
+	inc = 1;
+	
 	while(1){
 		// Increment counter for debugging
 		runs++;
 		
-		//*p_serial << "Econder Pulses" << encoder_count << endl;
+		// Actual motor code
+		// Right now just working with speed control for motor.
+		// Previously commented code extends to be a position control.
+		omegam_set = 2;
+
+		// omegam_measured will be the derivative of theta_measured from the encoder
+		omegam_measured = 0;
 		
+		// PID to get Tset from Omegam_set with a max torque value
+		// PIDImpl::PIDImpl( double dt, double max, double min, double Kp, double Kd, double Ki ) :
+		PID pidTorque = PID(0.1, 1.1225, -1.1225, 0.1, 0.01, 0.5);
+		double Tset = pidTorque.calculate(omegam_set, omegam_measured);
+		//printf("val:% 7.3f inc:% 7.3f\n", omegam_measured, inc);
+		omegam_measured += inc;
+
+		K_T = 0.065; // Nm/A. Taken from Pittman 14203 series motor documentation page G 21
+		Im_set = Tset/K_T;
+
+		// Saturater for current
+		
+		if(Im_set > 17.4) {
+			Im_set = 17.4;
+		} else if(Im_set < -17.4) {
+			Im_set = -17.4;
+		}
+		
+		// This will be measured from the board
+		//I_actuator = 0;
+
+		//I_error = Im_set - I_actuator;
+
+		// This sums the I_error. The [Kp/(Ti S)] block in diagram
+		//i_error_sum = i_error_sum + I_error;
+
+		K_v = 0.065; // V/rad/s. Taken from Pittman 14203 series motor documentation page G 21
+		K_p = K_T*(1/1.21E-5)*K_v; // (Nm/A)([rad/s]/Nm)(V/[rad/s]) so (V/A)
+		//V_R = i_error_sum - K_p*I_actuator;
+
+		V_E = K_v*omegam_measured;
+
+		V_m = V_R + V_E;
+
+		// Saturater for voltage
+		if (V_m > 24) {
+			V_m = 24;
+		} else if(V_m < -24) {
+			V_m = -24;
+		}
+		
+		// V_m then feeds into PWM function to command motor
+
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
 		delay_from_to (previousTicks, configMS_TO_TICKS (1));
-	}	
+		
+	}
 }
-
 /*
 Motor::Motor(int omegam_measured, int I_actuator)
 {
@@ -102,7 +154,7 @@ Motor::Motor(int omegam_measured, int I_actuator)
 	K_T = 0.065; // Nm/A. Taken from Pittman 14203 series motor documentation page G 21
 	Im_set = Tset/K_T;
 
-	// Saturator for current
+	// Saturater for current
 	if (Im_set > 17.4) {
         Im_set = 17.4;
 	}
@@ -126,7 +178,7 @@ Motor::Motor(int omegam_measured, int I_actuator)
 
 	V_m = V_R + V_E;
 
-	// Saturator for voltage
+	// Saturater for voltage
 	if (V_m > 24) {
         V_m = 24;
 	}
