@@ -40,20 +40,36 @@ PWMdriver::PWMdriver(const char* a_name,
 		// Nothing to do in this constructor other than call the parent constructor
 	}
 
+
+
 void PWMdriver::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
+
+	//PC0 - MD0
+	//PC1 - MD1
+		
+	PORTC.DIRSET = PIN0_bm | PIN1_bm;					// Configure PC0 and PC1 as outputs
+	TCD0.CTRLA = TC0_CLKSEL0_bm;						// Configures Clock select bits for divide by 1
+	TCD1.CTRLB = TC0_WGMODE0_bm | TC0_WGMODE1_bm;		// Configures waveform generation mode to single slope PWM
+	TCD1.PER = 16;										// Configures period to be 16 counts for a pwm freq 2kHz
+	TCD1.CCA = 0;										// Ensure channel A is off when enabled
+	TCD1.CCB  = 0;										// Ensure channel B is off when enabled
+	
+	TCD1.CTRLB |= TC0_CCAEN_bm | TC0_CCBEN_bm;			// Enable output compare on channels A and B
 
 	while(1){
 		// Increment counter for debugging
 		runs++;
 		
-		//*p_serial << "Econder Pulses" << encoder_count << endl;
 		
-		// set dt
+		TCD1.CCA = 6;
+		//TCD1.CCB = 6;
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (1));
+		//delay_from_to (previousTicks, configMS_TO_TICKS (28));
+		
+		
 	}	
 }
 

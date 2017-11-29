@@ -43,27 +43,27 @@ void LimitSwitches::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 	
-	// Setup pins for Limit Switch (PK0 & PK2) and LED output
-	PORTK.DIRCLR = PIN0_bm;									// set K0 as input
-	PORTK.PIN0CTRL = PORT_OPC_PULLUP_gc;					// set K0 as pullup
-	PORTK.DIRCLR = PIN2_bm;									// set K2 as input
-	PORTK.PIN2CTRL = PORT_OPC_PULLUP_gc;					// set K2 as pullup
+	// Setup pins for Limit Switch (PD0 & PD1) and LED output
+	PORTD.DIRCLR = PIN0_bm;									// set D0 as input left limit
+	PORTD.DIRCLR = PIN2_bm;									// set D2 as input right limit
+	PORTD.PIN0CTRL = PORT_OPC_PULLUP_gc;					// set D0 as pullup
+	PORTD.PIN2CTRL = PORT_OPC_PULLUP_gc;					// set D2 as pullup
 	
 	bool rightLimit;
 	bool leftLimit;
 
 	while(1){
 		
-		if(!(PORTK_IN & PIN0_bm))							// check whether limit is pressed (pin K0 is high)
+		if(!(PORTD_IN & PIN0_bm))							// check whether limit is pressed (pin D0 is high)
 		{	
-			rightLimit = 1;
-			*p_serial << "rightLimit: " << rightLimit << endl;
+			leftLimit = 1;
+			//p_serial << "leftLimit: " << leftLimit << endl;
 			
 		}
-		else if (!(PORTK_IN & PIN2_bm))						// check whether limit is pressed (pin K2 is high)
+		else if (!(PORTD_IN & PIN2_bm))						// check whether limit is pressed (pin D1 is high)
 		{
-			leftLimit = 1;
-			*p_serial << "leftLimit: " << leftLimit << endl;
+			rightLimit = 1;
+			//*p_serial << "rightLimit: " << rightLimit << endl;
 		}
 		else
 		{
@@ -81,6 +81,6 @@ void LimitSwitches::run(void){
 		//_delay_ms(1);
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (1));
+		delay_from_to (previousTicks, configMS_TO_TICKS (5));
 	}	
 }

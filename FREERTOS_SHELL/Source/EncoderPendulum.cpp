@@ -46,10 +46,10 @@ void EncoderPendulum::run(void){
 	
 	// INIT:
 	// Setup quad encoder on pins C4 & C5
-	PORTB.DIRCLR = (PIN4_bm | PIN5_bm);							// set C4 & C5 as inputs
-	PORTB.PIN4CTRL = PORT_ISC_LEVEL_gc;							// set C4 for level sensing
-	PORTB.PIN5CTRL = PORT_ISC_LEVEL_gc;							// set C5 for level sensing
-	EVSYS.CH2MUX = EVSYS_CHMUX_PORTB_PIN4_gc;					// set PC4 as Multiplexer for Event Chan 0
+	PORTE.DIRCLR = (PIN0_bm | PIN1_bm);							// set E0 & E1 as inputs
+	PORTE.PIN0CTRL = PORT_ISC_LEVEL_gc;							// set E0 for level sensing
+	PORTE.PIN1CTRL = PORT_ISC_LEVEL_gc;							// set E1 for level sensing
+	EVSYS.CH2MUX = EVSYS_CHMUX_PORTE_PIN0_gc;					// set PE0 as Multiplexer for Event Chan 2
 	EVSYS.CH2CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;	// enable quad encoder mode with 2-sample filtering
 	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH2_gc;			// set TCC1 event action to quad decoding, and event source as Event Chan 1
 	TCC1.PER = 0x5A0;											// usually ticks/rev, but this doesn't matter since we're converting to linear anyway
@@ -85,6 +85,6 @@ void EncoderPendulum::run(void){
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (200));
+		delay_from_to (previousTicks, configMS_TO_TICKS (100));
 	}	
 }

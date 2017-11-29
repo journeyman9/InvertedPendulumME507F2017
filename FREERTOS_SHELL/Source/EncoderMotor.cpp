@@ -46,11 +46,11 @@ void EncoderMotor::run (void)
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 	
-	PORTE.DIRCLR = PIN4_bm | PIN5_bm;										// Set both CHa and CHb for input
-	PORTE.PIN4CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Cha
-	PORTE.PIN5CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Chb
+	PORTE.DIRCLR = PIN2_bm | PIN3_bm;										// Set both CHa and CHb for input
+	PORTE.PIN2CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Cha
+	PORTE.PIN3CTRL |= PORT_ISC_LEVEL_gc;									// Set low level sense for Chb
 	
-	EVSYS.CH0MUX = EVSYS_CHMUX_PORTE_PIN4_gc;								// Configure CHa as a multiplexer input for event channel 1
+	EVSYS.CH0MUX = EVSYS_CHMUX_PORTE_PIN2_gc;								// Configure CHa as a multiplexer input for event channel 0
 	EVSYS.CH0CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;				// Enable the quadrature encoder
 	
 	TCD0.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH0_gc;						// Set the quadrature decoding as the event action for the timer
@@ -60,13 +60,13 @@ void EncoderMotor::run (void)
 	int16_t encoder_count;
 	int16_t last_encoder_count;
 	int16_t angularPosition;
-	uint8_t dt = 5;																	// 5 ms
+	uint8_t dt = 1;																	// 1 ms
 	int16_t angularVelocity;
 	int16_t x;
 
 	while(1){
 		
-		encoder_count = TCD0.CNT;											// get count
+		//encoder_count = TCD0.CNT;											// get count
 		//*p_serial << "Encoder Pulses: " << encoder_count << endl;
 		
 		angularPosition = ( (int32_t) encoder_count*9);						// count/(4*1000)*360 deg * 100
@@ -100,7 +100,7 @@ void EncoderMotor::run (void)
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (5));
+		delay_from_to (previousTicks, configMS_TO_TICKS (1));
 		
 	}
 
