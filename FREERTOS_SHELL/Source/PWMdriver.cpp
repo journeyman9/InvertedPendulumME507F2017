@@ -27,7 +27,6 @@
 #include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 
-
 PWMdriver::PWMdriver(const char* a_name,
 								unsigned portBASE_TYPE a_priority,
 								size_t a_stack_size,
@@ -48,23 +47,23 @@ void PWMdriver::run(void){
 
 	//PC0 - MD0
 	//PC1 - MD1
-		
+	/*
 	PORTC.DIRSET = PIN0_bm | PIN1_bm;					// Configure PC0 and PC1 as outputs
-	TCD0.CTRLA = TC0_CLKSEL0_bm;						// Configures Clock select bits for divide by 1
+	TCD1.CTRLA = TC0_CLKSEL0_bm;						// Configures Clock select bits for divide by 1
 	TCD1.CTRLB = TC0_WGMODE0_bm | TC0_WGMODE1_bm;		// Configures waveform generation mode to single slope PWM
-	TCD1.PER = 16;										// Configures period to be 16 counts for a pwm freq 2kHz
+	TCD1.PER = 1600;									// Configures period to be 320 counts for a pwm freq 20kHz with 20% duty cycle
 	TCD1.CCA = 0;										// Ensure channel A is off when enabled
 	TCD1.CCB  = 0;										// Ensure channel B is off when enabled
 	
 	TCD1.CTRLB |= TC0_CCAEN_bm | TC0_CCBEN_bm;			// Enable output compare on channels A and B
-
+	*/
 	while(1){
 		// Increment counter for debugging
 		runs++;
 		
 		
-		TCD1.CCA = 6;
-		//TCD1.CCB = 6;
+		//TCD1.CCA = 160;
+		//TCD1.CCB = 160;
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
 		//delay_from_to (previousTicks, configMS_TO_TICKS (28));

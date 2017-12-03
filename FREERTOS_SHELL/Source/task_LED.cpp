@@ -65,7 +65,6 @@ void task_LED::run (void)
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 	
-	
 	// Configure PORT C to be used for PWM output on PC0-PC2 and for bit toggling on PC3
 	PORTC.OUT &= ~(1 << 0 | 1 << 1 | 1 << 2 | 1 << 3); // Clear Bits 0-2 on port c
 	PORTC.DIR |= (1 << 0 | 1 << 1 | 1 << 2 | 1 << 3); // Set Bits 0-2 on port c as outputs
@@ -90,7 +89,7 @@ void task_LED::run (void)
 	delay_ms(10);
 	
 	// Print the header for the PWM output table
-	*p_serial << endl << "t\tang\tA\tB\tC\t" << endl;
+	//*p_serial << endl << "t\tang\tA\tB\tC\t" << endl;
 	
 
 	while(1)

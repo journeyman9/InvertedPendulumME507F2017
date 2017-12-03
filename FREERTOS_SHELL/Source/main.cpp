@@ -91,21 +91,23 @@ void CCPWrite( volatile uint8_t * address, uint8_t value )
 int main (void)
 {
 	// Set up pins for LED output
-	PORTD.DIRSET = PIN6_bm;									// set pin D6 as output LED3: turns on when power is on.
+	PORTD.DIRSET = PIN4_bm;									// set pin D4 as output LED1: turns on when power is on.
 	PORTD.DIRSET = PIN5_bm;									// set pin D5 as output LED2
-	PORTD.DIRSET = PIN4_bm;									// set pin D4 as output LED1
+	PORTD.DIRSET = PIN6_bm;									// set pin D6 as output LED3
 	
-	//PORTD.OUTSET = PIN6_bm;										//set pin high, LED 3
-	//PORTD.OUTSET = PIN5_bm;									//set pin high, LED 2
-	PORTD.OUTSET = PIN4_bm;									//set pin high, LED 1
+	PORTD.OUTSET = PIN4_bm;									// set pin high, LED 1
+	//PORTD.OUTSET = PIN5_bm;									// set pin high, LED 2
+	//PORTD.OUTSET = PIN6_bm;									// set pin high, LED 3
 	
 	//Clear any interrupts
 	cli();
 	// Configure the system clock
 	{	
-		// Enable the 32MHz internal RC oscillator and the external 32KHz oscillator  <-----------------------MAY NEED TO CHANGE FOR 16MHz 
-		OSC.CTRL |= (1 << OSC_RC32MEN_bp);
+		// Enable the 32MHz internal RC oscillator
+		OSC.CTRL |= (1 << OSC_RC32MEN_bp);				// 32 MHz
 		do {} while((OSC.STATUS & (1 << OSC_RC32MRDY_bp)) != (1 << OSC_RC32MRDY_bp));
+
+		//Enable PLL
 
 		// Select the clock
 		CCPWrite(&(CLK.CTRL),((CLK.CTRL & ~CLK_SCLKSEL_gm) | (1 << CLK_SCLKSEL0_bp)));

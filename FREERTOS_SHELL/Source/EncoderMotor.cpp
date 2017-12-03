@@ -66,7 +66,7 @@ void EncoderMotor::run (void)
 
 	while(1){
 		
-		//encoder_count = TCD0.CNT;											// get count
+		encoder_count = TCD0.CNT;											// get count
 		//*p_serial << "Encoder Pulses: " << encoder_count << endl;
 		
 		angularPosition = ( (int32_t) encoder_count*9);						// count/(4*1000)*360 deg * 100
