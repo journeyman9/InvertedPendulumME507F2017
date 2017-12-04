@@ -85,6 +85,6 @@ void EncoderPendulum::run(void){
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (100));
+		delay_from_to (previousTicks, configMS_TO_TICKS (5));
 	}	
 }

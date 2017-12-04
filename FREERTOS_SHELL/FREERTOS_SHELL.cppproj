@@ -38,8 +38,8 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>com.atmel.avrdbg.tool.stk600</avrtool>
-    <avrtoolserialnumber>0048395C81D1</avrtoolserialnumber>
+    <avrtool>com.atmel.avrdbg.tool.atmelice</avrtool>
+    <avrtoolserialnumber>J41800080941</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x1E9746</avrdeviceexpectedsignature>
     <com_atmel_avrdbg_tool_jtagice3plus>
       <ToolOptions>
@@ -53,7 +53,7 @@
       <ToolName>JTAGICE3</ToolName>
     </com_atmel_avrdbg_tool_jtagice3plus>
     <avrtoolinterface>PDI</avrtoolinterface>
-    <avrtoolinterfaceclock>0</avrtoolinterfaceclock>
+    <avrtoolinterfaceclock>4000000</avrtoolinterfaceclock>
     <ResetRule>0</ResetRule>
     <EraseKey />
     <com_atmel_avrdbg_tool_edbg>
@@ -98,7 +98,7 @@
         <InterfaceName>PDI</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.atmelice</ToolType>
-      <ToolNumber>J41800000840</ToolNumber>
+      <ToolNumber>J41800080941</ToolNumber>
       <ToolName>Atmel-ICE</ToolName>
     </com_atmel_avrdbg_tool_atmelice>
     <com_atmel_avrdbg_tool_stk600>
@@ -280,12 +280,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\PWMdriver.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Source\task_LED.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Source\task_LED.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\task_user.cpp">

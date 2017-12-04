@@ -60,7 +60,7 @@ void EncoderMotor::run (void)
 	int16_t encoder_count;
 	int16_t last_encoder_count;
 	int16_t angularPosition;
-	uint8_t dt = 1;																	// 1 ms
+	uint8_t dt = 1;															// 1 ms
 	int16_t angularVelocity;
 	int16_t x;
 

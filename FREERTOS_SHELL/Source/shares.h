@@ -28,7 +28,6 @@
 #ifndef _SHARES_H_
 #define _SHARES_H_
 
-
 //-------------------------------------------------------------------------------------
 // Externs:  In this section, we declare variables and functions that are used in all
 // (or at least two) of the files in the data acquisition project. Each of these items
@@ -45,5 +44,7 @@ extern shared_data<int16_t> linear_position;	// queue for linear position of car
 extern shared_data<int16_t> thMotor;			// queue for angular position of motor
 extern shared_data<int16_t> thdMotor;			// queue for angular velocity of motor
 extern shared_data<int16_t> thPendulum;			// queue for angular position of pendulum
+extern shared_data<bool> leftLimitSwitch;		//queue for left limit switch
+extern shared_data<bool> rightLimitSwitch;		//queue for right limit switch
 
 #endif // _SHARES_H_
