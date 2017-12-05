@@ -64,7 +64,8 @@ void PWMdriver::run(void){
 		
 		if (!leftLimitSwitch.get() && !rightLimitSwitch.get())
 		{
-			TCC0.CCA = 800;
+			TCC0.CCA = PWMvalue.get();
+			//*p_serial << PWMvalue.get() << endl;
 			TCC0.CCB = 0;
 		}
 		else if (leftLimitSwitch.get() || rightLimitSwitch.get())
@@ -80,7 +81,7 @@ void PWMdriver::run(void){
 		
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (28));
+		delay_from_to (previousTicks, configMS_TO_TICKS (20));
 		
 		
 	}	

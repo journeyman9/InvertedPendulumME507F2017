@@ -51,6 +51,7 @@ shared_data<int16_t> thdMotor;
 shared_data<int16_t> thPendulum;
 shared_data<bool> leftLimitSwitch;
 shared_data<bool> rightLimitSwitch;
+shared_data<int16_t> PWMvalue;
 
 /*! \brief CCP write helper function written in assembly.
  *
@@ -147,7 +148,7 @@ int main (void)
 	new LimitSwitches ("LimSwtch", task_priority(4), 260, &ser_dev);
 
 	// The Motor task sets velocity, position, then maybe current control
-	new Motor ("Motor", task_priority(1), 260, &ser_dev);
+	new Motor ("Motor", task_priority(3), 260, &ser_dev);
 	
 	new PWMdriver ("PWM", task_priority(5), 260, &ser_dev);
 	

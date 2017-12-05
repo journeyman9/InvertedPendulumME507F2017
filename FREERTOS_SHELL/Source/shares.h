@@ -46,5 +46,6 @@ extern shared_data<int16_t> thdMotor;			// queue for angular velocity of motor
 extern shared_data<int16_t> thPendulum;			// queue for angular position of pendulum
 extern shared_data<bool> leftLimitSwitch;		//queue for left limit switch
 extern shared_data<bool> rightLimitSwitch;		//queue for right limit switch
+extern shared_data<int16_t> PWMvalue;           // from Motor Controller into PWM Driver
 
 #endif // _SHARES_H_
