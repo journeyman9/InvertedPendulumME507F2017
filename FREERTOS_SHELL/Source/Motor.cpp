@@ -44,7 +44,7 @@ void Motor::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 
-	dt = .008;
+	dt = 1; // [ms]
 	inc = 1;
 	
 	while(1){
@@ -54,18 +54,21 @@ void Motor::run(void){
 		// Actual motor code
 		// Right now just working with speed control for motor.
 		// Previously commented code extends to be a position control.
-		omegam_set = 2;
+		omegam_set = 200; // [ticks/ms]
 
 		// omegam_measured will be the derivative of theta_measured from the encoder
-		omegam_measured = 0;
+		omegam_measured = thdMotor.get();
+		//*p_serial << "Measured: " << omegam_measured << endl;
 		
 		// PID to get Tset from Omegam_set with a max torque value
 		// PIDImpl::PIDImpl( double dt, double max, double min, double Kp, double Kd, double Ki ) :
-		PID pidTorque = PID(0.1, 1.1225, -1.1225, 0.1, 0.01, 0.5);
-		double Tset = pidTorque.calculate(omegam_set, omegam_measured);
-		//printf("val:% 7.3f inc:% 7.3f\n", omegam_measured, inc);
-		omegam_measured += inc;
-
+		PID pidTorque = PID(1, 1600, -1600, 20, 0, 0); // PID output
+		int16_t Tset = (pidTorque.calculate(omegam_set, omegam_measured));
+		PWMvalue.put(Tset);
+		
+		//*p_serial << "CONTROLLER OUTPUT: " << Tset << endl;
+		//*p_serial << omegam_measured << endl;
+		
 		K_T = 0.065; // Nm/A. Taken from Pittman 14203 series motor documentation page G 21
 		Im_set = Tset/K_T;
 
@@ -105,7 +108,8 @@ void Motor::run(void){
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (1));
+		
+		delay_from_to (previousTicks, configMS_TO_TICKS (5));
 		
 	}
 }

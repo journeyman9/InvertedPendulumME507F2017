@@ -39,27 +39,27 @@ using namespace std;
 class PIDImpl
 {
     public:
-        PIDImpl( double dt, double max, double min, double Kp, double Kd, double Ki );
+        PIDImpl( int16_t dt, int16_t max, int16_t min, int16_t Kp, int16_t Kd, int16_t Ki );
         ~PIDImpl();
-        double calculate( double setpoint, double pv );
+        int16_t calculate( int16_t setpoint, int16_t pv );
 
     private:
-        double _dt;
-        double _max;
-        double _min;
-        double _Kp;
-        double _Kd;
-        double _Ki;
-        double _pre_error;
-        double _integral;
+        int16_t _dt;
+        int16_t _max;
+        int16_t _min;
+        int16_t _Kp;
+        int16_t _Kd;
+        int16_t _Ki;
+        int16_t _pre_error;
+        int16_t _integral;
 };
 
 
-PID::PID( double dt, double max, double min, double Kp, double Kd, double Ki )
+PID::PID( int16_t dt, int16_t max, int16_t min, int16_t Kp, int16_t Kd, int16_t Ki )
 {
     pimpl = new PIDImpl(dt,max,min,Kp,Kd,Ki);
 }
-double PID::calculate( double setpoint, double pv )
+int16_t PID::calculate( int16_t setpoint, int16_t pv )
 {
     return pimpl->calculate(setpoint,pv);
 }
@@ -73,7 +73,7 @@ PID::~PID()
  * Implementation
  */
 
-PIDImpl::PIDImpl( double dt, double max, double min, double Kp, double Kd, double Ki ) :
+PIDImpl::PIDImpl( int16_t dt, int16_t max, int16_t min, int16_t Kp, int16_t Kd, int16_t Ki ) :
     _dt(dt),
     _max(max),
     _min(min),
@@ -85,25 +85,25 @@ PIDImpl::PIDImpl( double dt, double max, double min, double Kp, double Kd, doubl
 {
 }
 
-double PIDImpl::calculate( double setpoint, double pv )
+int16_t PIDImpl::calculate( int16_t setpoint, int16_t pv )
 {
     
     // Calculate error
-    double error = setpoint - pv;
+    int16_t error = setpoint - pv;
 
     // Proportional term
-    double Pout = _Kp * error;
+    int16_t Pout = _Kp * error;
 
     // Integral term
     _integral += error * _dt;
-    double Iout = _Ki * _integral;
+    int16_t Iout = _Ki * _integral;
 
     // Derivative term
-    double derivative = (error - _pre_error) / _dt;
-    double Dout = _Kd * derivative;
+    int16_t derivative = (error - _pre_error) / _dt;
+    int16_t Dout = _Kd * derivative;
 
     // Calculate total output
-    double output = Pout + Iout + Dout;
+    int16_t output = Pout + Iout + Dout;
 
     // Restrict to max/min
     if( output > _max )

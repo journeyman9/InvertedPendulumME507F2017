@@ -18,6 +18,7 @@
 #include <avr/wdt.h>                        // Watchdog timer header
 #include <avr/interrupt.h>
 #include <string.h>                         // Functions for C string handling
+#include <stdbool.h>
 
 #include "FreeRTOS.h"                       // Primary header for FreeRTOS
 #include "task.h"                           // Header for FreeRTOS task functions
@@ -48,6 +49,9 @@ shared_data<int16_t> linear_position;		// Establish shared variable type
 shared_data<int16_t> thMotor;
 shared_data<int16_t> thdMotor;
 shared_data<int16_t> thPendulum;
+shared_data<bool> leftLimitSwitch;
+shared_data<bool> rightLimitSwitch;
+shared_data<int16_t> PWMvalue;
 
 /*! \brief CCP write helper function written in assembly.
  *
@@ -91,21 +95,23 @@ void CCPWrite( volatile uint8_t * address, uint8_t value )
 int main (void)
 {
 	// Set up pins for LED output
-	PORTD.DIRSET = PIN6_bm;									// set pin D6 as output LED3: turns on when power is on.
-	PORTD.DIRSET = PIN5_bm;									// set pin D5 as output LED2
-	PORTD.DIRSET = PIN4_bm;									// set pin D4 as output LED1
+	PORTD.DIRSET = PIN6_bm;									// set pin D4 as output LED1: turns on when power is on.
+	PORTD.OUTSET = PIN6_bm;									// set pin high, LED 1
 	
-	//PORTD.OUTSET = PIN6_bm;										//set pin high, LED 3
-	//PORTD.OUTSET = PIN5_bm;									//set pin high, LED 2
-	PORTD.OUTSET = PIN4_bm;									//set pin high, LED 1
+	//PORTD.DIRSET = PIN4_bm;									// set pin D5 as output LED2
+	//PORTD.DIRSET = PIN5_bm;									// set pin D6 as output LED3
+	//PORTD.OUTSET = PIN4_bm;									// set pin high, LED 2
+	//PORTD.OUTSET = PIN5_bm;									// set pin high, LED 3
 	
 	//Clear any interrupts
 	cli();
 	// Configure the system clock
 	{	
-		// Enable the 32MHz internal RC oscillator and the external 32KHz oscillator  <-----------------------MAY NEED TO CHANGE FOR 16MHz 
-		OSC.CTRL |= (1 << OSC_RC32MEN_bp);
+		// Enable the 32MHz internal RC oscillator
+		OSC.CTRL |= (1 << OSC_RC32MEN_bp);				// 32 MHz
 		do {} while((OSC.STATUS & (1 << OSC_RC32MRDY_bp)) != (1 << OSC_RC32MRDY_bp));
+
+		//Enable PLL
 
 		// Select the clock
 		CCPWrite(&(CLK.CTRL),((CLK.CTRL & ~CLK_SCLKSEL_gm) | (1 << CLK_SCLKSEL0_bp)));
@@ -142,8 +148,10 @@ int main (void)
 	new LimitSwitches ("LimSwtch", task_priority(4), 260, &ser_dev);
 
 	// The Motor task sets velocity, position, then maybe current control
-	new Motor ("Motor", task_priority(1), 260, &ser_dev);
-
+	new Motor ("Motor", task_priority(3), 260, &ser_dev);
+	
+	new PWMdriver ("PWM", task_priority(5), 260, &ser_dev);
+	
 	// Enable high level interrupts and gl;obal interrupts
 	PMIC_CTRL = (1 << PMIC_HILVLEN_bp | 1 << PMIC_MEDLVLEN_bp | 1 << PMIC_LOLVLEN_bp);
 	sei();

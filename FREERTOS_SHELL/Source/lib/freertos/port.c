@@ -596,13 +596,13 @@ static void prvSetupTimerInterrupt( void )
 		 TCE1_CTRLA = (1 << TC1_CLKSEL0_bp);		// Prescale F_CPU / 1,
 		 TCE1_CTRLB = (1 << TC1_CCAEN_bp | 1 << TC1_WGMODE0_bp);		// Enable Compare Capture A
 		 TCE1_INTCTRLB = (1 << TC1_CCAINTLVL1_bp | 1 << TC1_CCAINTLVL0_bp);
-	#elif (defined TCC0_CCA_vect)  // Xmega Board Timer C0
-		#define RT_VECT TCC0_CCA_vect
-		TCC0_CCAH = compare_match.byte[1];      // Set high byte of compare match
-		TCC0_CCAL = compare_match.byte[0];      // register, then low byte
-		TCC0_CTRLA = (1 << TC0_CLKSEL0_bp);		// Prescale F_CPU / 1,
-		TCC0_CTRLB = (1 << TC0_CCAEN_bp | 1 << TC0_WGMODE0_bp);		// Enable Compare Capture A
-		TCC0_INTCTRLB = (0 << TC0_CCAINTLVL1_bp | 1 << TC0_CCAINTLVL0_bp);
+	#elif (defined TCE0_CCA_vect)  // Xmega Board Timer E0
+		#define RT_VECT TCE0_CCA_vect
+		TCE0_CCAH = compare_match.byte[1];      // Set high byte of compare match
+		TCE0_CCAL = compare_match.byte[0];      // register, then low byte
+		TCE0_CTRLA = (1 << TC0_CLKSEL0_bp);		// Prescale F_CPU / 1,
+		TCE0_CTRLB = (1 << TC0_CCAEN_bp | 1 << TC0_WGMODE0_bp);		// Enable Compare Capture A
+		TCE0_INTCTRLB = (0 << TC0_CCAINTLVL1_bp | 1 << TC0_CCAINTLVL0_bp);
 	#else
 		#error No available timer
 	#endif

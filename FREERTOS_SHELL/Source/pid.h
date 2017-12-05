@@ -12,10 +12,10 @@ class PID
         // dt -  loop interval time
         // max - maximum value of manipulated variable
         // min - minimum value of manipulated variable
-        PID( double dt, double max, double min, double Kp, double Kd, double Ki );
+        PID( int16_t dt, int16_t max, int16_t min, int16_t Kp, int16_t Kd, int16_t Ki );
 
         // Returns the manipulated variable given a setpoint and current process value
-        double calculate( double setpoint, double pv );
+        int16_t calculate( int16_t setpoint, int16_t pv );
         ~PID();
 
     private:

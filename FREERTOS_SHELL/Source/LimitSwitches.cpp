@@ -49,28 +49,41 @@ void LimitSwitches::run(void){
 	PORTD.PIN0CTRL = PORT_OPC_PULLUP_gc;					// set D0 as pullup
 	PORTD.PIN2CTRL = PORT_OPC_PULLUP_gc;					// set D2 as pullup
 	
-	bool rightLimit;
-	bool leftLimit;
-
+	bool rightLimit = false;
+	bool leftLimit = false;
+		
 	while(1){
 		
 		if(!(PORTD_IN & PIN0_bm))							// check whether limit is pressed (pin D0 is high)
 		{	
-			leftLimit = 1;
-			//p_serial << "leftLimit: " << leftLimit << endl;
+			leftLimit = true;
+			//*p_serial << "leftLimit: " << leftLimit << endl;
+			leftLimitSwitch.put(leftLimit);
 			
-		}
-		else if (!(PORTD_IN & PIN2_bm))						// check whether limit is pressed (pin D1 is high)
-		{
-			rightLimit = 1;
-			//*p_serial << "rightLimit: " << rightLimit << endl;
 		}
 		else
 		{
-			rightLimit = 0;
-			leftLimit = 0;
+			leftLimit = false;
+			leftLimitSwitch.put(leftLimit);
 			//*p_serial << "limits: " << rightLimit << leftLimit << endl;
 		}
+		
+		
+		if (!(PORTD_IN & PIN2_bm))						// check whether limit is pressed (pin D1 is high)
+		{
+			rightLimit = true;
+			//*p_serial << "rightLimit: " << rightLimit << endl;
+			rightLimitSwitch.put(rightLimit);
+		}
+		else
+		{
+			rightLimit = false;
+			rightLimitSwitch.put(rightLimit);
+			//*p_serial << "limits: " << rightLimit << leftLimit << endl;
+		}
+		
+		//*p_serial << "Left" << leftLimitSwitch.get() << "\t";
+		//*p_serial << "Right" << rightLimitSwitch.get() << endl;
 		
 		// Increment counter for debugging
 		runs++;

@@ -20,29 +20,29 @@
 
 class Motor : public frt_task{
 	protected:
-				volatile int xm_set;
-				volatile int xm_error;
-				volatile int xm_measured;
-				volatile int radius;
-				volatile int omegam_set;
-				volatile int vm_set;
-				volatile int omegam_measured;
-				volatile int anglem_measured;
-				volatile int Tset;
-				volatile int Im_set;
-				volatile int Voltm_set;
-				volatile int K_T;
-				volatile int I_motor;
-				volatile int I_error;
-				volatile int I_actuator;
-				volatile int V_R;
-				volatile int K_p;
-				volatile int V_E;
-				volatile int K_v;
-				volatile int V_m;
-				volatile int i_error_sum;
-				volatile int inc;
-				volatile float dt;
+				int16_t xm_set;
+				int16_t xm_error;
+				int16_t xm_measured;
+				int16_t radius;
+				int16_t omegam_set;
+				int16_t vm_set;
+				int16_t omegam_measured;
+				int16_t anglem_measured;
+				int16_t Tset;
+				int16_t Im_set;
+				int16_t Voltm_set;
+				int16_t K_T;
+				int16_t I_motor;
+				int16_t I_error;
+				int16_t I_actuator;
+				int16_t V_R;
+				int16_t K_p;
+				int16_t V_E;
+				int16_t K_v;
+				int16_t V_m;
+				int16_t i_error_sum;
+				int16_t inc;
+				int16_t dt; // ms
 	public:
 		// Constructor creates a motor encoder task object
 		Motor(const char*, unsigned portBASE_TYPE, size_t, emstream*);
