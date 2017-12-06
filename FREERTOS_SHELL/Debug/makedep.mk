@@ -16,6 +16,8 @@ Source\pid.cpp
 
 Source\PWMdriver.cpp
 
+Source\satmath.cpp
+
 Source\task_user.cpp
 
 Source\lib\freertos\heap_2.c

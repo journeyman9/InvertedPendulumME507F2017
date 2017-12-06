@@ -42,7 +42,19 @@ class Motor : public frt_task{
 				int16_t V_m;
 				int16_t i_error_sum;
 				int16_t inc;
-				int16_t dt; // ms
+				int32_t dt; // ms
+				int16_t _dt;
+				int16_t _max;
+				int16_t _min;
+				int16_t _Kp;
+				int16_t _Kd;
+				int16_t _Ki;
+				int16_t _pre_error;
+				int32_t _integral;
+				int16_t arbitraryNumber;
+				uint16_t count;
+				int32_t Iout;
+				int16_t Pout;
 	public:
 		// Constructor creates a motor encoder task object
 		Motor(const char*, unsigned portBASE_TYPE, size_t, emstream*);
