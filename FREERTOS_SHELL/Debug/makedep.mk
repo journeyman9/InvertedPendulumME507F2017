@@ -2,19 +2,19 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-Source\EncoderMotor.cpp
-
-Source\EncoderPendulum.cpp
-
 Source\lib\freertos\croutine.c
 
-Source\LimitSwitches.cpp
+Source\task_EncoderMotor.cpp
 
-Source\Motor.cpp
+Source\task_EncoderPendulum.cpp
 
-Source\pid.cpp
+Source\task_LED.cpp
 
-Source\PWMdriver.cpp
+Source\task_LimitSwitches.cpp
+
+Source\task_Motor.cpp
+
+Source\task_pid.cpp
 
 Source\task_user.cpp
 

@@ -20,12 +20,12 @@
 #include "shared_data_sender.h"
 #include "shared_data_receiver.h"
 
-#include "EncoderMotor.h"					// Header for this file
-#include "Motor.h"							// Inverted Pendulum file
-#include "EncoderPendulum.h"				// Inverted Pendulum file
-#include "LimitSwitches.h"					// Inverted Pendulum file
-#include "PWMdriver.h"						// Inverted Pendulum file
-#include "pid.h"							// Inverted Pendulum file
+#include "task_EncoderMotor.h"				// Header for Encoder of Motor
+#include "task_LimitSwitches.h"				// Header for Limit Switches
+#include "task_Motor.h"						// Inverted Pendulum file
+#include "task_EncoderPendulum.h"			// Inverted Pendulum file
+#include "task_pid.h"						// Inverted Pendulum file
+#include "task_user.h"						// Header for user interface
 
 
 EncoderMotor::EncoderMotor(const char* a_name,

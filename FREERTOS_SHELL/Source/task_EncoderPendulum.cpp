@@ -1,4 +1,4 @@
-﻿#include <stdlib.h>                         // Prototype declarations for I/O functions
+#include <stdlib.h>                         // Prototype declarations for I/O functions
 #include <avr/io.h>                         // Port I/O for SFR's
 #include <avr/wdt.h>                        // Watchdog timer header
 #include <avr/interrupt.h>					//
@@ -20,14 +20,15 @@
 #include "shared_data_sender.h"
 #include "shared_data_receiver.h"
 
-#include "EncoderMotor.h"					// Header for this file
-#include "Motor.h"							// Inverted Pendulum file
-#include "EncoderPendulum.h"				// Inverted Pendulum file
-#include "LimitSwitches.h"					// Inverted Pendulum file
-#include "PWMdriver.h"						// Inverted Pendulum file
-#include "pid.h"							// Inverted Pendulum file
+#include "task_EncoderMotor.h"				// Header for Encoder of Motor
+#include "task_LimitSwitches.h"				// Header for Limit Switches
+#include "task_Motor.h"						// Inverted Pendulum file
+#include "task_EncoderPendulum.h"			// Inverted Pendulum file
+#include "task_pid.h"						// Inverted Pendulum file
+#include "task_user.h"						// Header for user interface
 
-LimitSwitches::LimitSwitches(const char* a_name,
+
+EncoderPendulum::EncoderPendulum(const char* a_name,
 								unsigned portBASE_TYPE a_priority,
 								size_t a_stack_size,
 								emstream* p_ser_dev
@@ -39,51 +40,42 @@ LimitSwitches::LimitSwitches(const char* a_name,
 		// Nothing to do in this constructor other than call the parent constructor
 	}
 
-void LimitSwitches::run(void){
+void EncoderPendulum::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 	
-	// Setup pins for Limit Switch (PD0 & PD1) and LED output
-	PORTD.DIRCLR = PIN0_bm;									// set D0 as input left limit
-	PORTD.DIRCLR = PIN2_bm;									// set D2 as input right limit
-	PORTD.PIN0CTRL = PORT_OPC_PULLUP_gc;					// set D0 as pullup
-	PORTD.PIN2CTRL = PORT_OPC_PULLUP_gc;					// set D2 as pullup
+	// INIT:
+	// Setup quad encoder on pins C4 & C5
+	PORTE.DIRCLR = (PIN0_bm | PIN1_bm);							// set E0 & E1 as inputs
+	PORTE.PIN0CTRL = PORT_ISC_LEVEL_gc;							// set E0 for level sensing
+	PORTE.PIN1CTRL = PORT_ISC_LEVEL_gc;							// set E1 for level sensing
+	EVSYS.CH2MUX = EVSYS_CHMUX_PORTE_PIN0_gc;					// set PE0 as Multiplexer for Event Chan 2
+	EVSYS.CH2CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;	// enable quad encoder mode with 2-sample filtering
+	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH2_gc;			// set TCC1 event action to quad decoding, and event source as Event Chan 1
+	TCC1.PER = 0x5A0;											// usually ticks/rev, but this doesn't matter since we're converting to linear anyway
+	TCC1.CTRLA = TC_CLKSEL_DIV1_gc;								// start TCC1 with prescaler = 1
 	
-	bool rightLimit = false;
-	bool leftLimit = false;
-		
+	int16_t count;												// contains the current encoder value
+	int16_t theta_pendulum;
+	
 	while(1){
+		// Read value from hardware counter
+		count = TCC1.CNT; 
+		//*p_serial << count << endl;
+		theta_pendulum = ( (int32_t) count*100/4);				//count/(4*360)*360 degrees * 100
+		//*p_serial << "thetaPendulum: " <<  theta_pendulum << endl;
+		thPendulum.put(theta_pendulum);
 		
-		if(!(PORTD_IN & PIN0_bm))							// check whether limit is pressed (pin D0 is high)
-		{	
-			leftLimit = true;
-			//*p_serial << "leftLimit: " << leftLimit << endl;
-			leftLimitSwitch.put(leftLimit);
-			
-		}
-		else
-		{
-			leftLimit = false;
-			leftLimitSwitch.put(leftLimit);
-			//*p_serial << "limits: " << rightLimit << leftLimit << endl;
-		}
-		
-		
-		if (!(PORTD_IN & PIN2_bm))						// check whether limit is pressed (pin D1 is high)
-		{
-			rightLimit = true;
-			//*p_serial << "rightLimit: " << rightLimit << endl;
-			rightLimitSwitch.put(rightLimit);
-		}
-		else
-		{
-			rightLimit = false;
-			rightLimitSwitch.put(rightLimit);
-			//*p_serial << "limits: " << rightLimit << leftLimit << endl;
-		}
-		
-		//*p_serial << "Left" << leftLimitSwitch.get() << "\t";
-		//*p_serial << "Right" << rightLimitSwitch.get() << endl;
+		/*	
+		if(pendulum_enc_zero = true) // (just a placeholder parameter name) - checks if the "zero" flag is set by some other task (like when the limit switch is triggered)
+			{
+			// Reset ticks to 0 (there may be a better way to do this)
+			TCC1.CNT = 0;
+				
+			// Reset the flag
+			pendulum_enc_zero = false;
+			}
+		*/
 		
 		// Increment counter for debugging
 		runs++;
@@ -91,7 +83,6 @@ void LimitSwitches::run(void){
 		//*p_serial << "Econder Pulses" << encoder_count << endl;
 		
 		// set dt
-		//_delay_ms(1);
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
 		delay_from_to (previousTicks, configMS_TO_TICKS (5));

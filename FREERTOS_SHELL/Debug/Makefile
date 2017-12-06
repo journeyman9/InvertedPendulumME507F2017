@@ -43,13 +43,13 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../Source/EncoderMotor.cpp \
-../Source/EncoderPendulum.cpp \
 ../Source/lib/freertos/croutine.c \
-../Source/LimitSwitches.cpp \
-../Source/Motor.cpp \
-../Source/pid.cpp \
-../Source/PWMdriver.cpp \
+../Source/task_EncoderMotor.cpp \
+../Source/task_EncoderPendulum.cpp \
+../Source/task_LED.cpp \
+../Source/task_LimitSwitches.cpp \
+../Source/task_Motor.cpp \
+../Source/task_pid.cpp \
 ../Source/task_user.cpp \
 ../Source/lib/freertos/heap_2.c \
 ../Source/lib/freertos/list.c \
@@ -105,13 +105,13 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-Source/EncoderMotor.o \
-Source/EncoderPendulum.o \
 Source/lib/freertos/croutine.o \
-Source/LimitSwitches.o \
-Source/Motor.o \
-Source/pid.o \
-Source/PWMdriver.o \
+Source/task_EncoderMotor.o \
+Source/task_EncoderPendulum.o \
+Source/task_LED.o \
+Source/task_LimitSwitches.o \
+Source/task_Motor.o \
+Source/task_pid.o \
 Source/task_user.o \
 Source/lib/freertos/heap_2.o \
 Source/lib/freertos/list.o \
@@ -160,13 +160,13 @@ Source/lib/serial/rs232int.o \
 Source/main.o
 
 OBJS_AS_ARGS +=  \
-Source/EncoderMotor.o \
-Source/EncoderPendulum.o \
 Source/lib/freertos/croutine.o \
-Source/LimitSwitches.o \
-Source/Motor.o \
-Source/pid.o \
-Source/PWMdriver.o \
+Source/task_EncoderMotor.o \
+Source/task_EncoderPendulum.o \
+Source/task_LED.o \
+Source/task_LimitSwitches.o \
+Source/task_Motor.o \
+Source/task_pid.o \
 Source/task_user.o \
 Source/lib/freertos/heap_2.o \
 Source/lib/freertos/list.o \
@@ -215,13 +215,13 @@ Source/lib/serial/rs232int.o \
 Source/main.o
 
 C_DEPS +=  \
-Source/EncoderMotor.d \
-Source/EncoderPendulum.d \
 Source/lib/freertos/croutine.d \
-Source/LimitSwitches.d \
-Source/Motor.d \
-Source/pid.d \
-Source/PWMdriver.d \
+Source/task_EncoderMotor.d \
+Source/task_EncoderPendulum.d \
+Source/task_LED.d \
+Source/task_LimitSwitches.d \
+Source/task_Motor.d \
+Source/task_pid.d \
 Source/task_user.d \
 Source/lib/freertos/heap_2.d \
 Source/lib/freertos/list.d \
@@ -270,13 +270,13 @@ Source/lib/serial/rs232int.d \
 Source/main.d
 
 C_DEPS_AS_ARGS +=  \
-Source/EncoderMotor.d \
-Source/EncoderPendulum.d \
 Source/lib/freertos/croutine.d \
-Source/LimitSwitches.d \
-Source/Motor.d \
-Source/pid.d \
-Source/PWMdriver.d \
+Source/task_EncoderMotor.d \
+Source/task_EncoderPendulum.d \
+Source/task_LED.d \
+Source/task_LimitSwitches.d \
+Source/task_Motor.d \
+Source/task_pid.d \
 Source/task_user.d \
 Source/lib/freertos/heap_2.d \
 Source/lib/freertos/list.d \
@@ -445,17 +445,17 @@ LINKER_SCRIPT_DEP+=
 
 
 
-Source/%.o: ../Source/%.cpp
-	@echo Building file: $<
-	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=32000000UL  -I"../Source/lib/freertos" -I"../Source/lib/frtcpp" -I"../Source/lib/misc" -I"../Source/lib/serial" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atxmega128a4u -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\gcc\dev\atxmega128a4u" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
 Source/lib/freertos/%.o: ../Source/lib/freertos/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=32000000UL  -I"../Source/lib/freertos" -I"../Source/lib/frtcpp" -I"../Source/lib/misc" -I"../Source/lib/serial" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atxmega128a4u -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\gcc\dev\atxmega128a4u" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Source/%.o: ../Source/%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=32000000UL  -I"../Source/lib/freertos" -I"../Source/lib/frtcpp" -I"../Source/lib/misc" -I"../Source/lib/serial" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atxmega128a4u -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\gcc\dev\atxmega128a4u" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 

@@ -20,12 +20,12 @@
 #include "shared_data_sender.h"
 #include "shared_data_receiver.h"
 
-#include "EncoderMotor.h"					// Header for this file
-#include "Motor.h"							// Inverted Pendulum file
-#include "EncoderPendulum.h"				// Inverted Pendulum file
-#include "LimitSwitches.h"					// Inverted Pendulum file
-#include "PWMdriver.h"						// Inverted Pendulum file
-#include "pid.h"							// Inverted Pendulum file
+#include "task_EncoderMotor.h"				// Header for Encoder of Motor
+#include "task_LimitSwitches.h"				// Header for Limit Switches
+#include "task_Motor.h"						// Inverted Pendulum file
+#include "task_EncoderPendulum.h"			// Inverted Pendulum file
+#include "task_pid.h"						// Inverted Pendulum file
+#include "task_user.h"						// Header for user interface
 
 
 Motor::Motor(const char* a_name,
@@ -55,7 +55,43 @@ void Motor::run(void){
 		// Right now just working with speed control for motor.
 		// Previously commented code extends to be a position control.
 		omegam_set = 200; // [ticks/ms]
-
+		
+	
+	/* Code for Sending PWM Signal*/
+	//PC0 - MD0
+	//PC1 - MD1
+	
+	PORTC.DIRSET = PIN0_bm | PIN1_bm | PIN2_bm;			// Configure PC0 and PC1 as outputs
+	PORTC.OUTSET = PIN2_bm;								// disable sleep mode
+	TCC0.CTRLA = TC0_CLKSEL0_bm;						// Configures Clock select bits for divide by 1
+	TCC0.CTRLB = TC0_WGMODE0_bm | TC0_WGMODE1_bm;		// Configures waveform generation mode to single slope PWM
+	TCC0.PER = 1600;									// Configures period to be 320 counts for a pwm freq 20kHz with 20% duty cycle
+	TCC0.CCA = 0;										// Ensure channel A is off when enabled
+	TCC0.CCB  = 0;										// Ensure channel B is off when enabled
+	
+	TCC0.CTRLB |= TC0_CCAEN_bm | TC0_CCBEN_bm;			// Enable output compare on channels A and B
+	
+	while(1){
+		// Increment counter for debugging
+		runs++;
+		
+		if (!leftLimitSwitch.get() && !rightLimitSwitch.get())
+		{
+			TCC0.CCA = PWMvalue.get();
+			//*p_serial << PWMvalue.get() << endl;
+			TCC0.CCB = 0;
+		}
+		else if (leftLimitSwitch.get() || rightLimitSwitch.get())
+		{
+			TCC0.CCA = 0;
+			TCC0.CCB = 0;
+			//*p_serial << "Left" << leftLimitSwitch.get() << endl;
+			//*p_serial << "Right" << rightLimitSwitch.get() << endl;
+		}
+		else
+		{
+		}
+		
 		// omegam_measured will be the derivative of theta_measured from the encoder
 		omegam_measured = thdMotor.get();
 		//*p_serial << "Measured: " << omegam_measured << endl;
@@ -113,6 +149,7 @@ void Motor::run(void){
 		
 	}
 }
+
 /*
 Motor::Motor(int omegam_measured, int I_actuator)
 {

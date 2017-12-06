@@ -234,18 +234,6 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Source\EncoderMotor.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Source\EncoderMotor.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Source\EncoderPendulum.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Source\EncoderPendulum.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Source\lib\freertos\croutine.c">
       <SubType>compile</SubType>
     </Compile>
@@ -258,28 +246,40 @@
     <Compile Include="Source\lib\freertos\FreeRTOSConfig.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\LimitSwitches.cpp">
+    <Compile Include="Source\task_EncoderMotor.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\LimitSwitches.h">
+    <Compile Include="Source\task_EncoderMotor.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\Motor.cpp">
+    <Compile Include="Source\task_EncoderPendulum.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\Motor.h">
+    <Compile Include="Source\task_EncoderPendulum.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\pid.cpp">
+    <Compile Include="Source\task_LED.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\pid.h">
+    <Compile Include="Source\task_LED.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\PWMdriver.cpp">
+    <Compile Include="Source\task_LimitSwitches.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\PWMdriver.h">
+    <Compile Include="Source\task_LimitSwitches.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\task_Motor.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\task_Motor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\task_pid.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Source\task_pid.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Source\task_user.cpp">

@@ -1,5 +1,5 @@
-Source/EncoderPendulum.d Source/EncoderPendulum.o: \
- ../Source/EncoderPendulum.cpp \
+Source/task_EncoderMotor.d Source/task_EncoderMotor.o: \
+ ../Source/task_EncoderMotor.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
@@ -32,10 +32,11 @@ Source/EncoderPendulum.d Source/EncoderPendulum.o: \
  ../Source/lib/frtcpp/frt_shared_data.h ../Source/shares.h \
  ../Source/lib/frtcpp/shared_data_sender.h \
  ../Source/lib/frtcpp/shared_data_receiver.h \
- ../Source/lib/frtcpp/base_data_receiver.h ../Source/EncoderMotor.h \
+ ../Source/lib/frtcpp/base_data_receiver.h ../Source/task_EncoderMotor.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- ../Source/Motor.h ../Source/EncoderPendulum.h ../Source/LimitSwitches.h \
- ../Source/PWMdriver.h ../Source/pid.h
+ ../Source/task_LimitSwitches.h ../Source/task_Motor.h \
+ ../Source/task_EncoderPendulum.h ../Source/task_pid.h \
+ ../Source/task_user.h ../Source/lib/serial/ansi_terminal.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -125,16 +126,18 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Source/lib/frtcpp/base_data_receiver.h:
 
-../Source/EncoderMotor.h:
+../Source/task_EncoderMotor.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
 
-../Source/Motor.h:
+../Source/task_LimitSwitches.h:
 
-../Source/EncoderPendulum.h:
+../Source/task_Motor.h:
 
-../Source/LimitSwitches.h:
+../Source/task_EncoderPendulum.h:
 
-../Source/PWMdriver.h:
+../Source/task_pid.h:
 
-../Source/pid.h:
+../Source/task_user.h:
+
+../Source/lib/serial/ansi_terminal.h:
