@@ -78,6 +78,7 @@ void Motor::run(void){
 				if (begin.get())											// If user begins Calibration Sequence
 				{
 					reset.put(0);											// turn off flag
+					stop.put(0);
 					omegam_set = 10;	// [ticks/ms]
 
 					if (rightLimitSwitch.get())
@@ -138,22 +139,15 @@ void Motor::run(void){
 				position_set = position_midpoint + angle_error*KP_angle/1000;
 				position_error = position_set - linear_position.get();  // 
 				omegam_set = position_error*KP_pos/1000;
-			
-			if (stop.get())												// If emergency stop button was hit
-			{
-				TCC0.CCA = 0;											// PWM  = 0
-				TCC0.CCB = 0;
 				
-				if (reset.get())										// if user hits reset
+				if (reset.get())
 				{
 					transition_to(0);
 				}
-			}
+					
 			break;
 			
 			default :
-				TCC0.CCA = 0;											// PWM  = 0
-				TCC0.CCB = 0;
 				break;													
 		
 		};
@@ -233,7 +227,7 @@ void Motor::run(void){
 		antiwind_correct = (antiwind_error*antiwind_gain)/256;
 		
 		
-			if(runs%50 == 0){
+			if(runs%150 == 0){
 				//*p_serial << "Ierror: " << Iout << endl;
 				//*p_serial << "Pout: " << Pout << endl;
 				//*p_serial << "error: " << error << endl;
@@ -248,19 +242,26 @@ void Motor::run(void){
 				//*p_serial << "linear pos: " << linear_position.get() << endl;
 				//*p_serial << "linear set: " << position_set << endl;
 				//*p_serial << "angle error: " << angle_error << endl;
+				//*p_serial << "begin flag" << begin.get() << endl;
+				//*p_serial << "go flag " << go.get() << endl;
+				//*p_serial << "stop flag" << stop.get() << endl;
+				//*p_serial << "reset flag " << reset.get() << endl;
 			}
 		
 		
-		if (leftLimitSwitch.get() || rightLimitSwitch.get())
+		if (leftLimitSwitch.get() || rightLimitSwitch.get() || stop.get())		// If limit switch or If emergency stop button was hit
 		{
 			//omegam_set = 0; // [ticks/ms]
 			//Pout = 0;
 			//Iout = 0;
 			_integral = 0;
 			output_correct = 0;
-			//omegam_measured = 0; // [ticks/ms]
-			//*p_serial << "Left" << leftLimitSwitch.get() << endl;
-			//*p_serial << "Right" << rightLimitSwitch.get() << endl;
+			
+			if (reset.get())										// if user hits reset
+			{
+				reset.put(0);
+				transition_to(0);
+			}
 		}
 		else
 		{
