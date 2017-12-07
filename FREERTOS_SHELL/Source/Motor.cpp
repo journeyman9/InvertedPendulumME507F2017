@@ -67,10 +67,10 @@ void Motor::run(void){
 		// PID pidTorque = PID(1, 1600, -1600, 10, 0, 1); // PID output
 		//uint16_t error_sum = pidTorque.get_Integral();
 		
-		_Kp = 7.1;
-		_Ki = .71*256;
+		_Kp = 6.5;
+		_Ki = .74*256;
 		_Kd = 0;
-		antiwind_gain = .96*256;
+		antiwind_gain = .93*256;
 		
 		_max = 1600;
 		_min = -1600;
@@ -142,6 +142,7 @@ void Motor::run(void){
 				//*p_serial << "Measured: " << omegam_measured << endl;
 				//*p_serial << "PWM Signal: " << output_correct << endl;
 				*p_serial << omegam_measured << endl;
+				*p_serial << thPendulum.get() << endl;
 			}
 		
 		if (leftLimitSwitch.get() || rightLimitSwitch.get())
