@@ -40,51 +40,39 @@ EncoderPendulum::EncoderPendulum(const char* a_name,
 		// Nothing to do in this constructor other than call the parent constructor
 	}
 
-void EncoderPendulum::run(void){
+void EncoderPendulum::run(void)
+{
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 	
-	// INIT:
-	// Setup quad encoder on pins C4 & C5
 	PORTE.DIRCLR = (PIN0_bm | PIN1_bm);							// set E0 & E1 as inputs
 	PORTE.PIN0CTRL = PORT_ISC_LEVEL_gc;							// set E0 for level sensing
 	PORTE.PIN1CTRL = PORT_ISC_LEVEL_gc;							// set E1 for level sensing
+	
 	EVSYS.CH2MUX = EVSYS_CHMUX_PORTE_PIN0_gc;					// set PE0 as Multiplexer for Event Chan 2
 	EVSYS.CH2CTRL = EVSYS_QDEN_bm | EVSYS_DIGFILT_2SAMPLES_gc;	// enable quad encoder mode with 2-sample filtering
+	
 	TCC1.CTRLD = TC_EVACT_QDEC_gc | TC_EVSEL_CH2_gc;			// set TCC1 event action to quad decoding, and event source as Event Chan 1
 	TCC1.PER = 0x5A0;											// usually ticks/rev, but this doesn't matter since we're converting to linear anyway
 	TCC1.CTRLA = TC_CLKSEL_DIV1_gc;								// start TCC1 with prescaler = 1
 	
 	int16_t count;												// contains the current encoder value
-	int16_t theta_pendulum;
 	
-	while(1){
-		// Read value from hardware counter
-		count = TCC1.CNT; 
+	while(1)
+	{
+		count = TCC1.CNT; // read value from hardware counter
 		//*p_serial << count << endl;
-		theta_pendulum = ( (int32_t) count*100/4);				//count/(4*360)*360 degrees * 100
-		//*p_serial << "thetaPendulum: " <<  theta_pendulum << endl;
-		thPendulum.put(theta_pendulum);
 		
-		/*	
-		if(pendulum_enc_zero = true) // (just a placeholder parameter name) - checks if the "zero" flag is set by some other task (like when the limit switch is triggered)
-			{
-			// Reset ticks to 0 (there may be a better way to do this)
-			TCC1.CNT = 0;
-				
-			// Reset the flag
-			pendulum_enc_zero = false;
-			}
-		*/
+		//theta_pendulum = ( (int32_t) count*100/4);				// count/(4*360)*360 degrees * 100
+		
+		thPendulum.put(count); // push angular position [ticks] to pendulum controller task
 		
 		// Increment counter for debugging
 		runs++;
 		
-		//*p_serial << "Econder Pulses" << encoder_count << endl;
-		
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (5));
+		delay_from_to (previousTicks, configMS_TO_TICKS (1));
 	}	
 }
