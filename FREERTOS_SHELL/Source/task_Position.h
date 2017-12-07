@@ -1,5 +1,5 @@
-#ifndef LIMITSWITCHES_H
-#define LIMITSWITCHES_H
+#ifndef TASK_POSITION_H
+#define TASK_POSITION_H
 
 #include <stdlib.h>                         // Prototype declarations for I/O functions
 
@@ -18,17 +18,16 @@
 
 #include "math.h"
 
-class LimitSwitches : public frt_task{
+class task_Position : public frt_task{
 	protected:
 	
-	public: 
-		// Constructor creates a motor encoder task object
-		LimitSwitches(const char*, unsigned portBASE_TYPE, size_t, emstream*);
-			
-		// This gets called by the RTOS once to start this task's state loop
-		void run(void);
-		
+	public:
+	// Constructor creates a motor encoder task object
+	task_Position(const char*, unsigned portBASE_TYPE, size_t, emstream*);
 	
-	};
+	// This gets called by the RTOS once to start this task's state loop
+	void run(void);
 	
+};
+
 #endif

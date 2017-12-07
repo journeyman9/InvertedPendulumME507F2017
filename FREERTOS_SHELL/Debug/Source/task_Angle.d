@@ -1,5 +1,4 @@
-Source/LimitSwitches.d Source/LimitSwitches.o: \
- ../Source/LimitSwitches.cpp \
+Source/task_Angle.d Source/task_Angle.o: ../Source/task_Angle.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
@@ -32,10 +31,13 @@ Source/LimitSwitches.d Source/LimitSwitches.o: \
  ../Source/lib/frtcpp/frt_shared_data.h ../Source/shares.h \
  ../Source/lib/frtcpp/shared_data_sender.h \
  ../Source/lib/frtcpp/shared_data_receiver.h \
- ../Source/lib/frtcpp/base_data_receiver.h ../Source/EncoderMotor.h \
+ ../Source/lib/frtcpp/base_data_receiver.h ../Source/task_user.h \
+ ../Source/lib/serial/ansi_terminal.h ../Source/task_EncoderMotor.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- ../Source/Motor.h ../Source/EncoderPendulum.h ../Source/LimitSwitches.h \
- ../Source/PWMdriver.h ../Source/pid.h
+ ../Source/task_Motor.h ../Source/task_EncoderPendulum.h \
+ ../Source/task_Velocity.h ../Source/task_Position.h \
+ ../Source/task_Angle.h ../Source/task_LimitSwitches.h \
+ ../Source/satmath.h ../Source/PWMdriver.h ../Source/pid.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -125,15 +127,27 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Source/lib/frtcpp/base_data_receiver.h:
 
-../Source/EncoderMotor.h:
+../Source/task_user.h:
+
+../Source/lib/serial/ansi_terminal.h:
+
+../Source/task_EncoderMotor.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
 
-../Source/Motor.h:
+../Source/task_Motor.h:
 
-../Source/EncoderPendulum.h:
+../Source/task_EncoderPendulum.h:
 
-../Source/LimitSwitches.h:
+../Source/task_Velocity.h:
+
+../Source/task_Position.h:
+
+../Source/task_Angle.h:
+
+../Source/task_LimitSwitches.h:
+
+../Source/satmath.h:
 
 ../Source/PWMdriver.h:
 

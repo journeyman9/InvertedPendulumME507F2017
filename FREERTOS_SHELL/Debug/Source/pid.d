@@ -35,8 +35,12 @@ Source/pid.d Source/pid.o: ../Source/pid.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- ../Source/EncoderMotor.h ../Source/Motor.h ../Source/EncoderPendulum.h \
- ../Source/LimitSwitches.h ../Source/PWMdriver.h ../Source/pid.h
+ ../Source/task_user.h ../Source/lib/serial/ansi_terminal.h \
+ ../Source/task_EncoderMotor.h ../Source/task_Motor.h \
+ ../Source/task_EncoderPendulum.h ../Source/task_Velocity.h \
+ ../Source/task_Position.h ../Source/task_Angle.h \
+ ../Source/task_LimitSwitches.h ../Source/satmath.h ../Source/PWMdriver.h \
+ ../Source/pid.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -132,13 +136,25 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
 
-../Source/EncoderMotor.h:
+../Source/task_user.h:
 
-../Source/Motor.h:
+../Source/lib/serial/ansi_terminal.h:
 
-../Source/EncoderPendulum.h:
+../Source/task_EncoderMotor.h:
 
-../Source/LimitSwitches.h:
+../Source/task_Motor.h:
+
+../Source/task_EncoderPendulum.h:
+
+../Source/task_Velocity.h:
+
+../Source/task_Position.h:
+
+../Source/task_Angle.h:
+
+../Source/task_LimitSwitches.h:
+
+../Source/satmath.h:
 
 ../Source/PWMdriver.h:
 

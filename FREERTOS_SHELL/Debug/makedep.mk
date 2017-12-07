@@ -2,15 +2,7 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-Source\EncoderMotor.cpp
-
-Source\EncoderPendulum.cpp
-
 Source\lib\freertos\croutine.c
-
-Source\LimitSwitches.cpp
-
-Source\Motor.cpp
 
 Source\pid.cpp
 
@@ -18,7 +10,23 @@ Source\PWMdriver.cpp
 
 Source\satmath.cpp
 
+Source\task_Angle.cpp
+
+Source\task_EncoderMotor.cpp
+
+Source\task_EncoderPendulum.cpp
+
+Source\task_LED.cpp
+
+Source\task_LimitSwitches.cpp
+
+Source\task_Motor.cpp
+
+Source\task_Position.cpp
+
 Source\task_user.cpp
+
+Source\task_Velocity.cpp
 
 Source\lib\freertos\heap_2.c
 

@@ -30,7 +30,19 @@
 
 #include "shared_data_sender.h"
 #include "shared_data_receiver.h"
-#include "task_user.h"                      // Header for this file
+
+#include "task_user.h"                      // Header for user interface task
+#include "task_EncoderMotor.h"				// Header for Encoder of Motor
+#include "task_Motor.h"						// Inverted Pendulum file
+#include "task_EncoderPendulum.h"			// Inverted Pendulum file
+#include "task_Velocity.h"					// Position Loop
+#include "task_Position.h"					// Position Loop
+#include "task_Angle.h"						// Angle Loop
+#include "task_LimitSwitches.h"				// Header for Limit Switches
+#include "satmath.h"
+#include "PWMdriver.h"						// Inverted Pendulum file
+#include "pid.h"							// Inverted Pendulum file
+
 
 
 /** This constant sets how many RTOS ticks the task delays if the user's not talking.

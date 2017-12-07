@@ -20,14 +20,19 @@
 #include "shared_data_sender.h"
 #include "shared_data_receiver.h"
 
-#include "EncoderMotor.h"					// Header for this file
-#include "Motor.h"							// Inverted Pendulum file
-#include "EncoderPendulum.h"				// Inverted Pendulum file
-#include "LimitSwitches.h"					// Inverted Pendulum file
+#include "task_user.h"                      // Header for user interface task
+#include "task_EncoderMotor.h"				// Header for Encoder of Motor
+#include "task_Motor.h"						// Inverted Pendulum file
+#include "task_EncoderPendulum.h"			// Inverted Pendulum file
+#include "task_Velocity.h"					// Position Loop
+#include "task_Position.h"					// Position Loop
+#include "task_Angle.h"						// Angle Loop
+#include "task_LimitSwitches.h"				// Header for Limit Switches
+#include "satmath.h"
 #include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 
-LimitSwitches::LimitSwitches(const char* a_name,
+task_LimitSwitches::task_LimitSwitches(const char* a_name,
 								unsigned portBASE_TYPE a_priority,
 								size_t a_stack_size,
 								emstream* p_ser_dev
@@ -39,7 +44,7 @@ LimitSwitches::LimitSwitches(const char* a_name,
 		// Nothing to do in this constructor other than call the parent constructor
 	}
 
-void LimitSwitches::run(void){
+void task_LimitSwitches::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 	
@@ -122,6 +127,6 @@ void LimitSwitches::run(void){
 		//_delay_ms(1);
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (5));
+		delay_from_to (previousTicks, configMS_TO_TICKS (3));
 	}	
 }

@@ -33,7 +33,13 @@ Source/task_user.d Source/task_user.o: ../Source/task_user.cpp \
  ../Source/lib/frtcpp/time_stamp.h ../Source/lib/frtcpp/frt_queue.h \
  ../Source/lib/frtcpp/frt_base_queue.h \
  ../Source/lib/frtcpp/frt_text_queue.h \
- ../Source/lib/frtcpp/frt_shared_data.h ../Source/shares.h
+ ../Source/lib/frtcpp/frt_shared_data.h ../Source/shares.h \
+ ../Source/task_EncoderMotor.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
+ ../Source/task_Motor.h ../Source/task_EncoderPendulum.h \
+ ../Source/task_Velocity.h ../Source/task_Position.h \
+ ../Source/task_Angle.h ../Source/task_LimitSwitches.h \
+ ../Source/satmath.h ../Source/PWMdriver.h ../Source/pid.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -124,3 +130,25 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Source/lib/frtcpp/frt_shared_data.h:
 
 ../Source/shares.h:
+
+../Source/task_EncoderMotor.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+
+../Source/task_Motor.h:
+
+../Source/task_EncoderPendulum.h:
+
+../Source/task_Velocity.h:
+
+../Source/task_Position.h:
+
+../Source/task_Angle.h:
+
+../Source/task_LimitSwitches.h:
+
+../Source/satmath.h:
+
+../Source/PWMdriver.h:
+
+../Source/pid.h:

@@ -1,6 +1,5 @@
-// Prevent this .h file from being included multiple times in a .cpp file
-#ifndef ENCODERPENDULUM_H
-#define ENCODERPENDULUM_H
+#ifndef TASK_VELOCITY_H
+#define TASK_VELOCITY_H
 
 #include <stdlib.h>                         // Prototype declarations for I/O functions
 
@@ -19,12 +18,12 @@
 
 #include "math.h"
 
-class EncoderPendulum : public frt_task{
+class task_Velocity : public frt_task{
 	protected:
 	
 	public:
 	// Constructor creates a motor encoder task object
-	EncoderPendulum(const char*, unsigned portBASE_TYPE, size_t, emstream*);
+	task_Velocity(const char*, unsigned portBASE_TYPE, size_t, emstream*);
 	
 	// This gets called by the RTOS once to start this task's state loop
 	void run(void);

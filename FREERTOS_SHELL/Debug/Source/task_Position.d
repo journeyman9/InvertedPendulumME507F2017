@@ -1,4 +1,5 @@
-Source/main.d Source/main.o: ../Source/main.cpp \
+Source/task_Position.d Source/task_Position.o: \
+ ../Source/task_Position.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
@@ -16,7 +17,6 @@ Source/main.d Source/main.o: ../Source/main.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\wdt.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h \
  ../Source/lib/freertos/FreeRTOS.h ../Source/lib/freertos/projdefs.h \
  ../Source/lib/freertos/FreeRTOSConfig.h \
  ../Source/lib/freertos/portable.h ../Source/lib/freertos/portmacro.h \
@@ -30,8 +30,10 @@ Source/main.d Source/main.o: ../Source/main.cpp \
  ../Source/lib/frtcpp/time_stamp.h ../Source/lib/frtcpp/frt_text_queue.h \
  ../Source/lib/frtcpp/frt_queue.h ../Source/lib/frtcpp/frt_base_queue.h \
  ../Source/lib/frtcpp/frt_shared_data.h ../Source/shares.h \
- ../Source/task_user.h ../Source/lib/serial/ansi_terminal.h \
- ../Source/task_EncoderMotor.h \
+ ../Source/lib/frtcpp/shared_data_sender.h \
+ ../Source/lib/frtcpp/shared_data_receiver.h \
+ ../Source/lib/frtcpp/base_data_receiver.h ../Source/task_user.h \
+ ../Source/lib/serial/ansi_terminal.h ../Source/task_EncoderMotor.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  ../Source/task_Motor.h ../Source/task_EncoderPendulum.h \
  ../Source/task_Velocity.h ../Source/task_Position.h \
@@ -71,8 +73,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:
-
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h:
 
 ../Source/lib/freertos/FreeRTOS.h:
 
@@ -121,6 +121,12 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Source/lib/frtcpp/frt_shared_data.h:
 
 ../Source/shares.h:
+
+../Source/lib/frtcpp/shared_data_sender.h:
+
+../Source/lib/frtcpp/shared_data_receiver.h:
+
+../Source/lib/frtcpp/base_data_receiver.h:
 
 ../Source/task_user.h:
 
