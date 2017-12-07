@@ -55,6 +55,13 @@ class Motor : public frt_task{
 				uint16_t count;
 				int32_t Iout;
 				int16_t Pout;
+				int16_t output_correct;
+				int16_t output;
+				int16_t antiwind_error;
+				int16_t antiwind_gain;
+				int16_t antiwind_correct;
+				int16_t error_int;
+				int16_t error_int_gain;
 	public:
 		// Constructor creates a motor encoder task object
 		Motor(const char*, unsigned portBASE_TYPE, size_t, emstream*);

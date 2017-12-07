@@ -56,22 +56,7 @@ void Motor::run(void){
 		// Right now just working with speed control for motor.
 		// Previously commented code extends to be a position control.
 		
-		omegam_set = 200; // [ticks/ms]
-		
-		if (leftLimitSwitch.get() || rightLimitSwitch.get())
-		{
-			//omegam_set = 0; // [ticks/ms]
-			//Pout = 0;
-			//Iout = 0;
-			_integral = 0;
-			//omegam_measured = 0; // [ticks/ms]
-			//*p_serial << "Left" << leftLimitSwitch.get() << endl;
-			//*p_serial << "Right" << rightLimitSwitch.get() << endl;
-		}
-		else
-		{
-		omegam_set = 200; // [ticks/ms]
-		}
+		omegam_set = 100; // [ticks/ms]
 
 		// omegam_measured will be the derivative of theta_measured from the encoder
 		omegam_measured = thdMotor.get();
@@ -82,9 +67,11 @@ void Motor::run(void){
 		// PID pidTorque = PID(1, 1600, -1600, 10, 0, 1); // PID output
 		//uint16_t error_sum = pidTorque.get_Integral();
 		
-		_Kp = 22;
-		_Ki = 0.5*256;
+		_Kp = 7;
+		_Ki = .7*256;
 		_Kd = 0;
+		antiwind_gain = .95*256;
+		
 		_max = 1600;
 		_min = -1600;
 		
@@ -97,7 +84,9 @@ void Motor::run(void){
 		Pout = ssmul(_Kp,error);
 
 		// Integral term
-		_integral += error * dt;
+		error_int = error - antiwind_correct;
+		error_int_gain = (_Ki * error_int);
+		_integral += (error_int_gain * dt)/256;
 		if(_integral < 1000000000)
 		{
 			_integral = _integral;
@@ -116,39 +105,59 @@ void Motor::run(void){
 		else if( _integral < arbitraryNumber )
 		_integral = arbitraryNumber;
 		*/
-		
-		Iout = (_Ki * _integral)/256;
 
 		// Derivative term
 		int16_t derivative = (error - _pre_error) / dt;
 		int16_t Dout = _Kd * derivative;
 
-		// Calculate total output
+		// Calculate total output	
 		// int16_t output = Pout + Iout + Dout;
-		int16_t output = ssadd(Pout, Iout);
+		output = ssadd(Pout, _integral);
 
+		output_correct = output;
 		// Restrict to max/min
-		if( output > _max )
-		output = _max;
-		else if( output < _min )
-		output = _min;
+		if( output_correct > _max )
+		output_correct = _max;
+		else if( output_correct < _min )
+		output_correct = _min;
 
 		// Save error to previous error
 		_pre_error = error;
 		
+		// Anti-windup correction
+		antiwind_error = output - output_correct;
+		
+		antiwind_correct = (antiwind_error*antiwind_gain)/256;
+		
 		
 			if(runs%5==0){
-				*p_serial << "Ierror: " << Iout << endl;
-				*p_serial << "Pout: " << Pout << endl;
-				*p_serial << "error: " << error << endl;
-				*p_serial << "Integral: " << _integral << endl;
-				*p_serial << "Measured: " << omegam_measured << endl;
-				//*p_serial << omegam_measured << endl;
+				//*p_serial << "Ierror: " << Iout << endl;
+				//*p_serial << "Pout: " << Pout << endl;
+				//*p_serial << "error: " << error << endl;
+				//*p_serial << "Integral: " << _integral << endl;
+				//*p_serial << "Measured: " << omegam_measured << endl;
+				//*p_serial << "PWM Signal: " << output_correct << endl;
+				*p_serial << omegam_measured << endl;
 			}
 		
+		if (leftLimitSwitch.get() || rightLimitSwitch.get())
+		{
+			omegam_set = 0; // [ticks/ms]
+			//Pout = 0;
+			//Iout = 0;
+			_integral = 0;
+			output_correct = 0;
+			//omegam_measured = 0; // [ticks/ms]
+			//*p_serial << "Left" << leftLimitSwitch.get() << endl;
+			//*p_serial << "Right" << rightLimitSwitch.get() << endl;
+		}
+		else
+		{
+		//omegam_set = omegam_set; // [ticks/ms]
+		}
 		
 		// int16_t Tset = (pidTorque.calculate(omegam_set, omegam_measured));
-		PWMvalue.put(output);
+		PWMvalue.put(output_correct);
 		
 		/*
 			if(runs%100==0){
