@@ -56,14 +56,14 @@ void EncoderPendulum::run(void)
 	TCC1.PER = 0x5A0;											// usually ticks/rev, but this doesn't matter since we're converting to linear anyway
 	TCC1.CTRLA = TC_CLKSEL_DIV1_gc;								// start TCC1 with prescaler = 1
 	
-	int16_t count;												// contains the current encoder value
+	int16_t count; // contains the current encoder value
 	
 	while(1)
 	{
 		count = TCC1.CNT; // read value from hardware counter
 		//*p_serial << count << endl;
 		
-		//theta_pendulum = ( (int32_t) count*100/4);				// count/(4*360)*360 degrees * 100
+		//theta_pendulum = ( (int32_t) count*100/4);			// count/(4*360)*360 degrees * 100
 		
 		thPendulum.put(count); // push angular position [ticks] to pendulum controller task
 		
