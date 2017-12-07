@@ -605,18 +605,6 @@ Discarded input sections
  .text          0x00000000        0x0 Source/lib/serial/emstream_int16_t.o
  .data          0x00000000        0x0 Source/lib/serial/emstream_int16_t.o
  .bss           0x00000000        0x0 Source/lib/serial/emstream_int16_t.o
- .text._ZN8emstreamlsEi
-                0x00000000       0x52 Source/lib/serial/emstream_int16_t.o
- .debug_info    0x00000000      0x27d Source/lib/serial/emstream_int16_t.o
- .debug_abbrev  0x00000000      0x183 Source/lib/serial/emstream_int16_t.o
- .debug_loc     0x00000000      0x12c Source/lib/serial/emstream_int16_t.o
- .debug_aranges
-                0x00000000       0x20 Source/lib/serial/emstream_int16_t.o
- .debug_ranges  0x00000000       0x10 Source/lib/serial/emstream_int16_t.o
- .debug_line    0x00000000       0xf7 Source/lib/serial/emstream_int16_t.o
- .debug_str     0x00000000      0x27f Source/lib/serial/emstream_int16_t.o
- .comment       0x00000000       0x31 Source/lib/serial/emstream_int16_t.o
- .debug_frame   0x00000000       0x40 Source/lib/serial/emstream_int16_t.o
  .text          0x00000000        0x0 Source/lib/serial/emstream_int32_t.o
  .data          0x00000000        0x0 Source/lib/serial/emstream_int32_t.o
  .bss           0x00000000        0x0 Source/lib/serial/emstream_int32_t.o
@@ -1026,8 +1014,6 @@ Discarded input sections
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(itoa_ncheck.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(itoa_ncheck.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(itoa_ncheck.o)
- .text.avr-libc
-                0x00000000       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(itoa_ncheck.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(ltoa_ncheck.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(ltoa_ncheck.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(ltoa_ncheck.o)
@@ -1226,7 +1212,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x407c
+.text           0x00000000     0x422a
  *(.vectors)
  .vectors       0x00000000      0x1fc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.1.68/gcc/dev/atxmega128a4u/avrxmega7/crtatxmega128a4u.o
                 0x00000000                __vector_default
@@ -1447,383 +1433,389 @@ END GROUP
                 0x00000836                _ZN13LimitSwitchesC2EPKchjP8emstream
                 0x00000836                _ZN13LimitSwitchesC1EPKchjP8emstream
  .text._ZN5Motor3runEv
-                0x00000856      0x4b8 Source/Motor.o
+                0x00000856      0x5fe Source/Motor.o
                 0x00000856                _ZN5Motor3runEv
  .text._ZN5MotorC2EPKchjP8emstream
-                0x00000d0e       0x20 Source/Motor.o
-                0x00000d0e                _ZN5MotorC2EPKchjP8emstream
-                0x00000d0e                _ZN5MotorC1EPKchjP8emstream
+                0x00000e54       0x20 Source/Motor.o
+                0x00000e54                _ZN5MotorC2EPKchjP8emstream
+                0x00000e54                _ZN5MotorC1EPKchjP8emstream
  .text._ZN7satmath20signed_saturated_addEii
-                0x00000d2e       0x38 Source/satmath.o
-                0x00000d2e                _ZN7satmath20signed_saturated_addEii
+                0x00000e74       0x38 Source/satmath.o
+                0x00000e74                _ZN7satmath20signed_saturated_addEii
  .text._ZN7satmath20signed_saturated_mulEii
-                0x00000d66       0x24 Source/satmath.o
-                0x00000d66                _ZN7satmath20signed_saturated_mulEii
+                0x00000eac       0x24 Source/satmath.o
+                0x00000eac                _ZN7satmath20signed_saturated_mulEii
  .text._ZN9task_userC2EPKchjP8emstream
-                0x00000d8a       0x20 Source/task_user.o
-                0x00000d8a                _ZN9task_userC1EPKchjP8emstream
-                0x00000d8a                _ZN9task_userC2EPKchjP8emstream
+                0x00000ed0       0x20 Source/task_user.o
+                0x00000ed0                _ZN9task_userC1EPKchjP8emstream
+                0x00000ed0                _ZN9task_userC2EPKchjP8emstream
  .text._ZN9task_user18print_help_messageEv
-                0x00000daa      0x150 Source/task_user.o
-                0x00000daa                _ZN9task_user18print_help_messageEv
+                0x00000ef0      0x150 Source/task_user.o
+                0x00000ef0                _ZN9task_user18print_help_messageEv
  .text._ZN9task_user11show_statusEv
-                0x00000efa      0x116 Source/task_user.o
-                0x00000efa                _ZN9task_user11show_statusEv
+                0x00001040      0x116 Source/task_user.o
+                0x00001040                _ZN9task_user11show_statusEv
  .text._ZN9task_user3runEv
-                0x00001010      0x25a Source/task_user.o
-                0x00001010                _ZN9task_user3runEv
+                0x00001156      0x25a Source/task_user.o
+                0x00001156                _ZN9task_user3runEv
  .text.pvPortMalloc
-                0x0000126a      0x134 Source/lib/freertos/heap_2.o
-                0x0000126a                pvPortMalloc
+                0x000013b0      0x134 Source/lib/freertos/heap_2.o
+                0x000013b0                pvPortMalloc
  .text.vPortFree
-                0x0000139e       0x66 Source/lib/freertos/heap_2.o
-                0x0000139e                vPortFree
+                0x000014e4       0x66 Source/lib/freertos/heap_2.o
+                0x000014e4                vPortFree
  .text.xPortGetFreeHeapSize
-                0x00001404        0xa Source/lib/freertos/heap_2.o
-                0x00001404                xPortGetFreeHeapSize
+                0x0000154a        0xa Source/lib/freertos/heap_2.o
+                0x0000154a                xPortGetFreeHeapSize
  .text.vListInitialise
-                0x0000140e       0x22 Source/lib/freertos/list.o
-                0x0000140e                vListInitialise
+                0x00001554       0x22 Source/lib/freertos/list.o
+                0x00001554                vListInitialise
  .text.vListInitialiseItem
-                0x00001430        0x8 Source/lib/freertos/list.o
-                0x00001430                vListInitialiseItem
+                0x00001576        0x8 Source/lib/freertos/list.o
+                0x00001576                vListInitialiseItem
  .text.vListInsertEnd
-                0x00001438       0x4e Source/lib/freertos/list.o
-                0x00001438                vListInsertEnd
+                0x0000157e       0x4e Source/lib/freertos/list.o
+                0x0000157e                vListInsertEnd
  .text.vListInsert
-                0x00001486       0x96 Source/lib/freertos/list.o
-                0x00001486                vListInsert
+                0x000015cc       0x96 Source/lib/freertos/list.o
+                0x000015cc                vListInsert
  .text.vListRemove
-                0x0000151c       0x4c Source/lib/freertos/list.o
-                0x0000151c                vListRemove
+                0x00001662       0x4c Source/lib/freertos/list.o
+                0x00001662                vListRemove
  .text.pxPortInitialiseStack
-                0x00001568       0xec Source/lib/freertos/port.o
-                0x00001568                pxPortInitialiseStack
+                0x000016ae       0xec Source/lib/freertos/port.o
+                0x000016ae                pxPortInitialiseStack
  .text.xPortStartScheduler
-                0x00001654       0x7c Source/lib/freertos/port.o
-                0x00001654                xPortStartScheduler
+                0x0000179a       0x7c Source/lib/freertos/port.o
+                0x0000179a                xPortStartScheduler
  .text.vPortYield
-                0x000016d0       0xc2 Source/lib/freertos/port.o
-                0x000016d0                vPortYield
+                0x00001816       0xc2 Source/lib/freertos/port.o
+                0x00001816                vPortYield
  .text.vPortYieldFromTick
-                0x00001792       0xc6 Source/lib/freertos/port.o
-                0x00001792                vPortYieldFromTick
+                0x000018d8       0xc6 Source/lib/freertos/port.o
+                0x000018d8                vPortYieldFromTick
  .text.__vector_49
-                0x00001858        0x6 Source/lib/freertos/port.o
-                0x00001858                __vector_49
+                0x0000199e        0x6 Source/lib/freertos/port.o
+                0x0000199e                __vector_49
  .text.prvCopyDataToQueue
-                0x0000185e       0x98 Source/lib/freertos/queue.o
+                0x000019a4       0x98 Source/lib/freertos/queue.o
  .text.prvCopyDataFromQueue
-                0x000018f6       0x34 Source/lib/freertos/queue.o
+                0x00001a3c       0x34 Source/lib/freertos/queue.o
  .text.prvUnlockQueue
-                0x0000192a       0x94 Source/lib/freertos/queue.o
+                0x00001a70       0x94 Source/lib/freertos/queue.o
  .text.xQueueGenericReset
-                0x000019be       0x78 Source/lib/freertos/queue.o
-                0x000019be                xQueueGenericReset
+                0x00001b04       0x78 Source/lib/freertos/queue.o
+                0x00001b04                xQueueGenericReset
  .text.xQueueGenericCreate
-                0x00001a36       0x5c Source/lib/freertos/queue.o
-                0x00001a36                xQueueGenericCreate
+                0x00001b7c       0x5c Source/lib/freertos/queue.o
+                0x00001b7c                xQueueGenericCreate
  .text.xQueueGenericSend
-                0x00001a92      0x136 Source/lib/freertos/queue.o
-                0x00001a92                xQueueGenericSend
+                0x00001bd8      0x136 Source/lib/freertos/queue.o
+                0x00001bd8                xQueueGenericSend
  .text.xQueueGenericReceive
-                0x00001bc8      0x188 Source/lib/freertos/queue.o
-                0x00001bc8                xQueueGenericReceive
+                0x00001d0e      0x188 Source/lib/freertos/queue.o
+                0x00001d0e                xQueueGenericReceive
  .text.uxQueueMessagesWaiting
-                0x00001d50       0x10 Source/lib/freertos/queue.o
-                0x00001d50                uxQueueMessagesWaiting
+                0x00001e96       0x10 Source/lib/freertos/queue.o
+                0x00001e96                uxQueueMessagesWaiting
  .text.prvIdleTask
-                0x00001d60       0x10 Source/lib/freertos/tasks.o
+                0x00001ea6       0x10 Source/lib/freertos/tasks.o
  .text.prvAddCurrentTaskToDelayedList
-                0x00001d70       0x9c Source/lib/freertos/tasks.o
+                0x00001eb6       0x9c Source/lib/freertos/tasks.o
  .text.xTaskGenericCreate
-                0x00001e0c      0x204 Source/lib/freertos/tasks.o
-                0x00001e0c                xTaskGenericCreate
+                0x00001f52      0x204 Source/lib/freertos/tasks.o
+                0x00001f52                xTaskGenericCreate
  .text.uxTaskPriorityGet
-                0x00002010       0x1c Source/lib/freertos/tasks.o
-                0x00002010                uxTaskPriorityGet
+                0x00002156       0x1c Source/lib/freertos/tasks.o
+                0x00002156                uxTaskPriorityGet
  .text.vTaskStartScheduler
-                0x0000202c       0x66 Source/lib/freertos/tasks.o
-                0x0000202c                vTaskStartScheduler
+                0x00002172       0x66 Source/lib/freertos/tasks.o
+                0x00002172                vTaskStartScheduler
  .text.vTaskSuspendAll
-                0x00002092        0xc Source/lib/freertos/tasks.o
-                0x00002092                vTaskSuspendAll
+                0x000021d8        0xc Source/lib/freertos/tasks.o
+                0x000021d8                vTaskSuspendAll
  .text.xTaskGetTickCount
-                0x0000209e       0x1c Source/lib/freertos/tasks.o
-                0x0000209e                xTaskGetTickCount
+                0x000021e4       0x1c Source/lib/freertos/tasks.o
+                0x000021e4                xTaskGetTickCount
  .text.pcTaskGetTaskName
-                0x000020ba       0x10 Source/lib/freertos/tasks.o
-                0x000020ba                pcTaskGetTaskName
+                0x00002200       0x10 Source/lib/freertos/tasks.o
+                0x00002200                pcTaskGetTaskName
  .text.xTaskGetIdleTaskHandle
-                0x000020ca        0xa Source/lib/freertos/tasks.o
-                0x000020ca                xTaskGetIdleTaskHandle
+                0x00002210        0xa Source/lib/freertos/tasks.o
+                0x00002210                xTaskGetIdleTaskHandle
  .text.vTaskIncrementTick
-                0x000020d4      0x202 Source/lib/freertos/tasks.o
-                0x000020d4                vTaskIncrementTick
+                0x0000221a      0x202 Source/lib/freertos/tasks.o
+                0x0000221a                vTaskIncrementTick
  .text.xTaskResumeAll
-                0x000022d6      0x104 Source/lib/freertos/tasks.o
-                0x000022d6                xTaskResumeAll
+                0x0000241c      0x104 Source/lib/freertos/tasks.o
+                0x0000241c                xTaskResumeAll
  .text.vTaskDelayUntil
-                0x000023da       0xda Source/lib/freertos/tasks.o
-                0x000023da                vTaskDelayUntil
+                0x00002520       0xda Source/lib/freertos/tasks.o
+                0x00002520                vTaskDelayUntil
  .text.vTaskDelay
-                0x000024b4       0x5c Source/lib/freertos/tasks.o
-                0x000024b4                vTaskDelay
+                0x000025fa       0x5c Source/lib/freertos/tasks.o
+                0x000025fa                vTaskDelay
  .text.vTaskSwitchContext
-                0x00002510       0xba Source/lib/freertos/tasks.o
-                0x00002510                vTaskSwitchContext
+                0x00002656       0xba Source/lib/freertos/tasks.o
+                0x00002656                vTaskSwitchContext
  .text.vTaskPlaceOnEventList
-                0x000025ca       0x54 Source/lib/freertos/tasks.o
-                0x000025ca                vTaskPlaceOnEventList
+                0x00002710       0x54 Source/lib/freertos/tasks.o
+                0x00002710                vTaskPlaceOnEventList
  .text.xTaskRemoveFromEventList
-                0x0000261e       0x7e Source/lib/freertos/tasks.o
-                0x0000261e                xTaskRemoveFromEventList
+                0x00002764       0x7e Source/lib/freertos/tasks.o
+                0x00002764                xTaskRemoveFromEventList
  .text.vTaskSetTimeOutState
-                0x0000269c       0x22 Source/lib/freertos/tasks.o
-                0x0000269c                vTaskSetTimeOutState
+                0x000027e2       0x22 Source/lib/freertos/tasks.o
+                0x000027e2                vTaskSetTimeOutState
  .text.xTaskCheckForTimeOut
-                0x000026be       0xda Source/lib/freertos/tasks.o
-                0x000026be                xTaskCheckForTimeOut
+                0x00002804       0xda Source/lib/freertos/tasks.o
+                0x00002804                xTaskCheckForTimeOut
  .text.vTaskMissedYield
-                0x00002798        0x8 Source/lib/freertos/tasks.o
-                0x00002798                vTaskMissedYield
+                0x000028de        0x8 Source/lib/freertos/tasks.o
+                0x000028de                vTaskMissedYield
  .text.uxTaskGetStackHighWaterMark
-                0x000027a0       0x32 Source/lib/freertos/tasks.o
-                0x000027a0                uxTaskGetStackHighWaterMark
+                0x000028e6       0x32 Source/lib/freertos/tasks.o
+                0x000028e6                uxTaskGetStackHighWaterMark
  .text.xTaskGetCurrentTaskHandle
-                0x000027d2        0xa Source/lib/freertos/tasks.o
-                0x000027d2                xTaskGetCurrentTaskHandle
+                0x00002918        0xa Source/lib/freertos/tasks.o
+                0x00002918                xTaskGetCurrentTaskHandle
  .text.vTaskPriorityInherit
-                0x000027dc       0xaa Source/lib/freertos/tasks.o
-                0x000027dc                vTaskPriorityInherit
+                0x00002922       0xaa Source/lib/freertos/tasks.o
+                0x00002922                vTaskPriorityInherit
  .text.vTaskPriorityDisinherit
-                0x00002886       0x68 Source/lib/freertos/tasks.o
-                0x00002886                vTaskPriorityDisinherit
+                0x000029cc       0x68 Source/lib/freertos/tasks.o
+                0x000029cc                vTaskPriorityDisinherit
  .text._ZN8frt_task22_call_users_run_methodEPS_
-                0x000028ee       0x1e Source/lib/frtcpp/frt_task.o
-                0x000028ee                _ZN8frt_task22_call_users_run_methodEPS_
+                0x00002a34       0x1e Source/lib/frtcpp/frt_task.o
+                0x00002a34                _ZN8frt_task22_call_users_run_methodEPS_
  .text._ZN8frt_task13transition_toEh
-                0x0000290c        0x8 Source/lib/frtcpp/frt_task.o
-                0x0000290c                _ZN8frt_task13transition_toEh
+                0x00002a52        0x8 Source/lib/frtcpp/frt_task.o
+                0x00002a52                _ZN8frt_task13transition_toEh
  .text._ZN8frt_taskC2EPKchjP8emstream
-                0x00002914      0x18e Source/lib/frtcpp/frt_task.o
-                0x00002914                _ZN8frt_taskC1EPKchjP8emstream
-                0x00002914                _ZN8frt_taskC2EPKchjP8emstream
+                0x00002a5a      0x18e Source/lib/frtcpp/frt_task.o
+                0x00002a5a                _ZN8frt_taskC1EPKchjP8emstream
+                0x00002a5a                _ZN8frt_taskC2EPKchjP8emstream
  .text._ZN8frt_task19print_stack_in_listEP8emstream
-                0x00002aa2       0x9c Source/lib/frtcpp/frt_task_stackprt.o
-                0x00002aa2                _ZN8frt_task19print_stack_in_listEP8emstream
+                0x00002be8       0x9c Source/lib/frtcpp/frt_task_stackprt.o
+                0x00002be8                _ZN8frt_task19print_stack_in_listEP8emstream
  .text._Z17print_task_stacksP8emstream
-                0x00002b3e       0x80 Source/lib/frtcpp/frt_task_stackprt.o
-                0x00002b3e                _Z17print_task_stacksP8emstream
+                0x00002c84       0x80 Source/lib/frtcpp/frt_task_stackprt.o
+                0x00002c84                _Z17print_task_stacksP8emstream
  .text._ZN8frt_task12print_statusER8emstream
-                0x00002bbe      0x120 Source/lib/frtcpp/frt_task_status.o
-                0x00002bbe                _ZN8frt_task12print_statusER8emstream
+                0x00002d04      0x120 Source/lib/frtcpp/frt_task_status.o
+                0x00002d04                _ZN8frt_task12print_statusER8emstream
  .text._ZlsR8emstreamR8frt_task
-                0x00002cde       0x20 Source/lib/frtcpp/frt_task_status.o
-                0x00002cde                _ZlsR8emstreamR8frt_task
+                0x00002e24       0x20 Source/lib/frtcpp/frt_task_status.o
+                0x00002e24                _ZlsR8emstreamR8frt_task
  .text._ZN8frt_task20print_status_in_listEP8emstream
-                0x00002cfe       0x32 Source/lib/frtcpp/frt_task_status.o
-                0x00002cfe                _ZN8frt_task20print_status_in_listEP8emstream
+                0x00002e44       0x32 Source/lib/frtcpp/frt_task_status.o
+                0x00002e44                _ZN8frt_task20print_status_in_listEP8emstream
  .text._Z15print_task_listP8emstream
-                0x00002d30      0x122 Source/lib/frtcpp/frt_task_status.o
-                0x00002d30                _Z15print_task_listP8emstream
+                0x00002e76      0x122 Source/lib/frtcpp/frt_task_status.o
+                0x00002e76                _Z15print_task_listP8emstream
  .text._ZN14frt_text_queue7getcharEv
-                0x00002e52       0x3c Source/lib/frtcpp/frt_text_queue.o
-                0x00002e52                _ZN14frt_text_queue7getcharEv
+                0x00002f98       0x3c Source/lib/frtcpp/frt_text_queue.o
+                0x00002f98                _ZN14frt_text_queue7getcharEv
  .text._ZN14frt_text_queue14check_for_charEv
-                0x00002e8e       0x16 Source/lib/frtcpp/frt_text_queue.o
-                0x00002e8e                _ZN14frt_text_queue14check_for_charEv
+                0x00002fd4       0x16 Source/lib/frtcpp/frt_text_queue.o
+                0x00002fd4                _ZN14frt_text_queue14check_for_charEv
  .text._ZN14frt_text_queue7putcharEc
-                0x00002ea4       0x3c Source/lib/frtcpp/frt_text_queue.o
-                0x00002ea4                _ZN14frt_text_queue7putcharEc
+                0x00002fea       0x3c Source/lib/frtcpp/frt_text_queue.o
+                0x00002fea                _ZN14frt_text_queue7putcharEc
  .text._ZN14frt_text_queueC2EjP8emstreamm
-                0x00002ee0       0x5e Source/lib/frtcpp/frt_text_queue.o
-                0x00002ee0                _ZN14frt_text_queueC2EjP8emstreamm
-                0x00002ee0                _ZN14frt_text_queueC1EjP8emstreamm
+                0x00003026       0x5e Source/lib/frtcpp/frt_text_queue.o
+                0x00003026                _ZN14frt_text_queueC2EjP8emstreamm
+                0x00003026                _ZN14frt_text_queueC1EjP8emstreamm
  .text._ZN10time_stamp12get_microsecEv
-                0x00002f3e       0x80 Source/lib/frtcpp/time_stamp_get_us.o
-                0x00002f3e                _ZN10time_stamp12get_microsecEv
+                0x00003084       0x80 Source/lib/frtcpp/time_stamp_get_us.o
+                0x00003084                _ZN10time_stamp12get_microsecEv
  .text._ZlsR8emstreamR10time_stamp
-                0x00002fbe       0xb8 Source/lib/frtcpp/time_stamp_lshift.o
-                0x00002fbe                _ZlsR8emstreamR10time_stamp
+                0x00003104       0xb8 Source/lib/frtcpp/time_stamp_lshift.o
+                0x00003104                _ZlsR8emstreamR10time_stamp
  .text._ZN10time_stamp10set_to_nowEv
-                0x00003076       0x30 Source/lib/frtcpp/time_stamp_to_now.o
-                0x00003076                _ZN10time_stamp10set_to_nowEv
+                0x000031bc       0x30 Source/lib/frtcpp/time_stamp_to_now.o
+                0x000031bc                _ZN10time_stamp10set_to_nowEv
  .text._Z15hex_dump_memoryPhS_P8emstreambh
-                0x000030a6      0x162 Source/lib/misc/hex_dump_memory.o
-                0x000030a6                _Z15hex_dump_memoryPhS_P8emstreambh
- .text._Znwj    0x00003208        0x6 Source/lib/misc/mechutil.o
-                0x00003208                _Znwj
- .text._Znaj    0x0000320e        0x6 Source/lib/misc/mechutil.o
-                0x0000320e                _Znaj
+                0x000031ec      0x162 Source/lib/misc/hex_dump_memory.o
+                0x000031ec                _Z15hex_dump_memoryPhS_P8emstreambh
+ .text._Znwj    0x0000334e        0x6 Source/lib/misc/mechutil.o
+                0x0000334e                _Znwj
+ .text._Znaj    0x00003354        0x6 Source/lib/misc/mechutil.o
+                0x00003354                _Znaj
  .text.__cxa_pure_virtual
-                0x00003214        0x2 Source/lib/misc/mechutil.o
-                0x00003214                __cxa_pure_virtual
+                0x0000335a        0x2 Source/lib/misc/mechutil.o
+                0x0000335a                __cxa_pure_virtual
  .text._ZN7base232C2EjP12USART_struct
-                0x00003216      0x12c Source/lib/serial/base232.o
-                0x00003216                _ZN7base232C1EjP12USART_struct
-                0x00003216                _ZN7base232C2EjP12USART_struct
+                0x0000335c      0x12c Source/lib/serial/base232.o
+                0x0000335c                _ZN7base232C1EjP12USART_struct
+                0x0000335c                _ZN7base232C2EjP12USART_struct
  .text._ZN8emstream13ready_to_sendEv
-                0x00003342        0x4 Source/lib/serial/emstream.o
-                0x00003342                _ZN8emstream13ready_to_sendEv
+                0x00003488        0x4 Source/lib/serial/emstream.o
+                0x00003488                _ZN8emstream13ready_to_sendEv
  .text._ZN8emstream7getcharEv
-                0x00003346        0x6 Source/lib/serial/emstream.o
-                0x00003346                _ZN8emstream7getcharEv
+                0x0000348c        0x6 Source/lib/serial/emstream.o
+                0x0000348c                _ZN8emstream7getcharEv
  .text._ZN8emstream14check_for_charEv
-                0x0000334c        0x4 Source/lib/serial/emstream.o
-                0x0000334c                _ZN8emstream14check_for_charEv
+                0x00003492        0x4 Source/lib/serial/emstream.o
+                0x00003492                _ZN8emstream14check_for_charEv
  .text._ZN8emstream12transmit_nowEv
-                0x00003350        0x2 Source/lib/serial/emstream.o
-                0x00003350                _ZN8emstream12transmit_nowEv
+                0x00003496        0x2 Source/lib/serial/emstream.o
+                0x00003496                _ZN8emstream12transmit_nowEv
  .text._ZN8emstream12clear_screenEv
-                0x00003352        0x2 Source/lib/serial/emstream.o
-                0x00003352                _ZN8emstream12clear_screenEv
+                0x00003498        0x2 Source/lib/serial/emstream.o
+                0x00003498                _ZN8emstream12clear_screenEv
  .text._ZN8emstreamC2Ev
-                0x00003354       0x1c Source/lib/serial/emstream.o
-                0x00003354                _ZN8emstreamC2Ev
-                0x00003354                _ZN8emstreamC1Ev
+                0x0000349a       0x1c Source/lib/serial/emstream.o
+                0x0000349a                _ZN8emstreamC2Ev
+                0x0000349a                _ZN8emstreamC1Ev
  .text._ZN8emstream4putsEPKc
-                0x00003370       0x6e Source/lib/serial/emstream.o
-                0x00003370                _ZN8emstream4putsEPKc
+                0x000034b6       0x6e Source/lib/serial/emstream.o
+                0x000034b6                _ZN8emstream4putsEPKc
  .text._ZN8emstreamlsE15ser_manipulator
-                0x000033de       0x8e Source/lib/serial/emstream.o
-                0x000033de                _ZN8emstreamlsE15ser_manipulator
+                0x00003524       0x8e Source/lib/serial/emstream.o
+                0x00003524                _ZN8emstreamlsE15ser_manipulator
+ .text._ZN8emstreamlsEi
+                0x000035b2       0x52 Source/lib/serial/emstream_int16_t.o
+                0x000035b2                _ZN8emstreamlsEi
  .text._ZN8emstreamlsEj
-                0x0000346c       0x68 Source/lib/serial/emstream_uint16_t.o
-                0x0000346c                _ZN8emstreamlsEj
+                0x00003604       0x68 Source/lib/serial/emstream_uint16_t.o
+                0x00003604                _ZN8emstreamlsEj
  .text._ZN8emstreamlsEm
-                0x000034d4       0x84 Source/lib/serial/emstream_uint32_t.o
-                0x000034d4                _ZN8emstreamlsEm
+                0x0000366c       0x84 Source/lib/serial/emstream_uint32_t.o
+                0x0000366c                _ZN8emstreamlsEm
  .text._ZN8emstreamlsEh
-                0x00003558      0x100 Source/lib/serial/emstream_uint8_t.o
-                0x00003558                _ZN8emstreamlsEh
+                0x000036f0      0x100 Source/lib/serial/emstream_uint8_t.o
+                0x000036f0                _ZN8emstreamlsEh
  .text._ZN5rs2327putcharEc
-                0x00003658       0x48 Source/lib/serial/rs232int.o
-                0x00003658                _ZN5rs2327putcharEc
+                0x000037f0       0x48 Source/lib/serial/rs232int.o
+                0x000037f0                _ZN5rs2327putcharEc
  .text._ZN5rs2327getcharEv
-                0x000036a0       0x4c Source/lib/serial/rs232int.o
-                0x000036a0                _ZN5rs2327getcharEv
+                0x00003838       0x4c Source/lib/serial/rs232int.o
+                0x00003838                _ZN5rs2327getcharEv
  .text._ZN5rs23214check_for_charEv
-                0x000036ec       0x26 Source/lib/serial/rs232int.o
-                0x000036ec                _ZN5rs23214check_for_charEv
+                0x00003884       0x26 Source/lib/serial/rs232int.o
+                0x00003884                _ZN5rs23214check_for_charEv
  .text._ZN5rs23212clear_screenEv
-                0x00003712       0x12 Source/lib/serial/rs232int.o
-                0x00003712                _ZN5rs23212clear_screenEv
+                0x000038aa       0x12 Source/lib/serial/rs232int.o
+                0x000038aa                _ZN5rs23212clear_screenEv
  .text._ZN5rs232C2EjP12USART_struct
-                0x00003724      0x100 Source/lib/serial/rs232int.o
-                0x00003724                _ZN5rs232C2EjP12USART_struct
-                0x00003724                _ZN5rs232C1EjP12USART_struct
+                0x000038bc      0x100 Source/lib/serial/rs232int.o
+                0x000038bc                _ZN5rs232C2EjP12USART_struct
+                0x000038bc                _ZN5rs232C1EjP12USART_struct
  .text.__vector_25
-                0x00003824       0xbc Source/lib/serial/rs232int.o
-                0x00003824                __vector_25
+                0x000039bc       0xbc Source/lib/serial/rs232int.o
+                0x000039bc                __vector_25
  .text.__vector_28
-                0x000038e0       0xbc Source/lib/serial/rs232int.o
-                0x000038e0                __vector_28
+                0x00003a78       0xbc Source/lib/serial/rs232int.o
+                0x00003a78                __vector_28
  .text.__vector_88
-                0x0000399c       0xbc Source/lib/serial/rs232int.o
-                0x0000399c                __vector_88
+                0x00003b34       0xbc Source/lib/serial/rs232int.o
+                0x00003b34                __vector_88
  .text.__vector_91
-                0x00003a58       0xbc Source/lib/serial/rs232int.o
-                0x00003a58                __vector_91
+                0x00003bf0       0xbc Source/lib/serial/rs232int.o
+                0x00003bf0                __vector_91
  .text.__vector_58
-                0x00003b14       0xbc Source/lib/serial/rs232int.o
-                0x00003b14                __vector_58
+                0x00003cac       0xbc Source/lib/serial/rs232int.o
+                0x00003cac                __vector_58
  .text._Z8CCPWritePVhh
-                0x00003bd0       0x2a Source/main.o
-                0x00003bd0                _Z8CCPWritePVhh
- .text.main     0x00003bfa      0x11e Source/main.o
-                0x00003bfa                main
+                0x00003d68       0x2a Source/main.o
+                0x00003d68                _Z8CCPWritePVhh
+ .text.main     0x00003d92      0x11e Source/main.o
+                0x00003d92                main
  .text._GLOBAL__sub_I_counter
-                0x00003d18       0x22 Source/main.o
+                0x00003eb0       0x22 Source/main.o
  .text.avr-libc.fplib
-                0x00003d3a        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libm.a(cmpsf2.o)
-                0x00003d3a                __nesf2
-                0x00003d3a                __eqsf2
-                0x00003d3a                __cmpsf2
-                0x00003d3a                __ltsf2
-                0x00003d3a                __lesf2
+                0x00003ed2        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libm.a(cmpsf2.o)
+                0x00003ed2                __nesf2
+                0x00003ed2                __eqsf2
+                0x00003ed2                __cmpsf2
+                0x00003ed2                __ltsf2
+                0x00003ed2                __lesf2
  .text.avr-libc.fplib
-                0x00003d44       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libm.a(floatsisf.o)
-                0x00003d44                __floatunsisf
-                0x00003d48                __floatsisf
+                0x00003edc       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libm.a(floatsisf.o)
+                0x00003edc                __floatunsisf
+                0x00003ee0                __floatsisf
  .text.avr-libc.fplib
-                0x00003dbe       0x48 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libm.a(fp_cmp.o)
-                0x00003dbe                __fp_cmp
+                0x00003f56       0x48 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libm.a(fp_cmp.o)
+                0x00003f56                __fp_cmp
  .text.avr-libc.fplib
-                0x00003e06        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libm.a(gesf2.o)
-                0x00003e06                __gesf2
-                0x00003e06                __gtsf2
+                0x00003f9e        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libm.a(gesf2.o)
+                0x00003f9e                __gesf2
+                0x00003f9e                __gtsf2
  .text.libgcc.mul
-                0x00003e10       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_mulsi3.o)
-                0x00003e10                __mulsi3
+                0x00003fa8       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_mulsi3.o)
+                0x00003fa8                __mulsi3
  .text.libgcc.div
-                0x00003e30       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_divmodhi4.o)
-                0x00003e30                _div
-                0x00003e30                __divmodhi4
+                0x00003fc8       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_divmodhi4.o)
+                0x00003fc8                _div
+                0x00003fc8                __divmodhi4
  .text.libgcc.div
-                0x00003e58       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_udivmodsi4.o)
-                0x00003e58                __udivmodsi4
+                0x00003ff0       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_udivmodsi4.o)
+                0x00003ff0                __udivmodsi4
  .text.libgcc.div
-                0x00003e9c       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_divmodsi4.o)
-                0x00003e9c                __divmodsi4
+                0x00004034       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_divmodsi4.o)
+                0x00004034                __divmodsi4
  .text.libgcc.div
-                0x00003eca       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_negsi2.o)
-                0x00003eca                __negsi2
- .text.libgcc   0x00003eda       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_tablejump2.o)
-                0x00003eda                __tablejump2__
+                0x00004062       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_negsi2.o)
+                0x00004062                __negsi2
+ .text.libgcc   0x00004072       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_tablejump2.o)
+                0x00004072                __tablejump2__
  .text.libgcc.mul
-                0x00003eec       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_mulhisi3.o)
-                0x00003eec                __mulhisi3
+                0x00004084       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_mulhisi3.o)
+                0x00004084                __mulhisi3
  .text.libgcc.mul
-                0x00003efc       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_umulhisi3.o)
-                0x00003efc                __umulhisi3
+                0x00004094       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_umulhisi3.o)
+                0x00004094                __umulhisi3
  .text.libgcc.mul
-                0x00003f1a        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_usmulhisi3.o)
-                0x00003f1a                __usmulhisi3
-                0x00003f1e                __usmulhisi3_tail
+                0x000040b2        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_usmulhisi3.o)
+                0x000040b2                __usmulhisi3
+                0x000040b6                __usmulhisi3_tail
  .text.libgcc.mul
-                0x00003f28       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_muluhisi3.o)
-                0x00003f28                __muluhisi3
+                0x000040c0       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_muluhisi3.o)
+                0x000040c0                __muluhisi3
  .text.libgcc.mul
-                0x00003f3e       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_mulshisi3.o)
-                0x00003f3e                __mulshisi3
-                0x00003f44                __mulohisi3
+                0x000040d6       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_mulshisi3.o)
+                0x000040d6                __mulshisi3
+                0x000040dc                __mulohisi3
  .text.libgcc.div
-                0x00003f4e       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_udivmodhi4.o)
-                0x00003f4e                __udivmodhi4
+                0x000040e6       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_udivmodhi4.o)
+                0x000040e6                __udivmodhi4
  .text.avr-libc
-                0x00003f76       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(memcpy.o)
-                0x00003f76                memcpy
+                0x0000410e       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(memcpy.o)
+                0x0000410e                memcpy
  .text.avr-libc
-                0x00003f88        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(memset.o)
-                0x00003f88                memset
+                0x00004120        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(memset.o)
+                0x00004120                memset
  .text.avr-libc
-                0x00003f96       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(strncpy.o)
-                0x00003f96                strncpy
+                0x0000412e       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(strncpy.o)
+                0x0000412e                strncpy
  .text.avr-libc
-                0x00003fb4       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(ultoa.o)
-                0x00003fb4                ultoa
-                0x00003fb4                __ultoa
+                0x0000414c       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(itoa_ncheck.o)
+                0x0000414c                __itoa_ncheck
  .text.avr-libc
-                0x00003fca       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(ultoa_ncheck.o)
-                0x00003fca                __ultoa_ncheck
-                0x00003fcc                __ultoa_common
+                0x00004162       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(ultoa.o)
+                0x00004162                ultoa
+                0x00004162                __ultoa
  .text.avr-libc
-                0x0000400e       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(utoa.o)
-                0x0000400e                __utoa
-                0x0000400e                utoa
+                0x00004178       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(ultoa_ncheck.o)
+                0x00004178                __ultoa_ncheck
+                0x0000417a                __ultoa_common
  .text.avr-libc
-                0x00004024       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(utoa_ncheck.o)
-                0x00004024                __utoa_ncheck
-                0x00004026                __utoa_common
+                0x000041bc       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(utoa.o)
+                0x000041bc                __utoa
+                0x000041bc                utoa
  .text.avr-libc
-                0x00004058       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(strrev.o)
-                0x00004058                strrev
-                0x00004078                . = ALIGN (0x2)
+                0x000041d2       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(utoa_ncheck.o)
+                0x000041d2                __utoa_ncheck
+                0x000041d4                __utoa_common
+ .text.avr-libc
+                0x00004206       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega7\libc.a(strrev.o)
+                0x00004206                strrev
+                0x00004226                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00004078        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_exit.o)
-                0x00004078                _exit
-                0x00004078                exit
+ .fini9         0x00004226        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_exit.o)
+                0x00004226                _exit
+                0x00004226                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -1842,11 +1834,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00004078        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_exit.o)
+ .fini0         0x00004226        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega7\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000407c                _etext = .
+                0x0000422a                _etext = .
 
-.data           0x00802000       0xb0 load address 0x0000407c
+.data           0x00802000       0xbc load address 0x0000422a
                 0x00802000                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1866,160 +1858,161 @@ END GROUP
  .rodata._ZTV13LimitSwitches
                 0x00802016        0x8 Source/LimitSwitches.o
                 0x00802016                _ZTV13LimitSwitches
+ .rodata.str1.1
+                0x0080201e        0xd Source/Motor.o
  .rodata._ZTV5Motor
-                0x0080201e        0x8 Source/Motor.o
-                0x0080201e                _ZTV5Motor
+                0x0080202b        0x8 Source/Motor.o
+                0x0080202b                _ZTV5Motor
  .rodata._ZTV9task_user
-                0x00802026        0x8 Source/task_user.o
-                0x00802026                _ZTV9task_user
+                0x00802033        0x8 Source/task_user.o
+                0x00802033                _ZTV9task_user
  .rodata.str1.1
-                0x0080202e        0x5 Source/lib/freertos/tasks.o
+                0x0080203b        0x5 Source/lib/freertos/tasks.o
  .rodata._ZTV8frt_task
-                0x00802033        0x8 Source/lib/frtcpp/frt_task_status.o
-                0x00802033                _ZTV8frt_task
+                0x00802040        0x8 Source/lib/frtcpp/frt_task_status.o
+                0x00802040                _ZTV8frt_task
  .rodata._ZTV14frt_text_queue
-                0x0080203b       0x10 Source/lib/frtcpp/frt_text_queue.o
-                0x0080203b                _ZTV14frt_text_queue
+                0x00802048       0x10 Source/lib/frtcpp/frt_text_queue.o
+                0x00802048                _ZTV14frt_text_queue
  .rodata._ZTV8emstream
-                0x0080204b       0x10 Source/lib/serial/emstream.o
-                0x0080204b                _ZTV8emstream
+                0x00802058       0x10 Source/lib/serial/emstream.o
+                0x00802058                _ZTV8emstream
  .rodata._ZTV5rs232
-                0x0080205b       0x10 Source/lib/serial/rs232int.o
-                0x0080205b                _ZTV5rs232
+                0x00802068       0x10 Source/lib/serial/rs232int.o
+                0x00802068                _ZTV5rs232
  .rodata.str1.1
-                0x0080206b       0x44 Source/main.o
+                0x00802078       0x44 Source/main.o
  *(.gnu.linkonce.r*)
-                0x008020b0                . = ALIGN (0x2)
- *fill*         0x008020af        0x1 
-                0x008020b0                _edata = .
-                0x008020b0                PROVIDE (__data_end, .)
+                0x008020bc                . = ALIGN (0x2)
+                0x008020bc                _edata = .
+                0x008020bc                PROVIDE (__data_end, .)
 
-.bss            0x008020b0     0x10a6
-                0x008020b0                PROVIDE (__bss_start, .)
+.bss            0x008020bc     0x10a6
+                0x008020bc                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.xHeapHasBeenInitialised.4154
-                0x008020b0        0x1 Source/lib/freertos/heap_2.o
- .bss.xEnd      0x008020b1        0x4 Source/lib/freertos/heap_2.o
- .bss.xStart    0x008020b5        0x4 Source/lib/freertos/heap_2.o
- .bss.xHeap     0x008020b9      0xfff Source/lib/freertos/heap_2.o
+                0x008020bc        0x1 Source/lib/freertos/heap_2.o
+ .bss.xEnd      0x008020bd        0x4 Source/lib/freertos/heap_2.o
+ .bss.xStart    0x008020c1        0x4 Source/lib/freertos/heap_2.o
+ .bss.xHeap     0x008020c5      0xfff Source/lib/freertos/heap_2.o
  .bss.uxTaskNumber
-                0x008030b8        0x1 Source/lib/freertos/tasks.o
- .bss.xNumOfOverflows
-                0x008030b9        0x1 Source/lib/freertos/tasks.o
- .bss.xMissedYield
-                0x008030ba        0x1 Source/lib/freertos/tasks.o
- .bss.uxMissedTicks
-                0x008030bb        0x1 Source/lib/freertos/tasks.o
- .bss.uxSchedulerSuspended
-                0x008030bc        0x1 Source/lib/freertos/tasks.o
- .bss.xSchedulerRunning
-                0x008030bd        0x1 Source/lib/freertos/tasks.o
- .bss.uxTopReadyPriority
-                0x008030be        0x1 Source/lib/freertos/tasks.o
- .bss.uxTopUsedPriority
-                0x008030bf        0x1 Source/lib/freertos/tasks.o
- .bss.xTickCount
-                0x008030c0        0x4 Source/lib/freertos/tasks.o
- .bss.uxCurrentNumberOfTasks
                 0x008030c4        0x1 Source/lib/freertos/tasks.o
+ .bss.xNumOfOverflows
+                0x008030c5        0x1 Source/lib/freertos/tasks.o
+ .bss.xMissedYield
+                0x008030c6        0x1 Source/lib/freertos/tasks.o
+ .bss.uxMissedTicks
+                0x008030c7        0x1 Source/lib/freertos/tasks.o
+ .bss.uxSchedulerSuspended
+                0x008030c8        0x1 Source/lib/freertos/tasks.o
+ .bss.xSchedulerRunning
+                0x008030c9        0x1 Source/lib/freertos/tasks.o
+ .bss.uxTopReadyPriority
+                0x008030ca        0x1 Source/lib/freertos/tasks.o
+ .bss.uxTopUsedPriority
+                0x008030cb        0x1 Source/lib/freertos/tasks.o
+ .bss.xTickCount
+                0x008030cc        0x4 Source/lib/freertos/tasks.o
+ .bss.uxCurrentNumberOfTasks
+                0x008030d0        0x1 Source/lib/freertos/tasks.o
  .bss.xIdleTaskHandle
-                0x008030c5        0x2 Source/lib/freertos/tasks.o
+                0x008030d1        0x2 Source/lib/freertos/tasks.o
  .bss.xPendingReadyList
-                0x008030c7        0xb Source/lib/freertos/tasks.o
+                0x008030d3        0xb Source/lib/freertos/tasks.o
  .bss.pxOverflowDelayedTaskList
-                0x008030d2        0x2 Source/lib/freertos/tasks.o
+                0x008030de        0x2 Source/lib/freertos/tasks.o
  .bss.pxDelayedTaskList
-                0x008030d4        0x2 Source/lib/freertos/tasks.o
+                0x008030e0        0x2 Source/lib/freertos/tasks.o
  .bss.xDelayedTaskList2
-                0x008030d6        0xb Source/lib/freertos/tasks.o
+                0x008030e2        0xb Source/lib/freertos/tasks.o
  .bss.xDelayedTaskList1
-                0x008030e1        0xb Source/lib/freertos/tasks.o
+                0x008030ed        0xb Source/lib/freertos/tasks.o
  .bss.pxReadyTasksLists
-                0x008030ec       0x2c Source/lib/freertos/tasks.o
+                0x008030f8       0x2c Source/lib/freertos/tasks.o
  .bss.pxCurrentTCB
-                0x00803118        0x2 Source/lib/freertos/tasks.o
-                0x00803118                pxCurrentTCB
+                0x00803124        0x2 Source/lib/freertos/tasks.o
+                0x00803124                pxCurrentTCB
  .bss.last_created_task_pointer
-                0x0080311a        0x2 Source/lib/frtcpp/frt_task.o
-                0x0080311a                last_created_task_pointer
+                0x00803126        0x2 Source/lib/frtcpp/frt_task.o
+                0x00803126                last_created_task_pointer
  .bss.rcvE0_write_index
-                0x0080311c        0x2 Source/lib/serial/rs232int.o
-                0x0080311c                rcvE0_write_index
- .bss.rcvD1_write_index
-                0x0080311e        0x2 Source/lib/serial/rs232int.o
-                0x0080311e                rcvD1_write_index
- .bss.rcvD0_write_index
-                0x00803120        0x2 Source/lib/serial/rs232int.o
-                0x00803120                rcvD0_write_index
- .bss.rcvC1_write_index
-                0x00803122        0x2 Source/lib/serial/rs232int.o
-                0x00803122                rcvC1_write_index
- .bss.rcvC0_write_index
-                0x00803124        0x2 Source/lib/serial/rs232int.o
-                0x00803124                rcvC0_write_index
- .bss.rcvE0_read_index
-                0x00803126        0x2 Source/lib/serial/rs232int.o
-                0x00803126                rcvE0_read_index
- .bss.rcvD1_read_index
                 0x00803128        0x2 Source/lib/serial/rs232int.o
-                0x00803128                rcvD1_read_index
- .bss.rcvD0_read_index
+                0x00803128                rcvE0_write_index
+ .bss.rcvD1_write_index
                 0x0080312a        0x2 Source/lib/serial/rs232int.o
-                0x0080312a                rcvD0_read_index
- .bss.rcvC1_read_index
+                0x0080312a                rcvD1_write_index
+ .bss.rcvD0_write_index
                 0x0080312c        0x2 Source/lib/serial/rs232int.o
-                0x0080312c                rcvC1_read_index
- .bss.rcvC0_read_index
+                0x0080312c                rcvD0_write_index
+ .bss.rcvC1_write_index
                 0x0080312e        0x2 Source/lib/serial/rs232int.o
-                0x0080312e                rcvC0_read_index
- .bss.rcvE0_buffer
+                0x0080312e                rcvC1_write_index
+ .bss.rcvC0_write_index
                 0x00803130        0x2 Source/lib/serial/rs232int.o
-                0x00803130                rcvE0_buffer
- .bss.rcvD1_buffer
+                0x00803130                rcvC0_write_index
+ .bss.rcvE0_read_index
                 0x00803132        0x2 Source/lib/serial/rs232int.o
-                0x00803132                rcvD1_buffer
- .bss.rcvD0_buffer
+                0x00803132                rcvE0_read_index
+ .bss.rcvD1_read_index
                 0x00803134        0x2 Source/lib/serial/rs232int.o
-                0x00803134                rcvD0_buffer
- .bss.rcvC1_buffer
+                0x00803134                rcvD1_read_index
+ .bss.rcvD0_read_index
                 0x00803136        0x2 Source/lib/serial/rs232int.o
-                0x00803136                rcvC1_buffer
- .bss.rcvC0_buffer
+                0x00803136                rcvD0_read_index
+ .bss.rcvC1_read_index
                 0x00803138        0x2 Source/lib/serial/rs232int.o
-                0x00803138                rcvC0_buffer
+                0x00803138                rcvC1_read_index
+ .bss.rcvC0_read_index
+                0x0080313a        0x2 Source/lib/serial/rs232int.o
+                0x0080313a                rcvC0_read_index
+ .bss.rcvE0_buffer
+                0x0080313c        0x2 Source/lib/serial/rs232int.o
+                0x0080313c                rcvE0_buffer
+ .bss.rcvD1_buffer
+                0x0080313e        0x2 Source/lib/serial/rs232int.o
+                0x0080313e                rcvD1_buffer
+ .bss.rcvD0_buffer
+                0x00803140        0x2 Source/lib/serial/rs232int.o
+                0x00803140                rcvD0_buffer
+ .bss.rcvC1_buffer
+                0x00803142        0x2 Source/lib/serial/rs232int.o
+                0x00803142                rcvC1_buffer
+ .bss.rcvC0_buffer
+                0x00803144        0x2 Source/lib/serial/rs232int.o
+                0x00803144                rcvC0_buffer
  .bss.linear_offset
-                0x0080313a        0x2 Source/main.o
-                0x0080313a                linear_offset
+                0x00803146        0x2 Source/main.o
+                0x00803146                linear_offset
  .bss.rightLimitSwitch
-                0x0080313c        0x1 Source/main.o
-                0x0080313c                rightLimitSwitch
+                0x00803148        0x1 Source/main.o
+                0x00803148                rightLimitSwitch
  .bss.leftLimitSwitch
-                0x0080313d        0x1 Source/main.o
-                0x0080313d                leftLimitSwitch
+                0x00803149        0x1 Source/main.o
+                0x00803149                leftLimitSwitch
  .bss.thPendulum
-                0x0080313e        0x2 Source/main.o
-                0x0080313e                thPendulum
- .bss.thdMotor  0x00803140        0x2 Source/main.o
-                0x00803140                thdMotor
+                0x0080314a        0x2 Source/main.o
+                0x0080314a                thPendulum
+ .bss.thdMotor  0x0080314c        0x2 Source/main.o
+                0x0080314c                thdMotor
  .bss.linear_position
-                0x00803142        0x2 Source/main.o
-                0x00803142                linear_position
+                0x0080314e        0x2 Source/main.o
+                0x0080314e                linear_position
  .bss.print_ser_queue
-                0x00803144       0x10 Source/main.o
-                0x00803144                print_ser_queue
+                0x00803150       0x10 Source/main.o
+                0x00803150                print_ser_queue
  *(COMMON)
- COMMON         0x00803154        0x2 Source/lib/freertos/port.o
-                0x00803154                portStackTopForTask
-                0x00803156                PROVIDE (__bss_end, .)
-                0x0000407c                __data_load_start = LOADADDR (.data)
-                0x0000412c                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00803160        0x2 Source/lib/freertos/port.o
+                0x00803160                portStackTopForTask
+                0x00803162                PROVIDE (__bss_end, .)
+                0x0000422a                __data_load_start = LOADADDR (.data)
+                0x000042e6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00803156        0x0
+.noinit         0x00803162        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00803156                _end = .
+                0x00803162                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -2084,6 +2077,7 @@ END GROUP
  .comment       0x00000030       0x31 Source/lib/misc/mechutil.o
  .comment       0x00000030       0x31 Source/lib/serial/base232.o
  .comment       0x00000030       0x31 Source/lib/serial/emstream.o
+ .comment       0x00000030       0x31 Source/lib/serial/emstream_int16_t.o
  .comment       0x00000030       0x31 Source/lib/serial/emstream_uint16_t.o
  .comment       0x00000030       0x31 Source/lib/serial/emstream_uint32_t.o
  .comment       0x00000030       0x31 Source/lib/serial/emstream_uint8_t.o
@@ -2110,7 +2104,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x6a0
+.debug_aranges  0x00000000      0x6c0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x28 Source/EncoderMotor.o
@@ -2157,113 +2151,118 @@ END GROUP
  .debug_aranges
                 0x00000548       0x60 Source/lib/serial/emstream.o
  .debug_aranges
-                0x000005a8       0x20 Source/lib/serial/emstream_uint16_t.o
+                0x000005a8       0x20 Source/lib/serial/emstream_int16_t.o
  .debug_aranges
-                0x000005c8       0x20 Source/lib/serial/emstream_uint32_t.o
+                0x000005c8       0x20 Source/lib/serial/emstream_uint16_t.o
  .debug_aranges
-                0x000005e8       0x20 Source/lib/serial/emstream_uint8_t.o
+                0x000005e8       0x20 Source/lib/serial/emstream_uint32_t.o
  .debug_aranges
-                0x00000608       0x68 Source/lib/serial/rs232int.o
+                0x00000608       0x20 Source/lib/serial/emstream_uint8_t.o
  .debug_aranges
-                0x00000670       0x30 Source/main.o
+                0x00000628       0x68 Source/lib/serial/rs232int.o
+ .debug_aranges
+                0x00000690       0x30 Source/main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x119f7
+.debug_info     0x00000000    0x11f02
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x284f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.1.68/gcc/dev/atxmega128a4u/avrxmega7/crtatxmega128a4u.o
  .debug_info    0x0000284f     0x1312 Source/EncoderMotor.o
  .debug_info    0x00003b61     0x113a Source/EncoderPendulum.o
  .debug_info    0x00004c9b      0x781 Source/LimitSwitches.o
- .debug_info    0x0000541c     0x1271 Source/Motor.o
- .debug_info    0x0000668d      0x23e Source/satmath.o
- .debug_info    0x000068cb     0x1aad Source/task_user.o
- .debug_info    0x00008378      0x316 Source/lib/freertos/heap_2.o
- .debug_info    0x0000868e      0x2cc Source/lib/freertos/list.o
- .debug_info    0x0000895a      0x27c Source/lib/freertos/port.o
- .debug_info    0x00008bd6      0xde5 Source/lib/freertos/queue.o
- .debug_info    0x000099bb     0x1308 Source/lib/freertos/tasks.o
- .debug_info    0x0000acc3      0x9f7 Source/lib/frtcpp/frt_task.o
- .debug_info    0x0000b6ba      0x64c Source/lib/frtcpp/frt_task_stackprt.o
- .debug_info    0x0000bd06     0x10f2 Source/lib/frtcpp/frt_task_status.o
- .debug_info    0x0000cdf8      0x444 Source/lib/frtcpp/frt_text_queue.o
- .debug_info    0x0000d23c      0x3b7 Source/lib/frtcpp/time_stamp_get_us.o
- .debug_info    0x0000d5f3      0x5ba Source/lib/frtcpp/time_stamp_lshift.o
- .debug_info    0x0000dbad      0x9b4 Source/lib/frtcpp/time_stamp_to_now.o
- .debug_info    0x0000e561      0x521 Source/lib/misc/hex_dump_memory.o
- .debug_info    0x0000ea82      0x2a8 Source/lib/misc/mechutil.o
- .debug_info    0x0000ed2a      0x482 Source/lib/serial/base232.o
- .debug_info    0x0000f1ac      0xa2f Source/lib/serial/emstream.o
- .debug_info    0x0000fbdb      0x323 Source/lib/serial/emstream_uint16_t.o
- .debug_info    0x0000fefe      0x34b Source/lib/serial/emstream_uint32_t.o
- .debug_info    0x00010249      0x2d8 Source/lib/serial/emstream_uint8_t.o
- .debug_info    0x00010521      0x903 Source/lib/serial/rs232int.o
- .debug_info    0x00010e24      0xbd3 Source/main.o
+ .debug_info    0x0000541c     0x14ff Source/Motor.o
+ .debug_info    0x0000691b      0x23e Source/satmath.o
+ .debug_info    0x00006b59     0x1aad Source/task_user.o
+ .debug_info    0x00008606      0x316 Source/lib/freertos/heap_2.o
+ .debug_info    0x0000891c      0x2cc Source/lib/freertos/list.o
+ .debug_info    0x00008be8      0x27c Source/lib/freertos/port.o
+ .debug_info    0x00008e64      0xde5 Source/lib/freertos/queue.o
+ .debug_info    0x00009c49     0x1308 Source/lib/freertos/tasks.o
+ .debug_info    0x0000af51      0x9f7 Source/lib/frtcpp/frt_task.o
+ .debug_info    0x0000b948      0x64c Source/lib/frtcpp/frt_task_stackprt.o
+ .debug_info    0x0000bf94     0x10f2 Source/lib/frtcpp/frt_task_status.o
+ .debug_info    0x0000d086      0x444 Source/lib/frtcpp/frt_text_queue.o
+ .debug_info    0x0000d4ca      0x3b7 Source/lib/frtcpp/time_stamp_get_us.o
+ .debug_info    0x0000d881      0x5ba Source/lib/frtcpp/time_stamp_lshift.o
+ .debug_info    0x0000de3b      0x9b4 Source/lib/frtcpp/time_stamp_to_now.o
+ .debug_info    0x0000e7ef      0x521 Source/lib/misc/hex_dump_memory.o
+ .debug_info    0x0000ed10      0x2a8 Source/lib/misc/mechutil.o
+ .debug_info    0x0000efb8      0x482 Source/lib/serial/base232.o
+ .debug_info    0x0000f43a      0xa2f Source/lib/serial/emstream.o
+ .debug_info    0x0000fe69      0x27d Source/lib/serial/emstream_int16_t.o
+ .debug_info    0x000100e6      0x323 Source/lib/serial/emstream_uint16_t.o
+ .debug_info    0x00010409      0x34b Source/lib/serial/emstream_uint32_t.o
+ .debug_info    0x00010754      0x2d8 Source/lib/serial/emstream_uint8_t.o
+ .debug_info    0x00010a2c      0x903 Source/lib/serial/rs232int.o
+ .debug_info    0x0001132f      0xbd3 Source/main.o
 
-.debug_abbrev   0x00000000     0x6261
+.debug_abbrev   0x00000000     0x6430
  *(.debug_abbrev)
  .debug_abbrev  0x00000000     0x262c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.1.68/gcc/dev/atxmega128a4u/avrxmega7/crtatxmega128a4u.o
  .debug_abbrev  0x0000262c      0x373 Source/EncoderMotor.o
  .debug_abbrev  0x0000299f      0x320 Source/EncoderPendulum.o
  .debug_abbrev  0x00002cbf      0x2ed Source/LimitSwitches.o
- .debug_abbrev  0x00002fac      0x38d Source/Motor.o
- .debug_abbrev  0x00003339       0xe0 Source/satmath.o
- .debug_abbrev  0x00003419      0x393 Source/task_user.o
- .debug_abbrev  0x000037ac      0x1a9 Source/lib/freertos/heap_2.o
- .debug_abbrev  0x00003955       0xf6 Source/lib/freertos/list.o
- .debug_abbrev  0x00003a4b      0x16b Source/lib/freertos/port.o
- .debug_abbrev  0x00003bb6      0x1f2 Source/lib/freertos/queue.o
- .debug_abbrev  0x00003da8      0x2c2 Source/lib/freertos/tasks.o
- .debug_abbrev  0x0000406a      0x308 Source/lib/frtcpp/frt_task.o
- .debug_abbrev  0x00004372      0x205 Source/lib/frtcpp/frt_task_stackprt.o
- .debug_abbrev  0x00004577      0x35b Source/lib/frtcpp/frt_task_status.o
- .debug_abbrev  0x000048d2      0x1f6 Source/lib/frtcpp/frt_text_queue.o
- .debug_abbrev  0x00004ac8      0x110 Source/lib/frtcpp/time_stamp_get_us.o
- .debug_abbrev  0x00004bd8      0x23b Source/lib/frtcpp/time_stamp_lshift.o
- .debug_abbrev  0x00004e13      0x1a3 Source/lib/frtcpp/time_stamp_to_now.o
- .debug_abbrev  0x00004fb6      0x187 Source/lib/misc/hex_dump_memory.o
- .debug_abbrev  0x0000513d      0x135 Source/lib/misc/mechutil.o
- .debug_abbrev  0x00005272      0x182 Source/lib/serial/base232.o
- .debug_abbrev  0x000053f4      0x344 Source/lib/serial/emstream.o
- .debug_abbrev  0x00005738      0x1cf Source/lib/serial/emstream_uint16_t.o
- .debug_abbrev  0x00005907      0x1cf Source/lib/serial/emstream_uint32_t.o
- .debug_abbrev  0x00005ad6      0x1a6 Source/lib/serial/emstream_uint8_t.o
- .debug_abbrev  0x00005c7c      0x2a2 Source/lib/serial/rs232int.o
- .debug_abbrev  0x00005f1e      0x343 Source/main.o
+ .debug_abbrev  0x00002fac      0x3d9 Source/Motor.o
+ .debug_abbrev  0x00003385       0xe0 Source/satmath.o
+ .debug_abbrev  0x00003465      0x393 Source/task_user.o
+ .debug_abbrev  0x000037f8      0x1a9 Source/lib/freertos/heap_2.o
+ .debug_abbrev  0x000039a1       0xf6 Source/lib/freertos/list.o
+ .debug_abbrev  0x00003a97      0x16b Source/lib/freertos/port.o
+ .debug_abbrev  0x00003c02      0x1f2 Source/lib/freertos/queue.o
+ .debug_abbrev  0x00003df4      0x2c2 Source/lib/freertos/tasks.o
+ .debug_abbrev  0x000040b6      0x308 Source/lib/frtcpp/frt_task.o
+ .debug_abbrev  0x000043be      0x205 Source/lib/frtcpp/frt_task_stackprt.o
+ .debug_abbrev  0x000045c3      0x35b Source/lib/frtcpp/frt_task_status.o
+ .debug_abbrev  0x0000491e      0x1f6 Source/lib/frtcpp/frt_text_queue.o
+ .debug_abbrev  0x00004b14      0x110 Source/lib/frtcpp/time_stamp_get_us.o
+ .debug_abbrev  0x00004c24      0x23b Source/lib/frtcpp/time_stamp_lshift.o
+ .debug_abbrev  0x00004e5f      0x1a3 Source/lib/frtcpp/time_stamp_to_now.o
+ .debug_abbrev  0x00005002      0x187 Source/lib/misc/hex_dump_memory.o
+ .debug_abbrev  0x00005189      0x135 Source/lib/misc/mechutil.o
+ .debug_abbrev  0x000052be      0x182 Source/lib/serial/base232.o
+ .debug_abbrev  0x00005440      0x344 Source/lib/serial/emstream.o
+ .debug_abbrev  0x00005784      0x183 Source/lib/serial/emstream_int16_t.o
+ .debug_abbrev  0x00005907      0x1cf Source/lib/serial/emstream_uint16_t.o
+ .debug_abbrev  0x00005ad6      0x1cf Source/lib/serial/emstream_uint32_t.o
+ .debug_abbrev  0x00005ca5      0x1a6 Source/lib/serial/emstream_uint8_t.o
+ .debug_abbrev  0x00005e4b      0x2a2 Source/lib/serial/rs232int.o
+ .debug_abbrev  0x000060ed      0x343 Source/main.o
 
-.debug_line     0x00000000     0x517b
+.debug_line     0x00000000     0x532f
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x3b5 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.1.68/gcc/dev/atxmega128a4u/avrxmega7/crtatxmega128a4u.o
  .debug_line    0x000003b5      0x2ed Source/EncoderMotor.o
  .debug_line    0x000006a2      0x2b4 Source/EncoderPendulum.o
  .debug_line    0x00000956      0x2c8 Source/LimitSwitches.o
- .debug_line    0x00000c1e      0x4b5 Source/Motor.o
- .debug_line    0x000010d3      0x19d Source/satmath.o
- .debug_line    0x00001270      0x57c Source/task_user.o
- .debug_line    0x000017ec      0x25f Source/lib/freertos/heap_2.o
- .debug_line    0x00001a4b      0x17b Source/lib/freertos/list.o
- .debug_line    0x00001bc6      0x31d Source/lib/freertos/port.o
- .debug_line    0x00001ee3      0x725 Source/lib/freertos/queue.o
- .debug_line    0x00002608      0x9dc Source/lib/freertos/tasks.o
- .debug_line    0x00002fe4      0x367 Source/lib/frtcpp/frt_task.o
- .debug_line    0x0000334b      0x210 Source/lib/frtcpp/frt_task_stackprt.o
- .debug_line    0x0000355b      0x39f Source/lib/frtcpp/frt_task_status.o
- .debug_line    0x000038fa      0x17d Source/lib/frtcpp/frt_text_queue.o
- .debug_line    0x00003a77       0xfc Source/lib/frtcpp/time_stamp_get_us.o
- .debug_line    0x00003b73      0x167 Source/lib/frtcpp/time_stamp_lshift.o
- .debug_line    0x00003cda      0x179 Source/lib/frtcpp/time_stamp_to_now.o
- .debug_line    0x00003e53      0x24d Source/lib/misc/hex_dump_memory.o
- .debug_line    0x000040a0      0x1c9 Source/lib/misc/mechutil.o
- .debug_line    0x00004269      0x230 Source/lib/serial/base232.o
- .debug_line    0x00004499      0x2b4 Source/lib/serial/emstream.o
- .debug_line    0x0000474d      0x10e Source/lib/serial/emstream_uint16_t.o
- .debug_line    0x0000485b      0x10e Source/lib/serial/emstream_uint32_t.o
- .debug_line    0x00004969      0x185 Source/lib/serial/emstream_uint8_t.o
- .debug_line    0x00004aee      0x3f5 Source/lib/serial/rs232int.o
- .debug_line    0x00004ee3      0x298 Source/main.o
+ .debug_line    0x00000c1e      0x572 Source/Motor.o
+ .debug_line    0x00001190      0x19d Source/satmath.o
+ .debug_line    0x0000132d      0x57c Source/task_user.o
+ .debug_line    0x000018a9      0x25f Source/lib/freertos/heap_2.o
+ .debug_line    0x00001b08      0x17b Source/lib/freertos/list.o
+ .debug_line    0x00001c83      0x31d Source/lib/freertos/port.o
+ .debug_line    0x00001fa0      0x725 Source/lib/freertos/queue.o
+ .debug_line    0x000026c5      0x9dc Source/lib/freertos/tasks.o
+ .debug_line    0x000030a1      0x367 Source/lib/frtcpp/frt_task.o
+ .debug_line    0x00003408      0x210 Source/lib/frtcpp/frt_task_stackprt.o
+ .debug_line    0x00003618      0x39f Source/lib/frtcpp/frt_task_status.o
+ .debug_line    0x000039b7      0x17d Source/lib/frtcpp/frt_text_queue.o
+ .debug_line    0x00003b34       0xfc Source/lib/frtcpp/time_stamp_get_us.o
+ .debug_line    0x00003c30      0x167 Source/lib/frtcpp/time_stamp_lshift.o
+ .debug_line    0x00003d97      0x179 Source/lib/frtcpp/time_stamp_to_now.o
+ .debug_line    0x00003f10      0x24d Source/lib/misc/hex_dump_memory.o
+ .debug_line    0x0000415d      0x1c9 Source/lib/misc/mechutil.o
+ .debug_line    0x00004326      0x230 Source/lib/serial/base232.o
+ .debug_line    0x00004556      0x2b4 Source/lib/serial/emstream.o
+ .debug_line    0x0000480a       0xf7 Source/lib/serial/emstream_int16_t.o
+ .debug_line    0x00004901      0x10e Source/lib/serial/emstream_uint16_t.o
+ .debug_line    0x00004a0f      0x10e Source/lib/serial/emstream_uint32_t.o
+ .debug_line    0x00004b1d      0x185 Source/lib/serial/emstream_uint8_t.o
+ .debug_line    0x00004ca2      0x3f5 Source/lib/serial/rs232int.o
+ .debug_line    0x00005097      0x298 Source/main.o
 
-.debug_frame    0x00000000     0x1244
+.debug_frame    0x00000000     0x1284
  *(.debug_frame)
  .debug_frame   0x00000000       0x58 Source/EncoderMotor.o
  .debug_frame   0x00000058       0x58 Source/EncoderPendulum.o
@@ -2287,13 +2286,14 @@ END GROUP
  .debug_frame   0x00000d6c       0xa4 Source/lib/misc/mechutil.o
  .debug_frame   0x00000e10       0x50 Source/lib/serial/base232.o
  .debug_frame   0x00000e60       0xc4 Source/lib/serial/emstream.o
- .debug_frame   0x00000f24       0x44 Source/lib/serial/emstream_uint16_t.o
- .debug_frame   0x00000f68       0x50 Source/lib/serial/emstream_uint32_t.o
- .debug_frame   0x00000fb8       0x54 Source/lib/serial/emstream_uint8_t.o
- .debug_frame   0x0000100c      0x1b4 Source/lib/serial/rs232int.o
- .debug_frame   0x000011c0       0x84 Source/main.o
+ .debug_frame   0x00000f24       0x40 Source/lib/serial/emstream_int16_t.o
+ .debug_frame   0x00000f64       0x44 Source/lib/serial/emstream_uint16_t.o
+ .debug_frame   0x00000fa8       0x50 Source/lib/serial/emstream_uint32_t.o
+ .debug_frame   0x00000ff8       0x54 Source/lib/serial/emstream_uint8_t.o
+ .debug_frame   0x0000104c      0x1b4 Source/lib/serial/rs232int.o
+ .debug_frame   0x00001200       0x84 Source/main.o
 
-.debug_str      0x00000000     0x6134
+.debug_str      0x00000000     0x61bc
  *(.debug_str)
  .debug_str     0x00000000     0x1aa8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/XMEGAA_DFP/1.1.68/gcc/dev/atxmega128a4u/avrxmega7/crtatxmega128a4u.o
  .debug_str     0x00001aa8     0x18ba Source/EncoderMotor.o
@@ -2302,84 +2302,87 @@ END GROUP
                                0x18e4 (size before relaxing)
  .debug_str     0x00003484      0x282 Source/LimitSwitches.o
                                 0x691 (size before relaxing)
- .debug_str     0x00003706      0x1f6 Source/Motor.o
-                                0xadc (size before relaxing)
- .debug_str     0x000038fc      0x136 Source/satmath.o
+ .debug_str     0x00003706      0x2eb Source/Motor.o
+                                0xc04 (size before relaxing)
+ .debug_str     0x000039f1      0x136 Source/satmath.o
                                 0x2f1 (size before relaxing)
- .debug_str     0x00003a32      0x5d7 Source/task_user.o
+ .debug_str     0x00003b27      0x53c Source/task_user.o
                                 0xbaa (size before relaxing)
- .debug_str     0x00004009      0x21c Source/lib/freertos/heap_2.o
+ .debug_str     0x00004063      0x21c Source/lib/freertos/heap_2.o
                                 0x325 (size before relaxing)
- .debug_str     0x00004225      0x131 Source/lib/freertos/list.o
+ .debug_str     0x0000427f      0x131 Source/lib/freertos/list.o
                                 0x2d6 (size before relaxing)
- .debug_str     0x00004356      0x11f Source/lib/freertos/port.o
+ .debug_str     0x000043b0      0x11f Source/lib/freertos/port.o
                                 0x2e3 (size before relaxing)
- .debug_str     0x00004475      0x41d Source/lib/freertos/queue.o
+ .debug_str     0x000044cf      0x41d Source/lib/freertos/queue.o
                                 0x6d5 (size before relaxing)
- .debug_str     0x00004892      0x501 Source/lib/freertos/tasks.o
+ .debug_str     0x000048ec      0x501 Source/lib/freertos/tasks.o
                                 0x9ac (size before relaxing)
- .debug_str     0x00004d93      0x130 Source/lib/frtcpp/frt_task.o
+ .debug_str     0x00004ded      0x130 Source/lib/frtcpp/frt_task.o
                                 0x538 (size before relaxing)
- .debug_str     0x00004ec3       0xe2 Source/lib/frtcpp/frt_task_stackprt.o
+ .debug_str     0x00004f1d       0xe2 Source/lib/frtcpp/frt_task_stackprt.o
                                 0x460 (size before relaxing)
- .debug_str     0x00004fa5      0x40d Source/lib/frtcpp/frt_task_status.o
+ .debug_str     0x00004fff      0x40d Source/lib/frtcpp/frt_task_status.o
                                 0x9d8 (size before relaxing)
- .debug_str     0x000053b2      0x162 Source/lib/frtcpp/frt_text_queue.o
+ .debug_str     0x0000540c      0x162 Source/lib/frtcpp/frt_text_queue.o
                                 0x464 (size before relaxing)
- .debug_str     0x00005514       0x2b Source/lib/frtcpp/time_stamp_get_us.o
+ .debug_str     0x0000556e       0x2b Source/lib/frtcpp/time_stamp_get_us.o
                                 0x512 (size before relaxing)
- .debug_str     0x0000553f       0x5f Source/lib/frtcpp/time_stamp_lshift.o
+ .debug_str     0x00005599       0x5f Source/lib/frtcpp/time_stamp_lshift.o
                                 0x5d7 (size before relaxing)
- .debug_str     0x0000559e       0x2b Source/lib/frtcpp/time_stamp_to_now.o
+ .debug_str     0x000055f8       0x2b Source/lib/frtcpp/time_stamp_to_now.o
                                 0x7f5 (size before relaxing)
- .debug_str     0x000055c9       0x8a Source/lib/misc/hex_dump_memory.o
+ .debug_str     0x00005623       0x8a Source/lib/misc/hex_dump_memory.o
                                 0x3a6 (size before relaxing)
- .debug_str     0x00005653       0xe2 Source/lib/misc/mechutil.o
+ .debug_str     0x000056ad       0xe2 Source/lib/misc/mechutil.o
                                 0x2e1 (size before relaxing)
- .debug_str     0x00005735      0x13f Source/lib/serial/base232.o
+ .debug_str     0x0000578f      0x13f Source/lib/serial/base232.o
                                 0x3ff (size before relaxing)
- .debug_str     0x00005874      0x420 Source/lib/serial/emstream.o
+ .debug_str     0x000058ce      0x40f Source/lib/serial/emstream.o
                                 0x7b3 (size before relaxing)
- .debug_str     0x00005c94       0x67 Source/lib/serial/emstream_uint16_t.o
+ .debug_str     0x00005cdd       0x55 Source/lib/serial/emstream_int16_t.o
+                                0x27f (size before relaxing)
+ .debug_str     0x00005d32       0x51 Source/lib/serial/emstream_uint16_t.o
                                 0x291 (size before relaxing)
- .debug_str     0x00005cfb       0x42 Source/lib/serial/emstream_uint32_t.o
+ .debug_str     0x00005d83       0x42 Source/lib/serial/emstream_uint32_t.o
                                 0x294 (size before relaxing)
- .debug_str     0x00005d3d       0x3a Source/lib/serial/emstream_uint8_t.o
+ .debug_str     0x00005dc5       0x3a Source/lib/serial/emstream_uint8_t.o
                                 0x27e (size before relaxing)
- .debug_str     0x00005d77      0x2a3 Source/lib/serial/rs232int.o
+ .debug_str     0x00005dff      0x2a3 Source/lib/serial/rs232int.o
                                 0x6d3 (size before relaxing)
- .debug_str     0x0000601a      0x11a Source/main.o
+ .debug_str     0x000060a2      0x11a Source/main.o
                                 0x829 (size before relaxing)
 
-.debug_loc      0x00000000     0x5b5d
+.debug_loc      0x00000000     0x5e25
  *(.debug_loc)
  .debug_loc     0x00000000      0x25b Source/EncoderMotor.o
  .debug_loc     0x0000025b      0x1da Source/EncoderPendulum.o
  .debug_loc     0x00000435      0x252 Source/LimitSwitches.o
- .debug_loc     0x00000687      0x238 Source/Motor.o
- .debug_loc     0x000008bf      0x22a Source/satmath.o
- .debug_loc     0x00000ae9      0x602 Source/task_user.o
- .debug_loc     0x000010eb      0x2b1 Source/lib/freertos/heap_2.o
- .debug_loc     0x0000139c      0x136 Source/lib/freertos/list.o
- .debug_loc     0x000014d2      0x29b Source/lib/freertos/port.o
- .debug_loc     0x0000176d      0xd6d Source/lib/freertos/queue.o
- .debug_loc     0x000024da     0x1159 Source/lib/freertos/tasks.o
- .debug_loc     0x00003633      0x434 Source/lib/frtcpp/frt_task.o
- .debug_loc     0x00003a67      0x240 Source/lib/frtcpp/frt_task_stackprt.o
- .debug_loc     0x00003ca7      0x56e Source/lib/frtcpp/frt_task_status.o
- .debug_loc     0x00004215      0x2fe Source/lib/frtcpp/frt_text_queue.o
- .debug_loc     0x00004513       0x63 Source/lib/frtcpp/time_stamp_get_us.o
- .debug_loc     0x00004576      0x19d Source/lib/frtcpp/time_stamp_lshift.o
- .debug_loc     0x00004713       0x67 Source/lib/frtcpp/time_stamp_to_now.o
- .debug_loc     0x0000477a      0x3e2 Source/lib/misc/hex_dump_memory.o
- .debug_loc     0x00004b5c       0xe6 Source/lib/misc/mechutil.o
- .debug_loc     0x00004c42      0x143 Source/lib/serial/base232.o
- .debug_loc     0x00004d85      0x305 Source/lib/serial/emstream.o
- .debug_loc     0x0000508a      0x12f Source/lib/serial/emstream_uint16_t.o
- .debug_loc     0x000051b9      0x171 Source/lib/serial/emstream_uint32_t.o
- .debug_loc     0x0000532a      0x1cf Source/lib/serial/emstream_uint8_t.o
- .debug_loc     0x000054f9      0x4f2 Source/lib/serial/rs232int.o
- .debug_loc     0x000059eb      0x172 Source/main.o
+ .debug_loc     0x00000687      0x3d4 Source/Motor.o
+ .debug_loc     0x00000a5b      0x22a Source/satmath.o
+ .debug_loc     0x00000c85      0x602 Source/task_user.o
+ .debug_loc     0x00001287      0x2b1 Source/lib/freertos/heap_2.o
+ .debug_loc     0x00001538      0x136 Source/lib/freertos/list.o
+ .debug_loc     0x0000166e      0x29b Source/lib/freertos/port.o
+ .debug_loc     0x00001909      0xd6d Source/lib/freertos/queue.o
+ .debug_loc     0x00002676     0x1159 Source/lib/freertos/tasks.o
+ .debug_loc     0x000037cf      0x434 Source/lib/frtcpp/frt_task.o
+ .debug_loc     0x00003c03      0x240 Source/lib/frtcpp/frt_task_stackprt.o
+ .debug_loc     0x00003e43      0x56e Source/lib/frtcpp/frt_task_status.o
+ .debug_loc     0x000043b1      0x2fe Source/lib/frtcpp/frt_text_queue.o
+ .debug_loc     0x000046af       0x63 Source/lib/frtcpp/time_stamp_get_us.o
+ .debug_loc     0x00004712      0x19d Source/lib/frtcpp/time_stamp_lshift.o
+ .debug_loc     0x000048af       0x67 Source/lib/frtcpp/time_stamp_to_now.o
+ .debug_loc     0x00004916      0x3e2 Source/lib/misc/hex_dump_memory.o
+ .debug_loc     0x00004cf8       0xe6 Source/lib/misc/mechutil.o
+ .debug_loc     0x00004dde      0x143 Source/lib/serial/base232.o
+ .debug_loc     0x00004f21      0x305 Source/lib/serial/emstream.o
+ .debug_loc     0x00005226      0x12c Source/lib/serial/emstream_int16_t.o
+ .debug_loc     0x00005352      0x12f Source/lib/serial/emstream_uint16_t.o
+ .debug_loc     0x00005481      0x171 Source/lib/serial/emstream_uint32_t.o
+ .debug_loc     0x000055f2      0x1cf Source/lib/serial/emstream_uint8_t.o
+ .debug_loc     0x000057c1      0x4f2 Source/lib/serial/rs232int.o
+ .debug_loc     0x00005cb3      0x172 Source/main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -2399,35 +2402,36 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x598
+.debug_ranges   0x00000000      0x578
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x18 Source/EncoderMotor.o
  .debug_ranges  0x00000018       0x18 Source/EncoderPendulum.o
  .debug_ranges  0x00000030       0x30 Source/LimitSwitches.o
- .debug_ranges  0x00000060       0x48 Source/Motor.o
- .debug_ranges  0x000000a8       0x30 Source/satmath.o
- .debug_ranges  0x000000d8       0x28 Source/task_user.o
- .debug_ranges  0x00000100       0x28 Source/lib/freertos/heap_2.o
- .debug_ranges  0x00000128       0x30 Source/lib/freertos/list.o
- .debug_ranges  0x00000158       0x38 Source/lib/freertos/port.o
- .debug_ranges  0x00000190       0x88 Source/lib/freertos/queue.o
- .debug_ranges  0x00000218      0x110 Source/lib/freertos/tasks.o
- .debug_ranges  0x00000328       0x30 Source/lib/frtcpp/frt_task.o
- .debug_ranges  0x00000358       0x18 Source/lib/frtcpp/frt_task_stackprt.o
- .debug_ranges  0x00000370       0x28 Source/lib/frtcpp/frt_task_status.o
- .debug_ranges  0x00000398       0x28 Source/lib/frtcpp/frt_text_queue.o
- .debug_ranges  0x000003c0       0x10 Source/lib/frtcpp/time_stamp_get_us.o
- .debug_ranges  0x000003d0       0x10 Source/lib/frtcpp/time_stamp_lshift.o
- .debug_ranges  0x000003e0       0x10 Source/lib/frtcpp/time_stamp_to_now.o
- .debug_ranges  0x000003f0       0x10 Source/lib/misc/hex_dump_memory.o
- .debug_ranges  0x00000400       0x50 Source/lib/misc/mechutil.o
- .debug_ranges  0x00000450       0x20 Source/lib/serial/base232.o
- .debug_ranges  0x00000470       0x68 Source/lib/serial/emstream.o
- .debug_ranges  0x000004d8       0x10 Source/lib/serial/emstream_uint16_t.o
- .debug_ranges  0x000004e8       0x10 Source/lib/serial/emstream_uint32_t.o
- .debug_ranges  0x000004f8       0x10 Source/lib/serial/emstream_uint8_t.o
- .debug_ranges  0x00000508       0x70 Source/lib/serial/rs232int.o
- .debug_ranges  0x00000578       0x20 Source/main.o
+ .debug_ranges  0x00000060       0x18 Source/Motor.o
+ .debug_ranges  0x00000078       0x30 Source/satmath.o
+ .debug_ranges  0x000000a8       0x28 Source/task_user.o
+ .debug_ranges  0x000000d0       0x28 Source/lib/freertos/heap_2.o
+ .debug_ranges  0x000000f8       0x30 Source/lib/freertos/list.o
+ .debug_ranges  0x00000128       0x38 Source/lib/freertos/port.o
+ .debug_ranges  0x00000160       0x88 Source/lib/freertos/queue.o
+ .debug_ranges  0x000001e8      0x110 Source/lib/freertos/tasks.o
+ .debug_ranges  0x000002f8       0x30 Source/lib/frtcpp/frt_task.o
+ .debug_ranges  0x00000328       0x18 Source/lib/frtcpp/frt_task_stackprt.o
+ .debug_ranges  0x00000340       0x28 Source/lib/frtcpp/frt_task_status.o
+ .debug_ranges  0x00000368       0x28 Source/lib/frtcpp/frt_text_queue.o
+ .debug_ranges  0x00000390       0x10 Source/lib/frtcpp/time_stamp_get_us.o
+ .debug_ranges  0x000003a0       0x10 Source/lib/frtcpp/time_stamp_lshift.o
+ .debug_ranges  0x000003b0       0x10 Source/lib/frtcpp/time_stamp_to_now.o
+ .debug_ranges  0x000003c0       0x10 Source/lib/misc/hex_dump_memory.o
+ .debug_ranges  0x000003d0       0x50 Source/lib/misc/mechutil.o
+ .debug_ranges  0x00000420       0x20 Source/lib/serial/base232.o
+ .debug_ranges  0x00000440       0x68 Source/lib/serial/emstream.o
+ .debug_ranges  0x000004a8       0x10 Source/lib/serial/emstream_int16_t.o
+ .debug_ranges  0x000004b8       0x10 Source/lib/serial/emstream_uint16_t.o
+ .debug_ranges  0x000004c8       0x10 Source/lib/serial/emstream_uint32_t.o
+ .debug_ranges  0x000004d8       0x10 Source/lib/serial/emstream_uint8_t.o
+ .debug_ranges  0x000004e8       0x70 Source/lib/serial/rs232int.o
+ .debug_ranges  0x00000558       0x20 Source/main.o
 
 .debug_macro
  *(.debug_macro)

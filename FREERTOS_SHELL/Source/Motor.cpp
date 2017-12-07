@@ -57,7 +57,15 @@ void Motor::run(void){
 	TCC0.CCB  = 0;										// Ensure channel B is off when enabled
 	TCC0.CTRLB |= TC0_CCAEN_bm | TC0_CCBEN_bm;			// Enable output compare on channels A and B
 	
-	linear_offset.put(0);								// Initialize motor offset						
+	linear_offset.put(0);								// Initialize motor offset	
+	int16_t left_home;									// Initialize left distance to calculate center
+	int16_t position_set;								// Setpoint of cart's position
+	int16_t KP_pos = 100;								// P gain for cart position				
+	int16_t position_error = 0;							// positional error	
+	int16_t position_midpoint = 0;						// midpoint calculated from homing sequence
+	int16_t angle_error = 0;							// pendulum angle error
+	int16_t KP_angle = -1000;
+	int16_t angle_set = 720;							// vertical setpoint for pendulum
 	
 	while(1){
 		// Increment counter for debugging
@@ -67,6 +75,7 @@ void Motor::run(void){
 		{
 			// Home right
 			case(0) :
+				//*p_serial << "Start Calibration Sequence? [Y/N]" << endl;
 				omegam_set = 10;	// [ticks/ms]
 
 				if (rightLimitSwitch.get())
@@ -84,7 +93,7 @@ void Motor::run(void){
 			
 				if (leftLimitSwitch.get())
 				{
-					int16_t left_home = linear_position.get();			// Store end of rail distance
+					left_home = linear_position.get();			// Store end of rail distance
 					_integral = 0;
 					output_correct = 0;
 					transition_to(2);									// if left limit switch is triggered
@@ -93,16 +102,27 @@ void Motor::run(void){
 			
 			// Center Cart - Position Loop included
 			case(2) :
-				omegam_set = 0;											// Set velocity zero for now
-				int16_t zeroOfCart = 0;									//
-				//transition_to(3);										// If user consents pendulum is hanging low
+				position_midpoint = left_home/2;
+				position_set = position_midpoint;
+				position_error = position_set - linear_position.get();  // 
+				omegam_set = position_error*KP_pos/1000;
+				
+				if(thPendulum.get() == angle_set)
+				{
+					transition_to(3);
+				}
+												// If user consents pendulum is hanging low
 			break;
 			
-			// 
-			//case(3) :
-			
+			// Pendulum Balance
+			case(3) :
+				angle_error = angle_set - thPendulum.get();
+				position_set = position_midpoint + angle_error*KP_angle/1000;
+				position_error = position_set - linear_position.get();  // 
+				omegam_set = position_error*KP_pos/1000;
+				
 			//transition_to(4);											// If user sets pendulum "Inverted" and presses go
-			//break;
+			break;
 			
 			//default : 
 				//break;													// PWM  = 0
@@ -184,7 +204,7 @@ void Motor::run(void){
 		antiwind_correct = (antiwind_error*antiwind_gain)/256;
 		
 		
-			if(runs%20 == 0){
+			if(runs%50 == 0){
 				//*p_serial << "Ierror: " << Iout << endl;
 				//*p_serial << "Pout: " << Pout << endl;
 				//*p_serial << "error: " << error << endl;
@@ -197,6 +217,8 @@ void Motor::run(void){
 				//*p_serial << "right: " << rightLimitSwitch.get() << endl;
 				//*p_serial << "left: " << leftLimitSwitch.get() << endl;
 				//*p_serial << "linear pos: " << linear_position.get() << endl;
+				*p_serial << "linear set: " << position_set << endl;
+				//*p_serial << "angle error: " << angle_error << endl;
 			}
 		
 		/*
