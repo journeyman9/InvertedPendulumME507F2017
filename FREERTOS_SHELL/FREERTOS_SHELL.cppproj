@@ -278,12 +278,6 @@
     <Compile Include="Source\pid.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\PWMdriver.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Source\PWMdriver.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Source\satmath.cpp">
       <SubType>compile</SubType>
     </Compile>

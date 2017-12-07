@@ -39,7 +39,6 @@
 #include "LimitSwitches.h"					// Header for Limit Switches
 #include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
-#include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 
 volatile int counter;
@@ -52,6 +51,7 @@ shared_data<int16_t> thPendulum;
 shared_data<bool> leftLimitSwitch;
 shared_data<bool> rightLimitSwitch;
 shared_data<int16_t> PWMvalue;
+shared_data<int16_t> linear_offset;
 
 /*! \brief CCP write helper function written in assembly.
  *
@@ -149,8 +149,6 @@ int main (void)
 
 	// The Motor task sets velocity, position, then maybe current control
 	new Motor ("Motor", task_priority(3), 260, &ser_dev);
-	
-	new PWMdriver ("PWM", task_priority(5), 260, &ser_dev);
 	
 	// Enable high level interrupts and gl;obal interrupts
 	PMIC_CTRL = (1 << PMIC_HILVLEN_bp | 1 << PMIC_MEDLVLEN_bp | 1 << PMIC_LOLVLEN_bp);

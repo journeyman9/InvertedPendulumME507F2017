@@ -14,8 +14,6 @@ Source\Motor.cpp
 
 Source\pid.cpp
 
-Source\PWMdriver.cpp
-
 Source\satmath.cpp
 
 Source\task_user.cpp

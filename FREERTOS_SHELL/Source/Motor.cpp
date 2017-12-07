@@ -24,7 +24,6 @@
 #include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
 #include "LimitSwitches.h"					// Inverted Pendulum file
-#include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 #include "satmath.h"
 
@@ -45,32 +44,83 @@ void Motor::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 
-	dt = 5; // [ms]
+	dt = 1; // [ms]
 	inc = 1;
+	
+	// Initialize PWM 
+	PORTC.DIRSET = PIN0_bm | PIN1_bm | PIN2_bm;			// Configure PC0 and PC1 as outputs
+	PORTC.OUTSET = PIN2_bm;								// disable sleep mode
+	TCC0.CTRLA = TC0_CLKSEL0_bm;						// Configures Clock select bits for divide by 1
+	TCC0.CTRLB = TC0_WGMODE0_bm | TC0_WGMODE1_bm;		// Configures waveform generation mode to single slope PWM
+	TCC0.PER = 1600;									// Configures period to be 320 counts for a pwm freq 20kHz with 20% duty cycle
+	TCC0.CCA = 0;										// Ensure channel A is off when enabled
+	TCC0.CCB  = 0;										// Ensure channel B is off when enabled
+	TCC0.CTRLB |= TC0_CCAEN_bm | TC0_CCBEN_bm;			// Enable output compare on channels A and B
+	
+	linear_offset.put(0);								// Initialize motor offset						
 	
 	while(1){
 		// Increment counter for debugging
 		runs++;
 		
-		// Actual motor code
-		// Right now just working with speed control for motor.
-		// Previously commented code extends to be a position control.
+		switch (state)
+		{
+			// Home right
+			case(0) :
+				omegam_set = 10;	// [ticks/ms]
+
+				if (rightLimitSwitch.get())
+				{
+					linear_offset.put(linear_position.get());					// set the offset
+					_integral = 0;
+					output_correct = 0;
+					transition_to(1);									// if right Limit Switch is triggered 
+				}
+				break;
+				
+			// Home left
+			case(1) :
+				omegam_set = -10;	// [ticks/ms]
+			
+				if (leftLimitSwitch.get())
+				{
+					int16_t left_home = linear_position.get();			// Store end of rail distance
+					_integral = 0;
+					output_correct = 0;
+					transition_to(2);									// if left limit switch is triggered
+				}					
+				break;
+			
+			// Center Cart - Position Loop included
+			case(2) :
+				omegam_set = 0;											// Set velocity zero for now
+				int16_t zeroOfCart = 0;									//
+				//transition_to(3);										// If user consents pendulum is hanging low
+			break;
+			
+			// 
+			//case(3) :
+			
+			//transition_to(4);											// If user sets pendulum "Inverted" and presses go
+			//break;
+			
+			//default : 
+				//break;													// PWM  = 0
 		
-		omegam_set = 100; // [ticks/ms]
+		};
 
 		// omegam_measured will be the derivative of theta_measured from the encoder
 		omegam_measured = thdMotor.get();
-		//*p_serial << "Measured: " << omegam_measured << endl;
 		
 		// PID to get Tset from Omegam_set with a max torque value
 		// PIDImpl::PIDImpl( double dt, double max, double min, double Kp, double Kd, double Ki ) :
 		// PID pidTorque = PID(1, 1600, -1600, 10, 0, 1); // PID output
 		//uint16_t error_sum = pidTorque.get_Integral();
 		
-		_Kp = 6.5;
-		_Ki = .74*256;
+		_Kp = 10.1;
+		_Ki = .7*256;
 		_Kd = 0;
-		antiwind_gain = .93*256;
+		antiwind_gain = .75*256;
 		
 		_max = 1600;
 		_min = -1600;
@@ -134,24 +184,33 @@ void Motor::run(void){
 		antiwind_correct = (antiwind_error*antiwind_gain)/256;
 		
 		
-			if(runs%5==0){
+			if(runs%20 == 0){
 				//*p_serial << "Ierror: " << Iout << endl;
 				//*p_serial << "Pout: " << Pout << endl;
 				//*p_serial << "error: " << error << endl;
 				//*p_serial << "Integral: " << _integral << endl;
 				//*p_serial << "Measured: " << omegam_measured << endl;
 				//*p_serial << "PWM Signal: " << output_correct << endl;
-				*p_serial << omegam_measured << endl;
-				*p_serial << thPendulum.get() << endl;
+				//*p_serial << omegam_measured << endl;
+				//*p_serial << omegam_set << endl;
+				//*p_serial << thPendulum.get() << endl;
+				//*p_serial << "right: " << rightLimitSwitch.get() << endl;
+				//*p_serial << "left: " << leftLimitSwitch.get() << endl;
+				//*p_serial << "linear pos: " << linear_position.get() << endl;
 			}
 		
+		/*
 		if (leftLimitSwitch.get() || rightLimitSwitch.get())
 		{
-			omegam_set = 0; // [ticks/ms]
+			//omegam_set = 0; // [ticks/ms]
 			//Pout = 0;
 			//Iout = 0;
 			_integral = 0;
 			output_correct = 0;
+			if (runs%10 == 0)
+					{
+						*p_serial << "third loop" << endl;
+					}
 			//omegam_measured = 0; // [ticks/ms]
 			//*p_serial << "Left" << leftLimitSwitch.get() << endl;
 			//*p_serial << "Right" << rightLimitSwitch.get() << endl;
@@ -162,17 +221,9 @@ void Motor::run(void){
 		}
 		
 		// int16_t Tset = (pidTorque.calculate(omegam_set, omegam_measured));
-		PWMvalue.put(output_correct);
-		
-		/*
-			if(runs%100==0){
-				*p_serial << "CONTROLLER OUTPUT: " << Tset << endl;
-				*p_serial << omegam_measured << endl;
-			}
-		*/		
-		
-
-		
+		//PWMvalue.put(output_correct);
+		*/
+					
 		K_T = 0.065; // Nm/A. Taken from Pittman 14203 series motor documentation page G 21
 		Im_set = Tset/K_T;
 
@@ -206,8 +257,19 @@ void Motor::run(void){
 		} else if(V_m < -24) {
 			V_m = -24;
 		}
+
 		
-		// V_m then feeds into PWM function to command motor
+		// PWM function to command motor
+		if (output_correct >= 0)
+		{
+			TCC0.CCA = output_correct;
+			TCC0.CCB = 0;
+		}
+		else if (output_correct < 0)
+		{
+			TCC0.CCA = 0;
+			TCC0.CCB = -output_correct;
+		}
 
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
@@ -299,3 +361,5 @@ Motor::Motor(int omegam_measured, int I_actuator)
 	}
 }
 */
+
+

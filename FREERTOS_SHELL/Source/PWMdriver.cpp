@@ -43,11 +43,12 @@ PWMdriver::PWMdriver(const char* a_name,
 
 
 void PWMdriver::run(void){
+	
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 	//PC0 - MD0
 	//PC1 - MD1
-	
+	/*
 	PORTC.DIRSET = PIN0_bm | PIN1_bm | PIN2_bm;			// Configure PC0 and PC1 as outputs
 	PORTC.OUTSET = PIN2_bm;								// disable sleep mode
 	TCC0.CTRLA = TC0_CLKSEL0_bm;						// Configures Clock select bits for divide by 1
@@ -62,31 +63,19 @@ void PWMdriver::run(void){
 		// Increment counter for debugging
 		runs++;
 		
+		
 		TCC0.CCA = PWMvalue.get();
 		TCC0.CCB = 0;
 		
-		/*
-		if(runs%100==0){
-			*p_serial << PWMvalue.get() << endl;
-		}	
-		*/
 		
+		/*
 		if (!leftLimitSwitch.get() && !rightLimitSwitch.get())
 		{
 			TCC0.CCA = PWMvalue.get();
 			TCC0.CCB = 0;
-			
-		/*
-		if(runs%100==0){
-			*p_serial << PWMvalue.get() << endl;
-		}	
-		*/
-		
-			
+
 		}
 		
-		
-		/*
 		else if (leftLimitSwitch.get() || rightLimitSwitch.get())
 		{
 			TCC0.CCA = 0;
@@ -95,21 +84,20 @@ void PWMdriver::run(void){
 		if(runs%100==0){
 			*p_serial << "Left" << leftLimitSwitch.get() << endl;
 			*p_serial << "Right" << rightLimitSwitch.get() << endl;
+			*p_serial << PWMvalue.get() << endl;
+			*p_serial << PWMvalue.get() << endl;
 		}	
 		
-			
-
 		}
 		else
 		{
 		}
 		*/
-		
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
 		delay_from_to (previousTicks, configMS_TO_TICKS (20));
 		
-		
+		*/
 	}	
 }
 

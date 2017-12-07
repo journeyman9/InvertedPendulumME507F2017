@@ -47,5 +47,6 @@ extern shared_data<int16_t> thPendulum;			// queue for angular position of pendu
 extern shared_data<bool> leftLimitSwitch;		//queue for left limit switch
 extern shared_data<bool> rightLimitSwitch;		//queue for right limit switch
 extern shared_data<int16_t> PWMvalue;           // from Motor Controller into PWM Driver
+extern shared_data<int16_t> linear_offset;		// linear offset for homing motor encoder
 
 #endif // _SHARES_H_

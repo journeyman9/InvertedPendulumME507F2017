@@ -24,7 +24,6 @@
 #include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
 #include "LimitSwitches.h"					// Inverted Pendulum file
-#include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 
 
@@ -71,7 +70,7 @@ void EncoderMotor::run (void)
 		//angularPosition = ( (int32_t) encoder_count*9);						// count/(4*1000)*360 deg * 100
 		//thMotor.put(angularPosition);
 		
-		x = ( (int32_t) encoder_count*3)/100;								// PPMM = (4*1000)/(pi*38)
+		x = ( (int32_t) encoder_count*3)/100 - linear_offset.get();								// PPMM = (4*1000)/(pi*38)
 		linear_position.put(x);
 		
 		

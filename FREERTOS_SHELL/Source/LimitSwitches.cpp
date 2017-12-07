@@ -24,7 +24,6 @@
 #include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
 #include "LimitSwitches.h"					// Inverted Pendulum file
-#include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 
 LimitSwitches::LimitSwitches(const char* a_name,
@@ -59,24 +58,12 @@ void LimitSwitches::run(void){
 		{	
 			leftLimit = true;
 			leftLimitSwitch.put(leftLimit);
-			/*
-			if(runs%100==0)
-			{
-				*p_serial << "leftLimit: " << leftLimit << endl;
-			}
-			*/
 			
 		}
 		else
 		{
 			leftLimit = false;
 			leftLimitSwitch.put(leftLimit);
-			/*
-			if(runs%100==0)
-			{
-				*p_serial << "limits: " << rightLimit << leftLimit << endl;
-			}
-			*/
 
 		}
 		
@@ -86,23 +73,13 @@ void LimitSwitches::run(void){
 			rightLimit = true;
 			
 			rightLimitSwitch.put(rightLimit);
-			/*
-			if(runs%100==0)
-			{
-				*p_serial << "rightLimit: " << rightLimit << endl;
-			}
-			*/
+
 		}
 		else
 		{
 			rightLimit = false;
 			rightLimitSwitch.put(rightLimit);
-			/*
-			if(runs%100==0)
-			{
-				*p_serial << "limits: " << rightLimit << leftLimit << endl;
-			}
-			*/
+
 		}
 		
 					/*
@@ -110,6 +87,9 @@ void LimitSwitches::run(void){
 			{
 				*p_serial << "Left" << leftLimitSwitch.get() << "\t";
 				*p_serial << "Right" << rightLimitSwitch.get() << endl;
+				*p_serial << "leftLimit: " << leftLimit << endl;
+				*p_serial << "limits: " << rightLimit << leftLimit << endl;
+				*p_serial << "rightLimit: " << rightLimit << endl;
 			}
 			*/
 
@@ -122,6 +102,6 @@ void LimitSwitches::run(void){
 		//_delay_ms(1);
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (5));
+		delay_from_to (previousTicks, configMS_TO_TICKS (1));
 	}	
 }
