@@ -139,7 +139,7 @@ void task_Motor::run(void){
 				//*p_serial << "error: " << error << endl;
 				//*p_serial << "Integral: " << _integral << endl;
 				//*p_serial << "Measured: " << omegam_measured << endl;
-				//*p_serial << "PWM Signal: " << output_correct << endl;
+				*p_serial << "PWM Signal: " << output_correct << endl;
 				//*p_serial << omegam_measured << endl;
 			}
 		
