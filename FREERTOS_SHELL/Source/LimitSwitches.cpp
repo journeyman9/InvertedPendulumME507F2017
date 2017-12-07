@@ -54,41 +54,69 @@ void LimitSwitches::run(void){
 		
 	while(1){
 		
+		
 		if(!(PORTD_IN & PIN0_bm))							// check whether limit is pressed (pin D0 is high)
 		{	
 			leftLimit = true;
-			//*p_serial << "leftLimit: " << leftLimit << endl;
 			leftLimitSwitch.put(leftLimit);
+			/*
+			if(runs%100==0)
+			{
+				*p_serial << "leftLimit: " << leftLimit << endl;
+			}
+			*/
 			
 		}
 		else
 		{
 			leftLimit = false;
 			leftLimitSwitch.put(leftLimit);
-			//*p_serial << "limits: " << rightLimit << leftLimit << endl;
+			/*
+			if(runs%100==0)
+			{
+				*p_serial << "limits: " << rightLimit << leftLimit << endl;
+			}
+			*/
+
 		}
 		
 		
 		if (!(PORTD_IN & PIN2_bm))						// check whether limit is pressed (pin D1 is high)
 		{
 			rightLimit = true;
-			//*p_serial << "rightLimit: " << rightLimit << endl;
+			
 			rightLimitSwitch.put(rightLimit);
+			/*
+			if(runs%100==0)
+			{
+				*p_serial << "rightLimit: " << rightLimit << endl;
+			}
+			*/
 		}
 		else
 		{
 			rightLimit = false;
 			rightLimitSwitch.put(rightLimit);
-			//*p_serial << "limits: " << rightLimit << leftLimit << endl;
+			/*
+			if(runs%100==0)
+			{
+				*p_serial << "limits: " << rightLimit << leftLimit << endl;
+			}
+			*/
 		}
 		
-		//*p_serial << "Left" << leftLimitSwitch.get() << "\t";
-		//*p_serial << "Right" << rightLimitSwitch.get() << endl;
+					/*
+			if(runs%100==0)
+			{
+				*p_serial << "Left" << leftLimitSwitch.get() << "\t";
+				*p_serial << "Right" << rightLimitSwitch.get() << endl;
+			}
+			*/
+
 		
 		// Increment counter for debugging
 		runs++;
 		
-		//*p_serial << "Econder Pulses" << encoder_count << endl;
 		
 		// set dt
 		//_delay_ms(1);

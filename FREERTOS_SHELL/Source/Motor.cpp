@@ -26,6 +26,7 @@
 #include "LimitSwitches.h"					// Inverted Pendulum file
 #include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
+#include "satmath.h"
 
 
 Motor::Motor(const char* a_name,
@@ -44,7 +45,7 @@ void Motor::run(void){
 	// Make a variable which will hold times to use for precise task scheduling
 	portTickType previousTicks = xTaskGetTickCount ();
 
-	dt = 1; // [ms]
+	dt = 5; // [ms]
 	inc = 1;
 	
 	while(1){
@@ -54,7 +55,27 @@ void Motor::run(void){
 		// Actual motor code
 		// Right now just working with speed control for motor.
 		// Previously commented code extends to be a position control.
+		
+<<<<<<< HEAD
+		omegam_set = 100; // [ticks/ms]
+=======
 		omegam_set = 200; // [ticks/ms]
+		
+		if (leftLimitSwitch.get() || rightLimitSwitch.get())
+		{
+			//omegam_set = 0; // [ticks/ms]
+			//Pout = 0;
+			//Iout = 0;
+			_integral = 0;
+			//omegam_measured = 0; // [ticks/ms]
+			//*p_serial << "Left" << leftLimitSwitch.get() << endl;
+			//*p_serial << "Right" << rightLimitSwitch.get() << endl;
+		}
+		else
+		{
+		omegam_set = 200; // [ticks/ms]
+		}
+>>>>>>> 7c2d071828dcb5e5e53b50a3fee482a78737eed9
 
 		// omegam_measured will be the derivative of theta_measured from the encoder
 		omegam_measured = thdMotor.get();
@@ -62,12 +83,155 @@ void Motor::run(void){
 		
 		// PID to get Tset from Omegam_set with a max torque value
 		// PIDImpl::PIDImpl( double dt, double max, double min, double Kp, double Kd, double Ki ) :
-		PID pidTorque = PID(1, 1600, -1600, 20, 0, 0); // PID output
-		int16_t Tset = (pidTorque.calculate(omegam_set, omegam_measured));
-		PWMvalue.put(Tset);
+		// PID pidTorque = PID(1, 1600, -1600, 10, 0, 1); // PID output
+		//uint16_t error_sum = pidTorque.get_Integral();
 		
-		//*p_serial << "CONTROLLER OUTPUT: " << Tset << endl;
-		//*p_serial << omegam_measured << endl;
+<<<<<<< HEAD
+		_Kp = 21; //8
+		_Ki = .55*256; //8
+		_Kd = 0;
+		antiwind_gain = 0.5*256; //7
+		
+=======
+		_Kp = 22;
+		_Ki = 0.5*256;
+		_Kd = 0;
+>>>>>>> 7c2d071828dcb5e5e53b50a3fee482a78737eed9
+		_max = 1600;
+		_min = -1600;
+		
+		// Calculate error
+		int32_t error = omegam_set - omegam_measured;
+		
+		
+		// Proportional term
+		//int16_t Pout = ((_Kp) * error);
+		Pout = ssmul(_Kp,error);
+
+		// Integral term
+<<<<<<< HEAD
+		error_int = error - antiwind_correct;
+		error_int_gain = (_Ki * error_int);
+		_integral += (error_int_gain * dt)/256;
+=======
+		_integral += error * dt;
+>>>>>>> 7c2d071828dcb5e5e53b50a3fee482a78737eed9
+		if(_integral < 1000000000)
+		{
+			_integral = _integral;
+		}
+		else if(_integral > 1000000000)
+		{
+			_integral = 1000000000;
+		}
+		//_integral = ssadd((error*dt), _integral);
+		
+		// Restrict to _integral term
+		/*
+		arbitraryNumber = 32767;
+		if( _integral > arbitraryNumber )
+		_integral = arbitraryNumber;
+		else if( _integral < arbitraryNumber )
+		_integral = arbitraryNumber;
+		*/
+<<<<<<< HEAD
+
+		// Derivative term
+		int16_t derivative = (error - _pre_error) / dt;
+		int16_t Dout = _Kd * derivative;
+
+		// Calculate total output	
+		// int16_t output = Pout + Iout + Dout;
+		output = ssadd(Pout, _integral);
+
+		output_correct = output;
+		// Restrict to max/min
+		if( output_correct > _max )
+		output_correct = _max;
+		else if( output_correct < _min )
+		output_correct = _min;
+
+		// Save error to previous error
+		_pre_error = error;
+		
+		// Anti-windup correction
+		antiwind_error = output - output_correct;
+		
+		antiwind_correct = (antiwind_error*antiwind_gain)/256;
+		
+		
+			if(runs%5==0){
+				//*p_serial << "Ierror: " << Iout << endl;
+				//*p_serial << "Pout: " << Pout << endl;
+				//*p_serial << "error: " << error << endl;
+				//*p_serial << "Integral: " << _integral << endl;
+				//*p_serial << "Measured: " << omegam_measured << endl;
+				//*p_serial << "PWM Signal: " << output_correct << endl;
+				*p_serial << omegam_measured << endl;
+			}
+		
+		if (leftLimitSwitch.get() || rightLimitSwitch.get())
+		{
+			omegam_set = 0; // [ticks/ms]
+			//Pout = 0;
+			//Iout = 0;
+			_integral = 0;
+			output_correct = 0;
+			//omegam_measured = 0; // [ticks/ms]
+			//*p_serial << "Left" << leftLimitSwitch.get() << endl;
+			//*p_serial << "Right" << rightLimitSwitch.get() << endl;
+		}
+		else
+		{
+		//omegam_set = omegam_set; // [ticks/ms]
+		}
+		
+		// int16_t Tset = (pidTorque.calculate(omegam_set, omegam_measured));
+		PWMvalue.put(output_correct);
+=======
+		
+		Iout = (_Ki * _integral)/256;
+
+		// Derivative term
+		int16_t derivative = (error - _pre_error) / dt;
+		int16_t Dout = _Kd * derivative;
+
+		// Calculate total output
+		// int16_t output = Pout + Iout + Dout;
+		int16_t output = ssadd(Pout, Iout);
+
+		// Restrict to max/min
+		if( output > _max )
+		output = _max;
+		else if( output < _min )
+		output = _min;
+
+		// Save error to previous error
+		_pre_error = error;
+		
+		
+			if(runs%5==0){
+				*p_serial << "Ierror: " << Iout << endl;
+				*p_serial << "Pout: " << Pout << endl;
+				*p_serial << "error: " << error << endl;
+				*p_serial << "Integral: " << _integral << endl;
+				*p_serial << "Measured: " << omegam_measured << endl;
+				//*p_serial << omegam_measured << endl;
+			}
+		
+		
+		// int16_t Tset = (pidTorque.calculate(omegam_set, omegam_measured));
+		PWMvalue.put(output);
+>>>>>>> 7c2d071828dcb5e5e53b50a3fee482a78737eed9
+		
+		/*
+			if(runs%100==0){
+				*p_serial << "CONTROLLER OUTPUT: " << Tset << endl;
+				*p_serial << omegam_measured << endl;
+			}
+		*/		
+		
+
 		
 		K_T = 0.065; // Nm/A. Taken from Pittman 14203 series motor documentation page G 21
 		Im_set = Tset/K_T;
@@ -109,7 +273,7 @@ void Motor::run(void){
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
 		
-		delay_from_to (previousTicks, configMS_TO_TICKS (5));
+		delay_from_to (previousTicks, configMS_TO_TICKS (dt));
 		
 	}
 }

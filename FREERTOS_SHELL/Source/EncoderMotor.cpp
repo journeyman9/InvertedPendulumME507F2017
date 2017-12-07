@@ -1,4 +1,4 @@
-﻿#include <stdlib.h>                         // Prototype declarations for I/O functions
+﻿	#include <stdlib.h>                         // Prototype declarations for I/O functions
 #include <avr/io.h>                         // Port I/O for SFR's
 #include <avr/wdt.h>                        // Watchdog timer header
 #include <avr/interrupt.h>					//
@@ -67,40 +67,32 @@ void EncoderMotor::run (void)
 	while(1){
 		
 		encoder_count = TCD0.CNT;											// get count
-		//*p_serial << "Encoder Pulses: " << encoder_count << endl;
 		
 		//angularPosition = ( (int32_t) encoder_count*9);						// count/(4*1000)*360 deg * 100
-		//*p_serial << "angularPosition: " << angularPosition << endl;		// divide by a hundred to read degrees
 		//thMotor.put(angularPosition);
 		
 		x = ( (int32_t) encoder_count*3)/100;								// PPMM = (4*1000)/(pi*38)
-		//*p_serial << "linearPosition: " << x << " [mm]" << endl;			// x position in mm
 		linear_position.put(x);
 		
+		
 		int16_t ticks_per_ms = (encoder_count - last_encoder_count); // current angular velocity [ticks/ms]
-		
-		if(runs%100==0)
-		{
-			*p_serial << "Ticks_per_ms: " << ticks_per_ms << endl;
-		}
-		
 		thdMotor.put(ticks_per_ms);
 				
 		angularVelocity = ((int32_t) (encoder_count-last_encoder_count)*15)/dt;	// d_ec*60/(4*1000)/dt where dt is in ms so * 1000
-		//*p_serial << "angularVelocity: " << angularVelocity << " [RPM]" << endl;
 		
-		last_encoder_count = encoder_count;									// make present encoder_count the previous for the next calculation
-
 		/*
-		if(motor_enc_zero = true) // (just a placeholder parameter name) - checks if the "zero" flag is set by some other task (like when the limit switch is triggered)
+		if(runs%100==0)
 		{
-			// Reset ticks to 0 (there may be a better way to do this)
-			TCC0.CNT = 0;
-			
-			// Reset the flag
-			motor_enc_zero = false;
+			*p_serial << "Encoder Pulses: " << encoder_count << endl;
+			*p_serial << "angularPosition: " << angularPosition << endl;		// divide by a hundred to read degrees
+			*p_serial << "linearPosition: " << x << " [mm]" << endl;			// x position in mm
+			*p_serial << "Ticks_per_ms: " << ticks_per_ms << endl;
+			*p_serial << ticks_per_ms << endl;
+			*p_serial << "angularVelocity: " << angularVelocity << " [RPM]" << endl;
 		}
 		*/
+		
+		last_encoder_count = encoder_count;									// make present encoder_count the previous for the next calculation
 		
 		// Increment counter for debugging
 		runs++;
@@ -108,7 +100,7 @@ void EncoderMotor::run (void)
 		// set dt
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (1));
+		delay_from_to (previousTicks, configMS_TO_TICKS (dt));
 		
 	}
 

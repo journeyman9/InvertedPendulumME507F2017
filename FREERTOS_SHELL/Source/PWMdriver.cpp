@@ -62,22 +62,48 @@ void PWMdriver::run(void){
 		// Increment counter for debugging
 		runs++;
 		
+		TCC0.CCA = PWMvalue.get();
+		TCC0.CCB = 0;
+		
+		/*
+		if(runs%100==0){
+			*p_serial << PWMvalue.get() << endl;
+		}	
+		*/
+		
 		if (!leftLimitSwitch.get() && !rightLimitSwitch.get())
 		{
 			TCC0.CCA = PWMvalue.get();
-			//*p_serial << PWMvalue.get() << endl;
 			TCC0.CCB = 0;
+			
+		/*
+		if(runs%100==0){
+			*p_serial << PWMvalue.get() << endl;
+		}	
+		*/
+		
+			
 		}
+		
+		
+		/*
 		else if (leftLimitSwitch.get() || rightLimitSwitch.get())
 		{
 			TCC0.CCA = 0;
 			TCC0.CCB = 0;
-			//*p_serial << "Left" << leftLimitSwitch.get() << endl;
-			//*p_serial << "Right" << rightLimitSwitch.get() << endl;
+		
+		if(runs%100==0){
+			*p_serial << "Left" << leftLimitSwitch.get() << endl;
+			*p_serial << "Right" << rightLimitSwitch.get() << endl;
+		}	
+		
+			
+
 		}
 		else
 		{
 		}
+		*/
 		
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times

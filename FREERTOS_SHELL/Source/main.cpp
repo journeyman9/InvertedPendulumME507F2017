@@ -141,7 +141,7 @@ int main (void)
 
 	// The EncoderPendulum task is a high priority and is used for controlling the balance of
 	//the pendulum
-	new EncoderPendulum ("EncPen", task_priority(3), 260, &ser_dev);
+	//new EncoderPendulum ("EncPen", task_priority(3), 260, &ser_dev);
 	
 	// The LimitSwitches task is an extremely high priority to kill the motor if either
 	// are hit.
