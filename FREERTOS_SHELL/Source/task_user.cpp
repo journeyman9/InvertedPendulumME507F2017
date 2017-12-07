@@ -75,8 +75,9 @@ void task_user::run (void)
 
 	// Tell the user how to get into command mode (state 1), where the user interface
 	// task does interesting things such as diagnostic printouts
-	*p_serial << PMS ("Press Ctrl-A for command mode") << endl;
+	*p_serial << PMS ("Press Ctrl-A to get to command mode for Inverted Pendulum") << endl;
 
+	
 	// This is an infinite loop; it runs until the power is turned off. There is one 
 	// such loop inside the code for each task
 	for (;;)
@@ -159,7 +160,27 @@ void task_user::run (void)
 						case (27):
 						case ('e'):
 							*p_serial << PMS ("Exit command mode") << endl;
-							transition_to (0);
+							transition_to (0); 
+							break;
+							
+						case ('b'):
+							begin.put(true);
+							*p_serial << PMS ("Begin Homing") << endl;
+							break;
+						
+						case ('g'):
+							go.put(true);
+							*p_serial << PMS ("Commence Balance") << endl;
+							break;
+						
+						case('d'):
+							stop.put(true);
+							*p_serial << PMS ("EMERGENCY STOP") << endl;
+							break;
+						
+						case('r'):
+							reset.put(true);
+							*p_serial << PMS ("Reset, try Homing again by pressing 'b'") << endl;
 							break;
 
 						// If the character isn't recognized, ask: What's That Function?
@@ -212,6 +233,10 @@ void task_user::print_help_message (void)
 	*p_serial << PMS ("    s:   Stack dump for tasks") << endl;
 	*p_serial << PMS ("    e:   Exit command mode") << endl;
 	*p_serial << PMS ("    h:   HALP!") << endl;
+	*p_serial << PMS ("    b:   Begin Calibration of Inverted Pendulum?") << endl;
+	*p_serial << PMS ("    g:   Swing Pendulum Upright, then Go.") << endl;
+	*p_serial << PMS ("    d:   Emergency Stop") << endl;
+	*p_serial << PMS ("    r:   Reset to Idle") << endl;
 }
 
 
@@ -228,7 +253,7 @@ void task_user::show_status (void)
 {
 	time_stamp the_time;					// Holds current time for printing
 
-	// Show program vesion, time, and free heap space
+	// Show program version, time, and free heap space
 	*p_serial << endl << PROGRAM_VERSION << PMS (__DATE__) << endl 
 			  << PMS ("Time: ") << the_time.set_to_now ()
 			  << PMS (", Heap free: ") << heap_left() << PMS ("/") 

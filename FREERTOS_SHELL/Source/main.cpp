@@ -52,6 +52,10 @@ shared_data<bool> leftLimitSwitch;
 shared_data<bool> rightLimitSwitch;
 shared_data<int16_t> PWMvalue;
 shared_data<int16_t> linear_offset;
+shared_data<bool> begin;
+shared_data<bool> go;
+shared_data<bool> stop;
+shared_data<bool> reset;
 
 /*! \brief CCP write helper function written in assembly.
  *

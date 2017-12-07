@@ -48,5 +48,9 @@ extern shared_data<bool> leftLimitSwitch;		//queue for left limit switch
 extern shared_data<bool> rightLimitSwitch;		//queue for right limit switch
 extern shared_data<int16_t> PWMvalue;           // from Motor Controller into PWM Driver
 extern shared_data<int16_t> linear_offset;		// linear offset for homing motor encoder
+extern shared_data<bool> begin;					// begin calibration for case 0
+extern shared_data<bool> go;					// start pendulum balance in case 2
+extern shared_data<bool> stop;					// emergency stop in case 3
+extern shared_data<bool> reset;					// reset to idle
 
 #endif // _SHARES_H_

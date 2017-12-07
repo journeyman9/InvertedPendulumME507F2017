@@ -75,20 +75,24 @@ void Motor::run(void){
 		{
 			// Home right
 			case(0) :
-				//*p_serial << "Start Calibration Sequence? [Y/N]" << endl;
-				omegam_set = 10;	// [ticks/ms]
-
-				if (rightLimitSwitch.get())
+				if (begin.get())											// If user begins Calibration Sequence
 				{
-					linear_offset.put(linear_position.get());					// set the offset
-					_integral = 0;
-					output_correct = 0;
-					transition_to(1);									// if right Limit Switch is triggered 
+					reset.put(0);											// turn off flag
+					omegam_set = 10;	// [ticks/ms]
+
+					if (rightLimitSwitch.get())
+					{
+						linear_offset.put(linear_position.get());			// set the offset
+						_integral = 0;
+						output_correct = 0;
+						transition_to(1);									// if right Limit Switch is triggered 
+					}
 				}
 				break;
 				
 			// Home left
 			case(1) :
+				begin.put(0);		// turn off flag
 				omegam_set = -10;	// [ticks/ms]
 			
 				if (leftLimitSwitch.get())
@@ -97,7 +101,13 @@ void Motor::run(void){
 					_integral = 0;
 					output_correct = 0;
 					transition_to(2);									// if left limit switch is triggered
-				}					
+				}
+						
+				if (reset.get() == 1)
+				{
+					transition_to(0);
+				}
+							
 				break;
 			
 			// Center Cart - Position Loop included
@@ -107,25 +117,44 @@ void Motor::run(void){
 				position_error = position_set - linear_position.get();  // 
 				omegam_set = position_error*KP_pos/1000;
 				
-				if(thPendulum.get() == angle_set)
+				if (reset.get() == 1)			// if user hits reset
+				{
+					reset.put(0);				// turn off flag
+					transition_to(0);
+					
+				}
+				
+				if(go.get() == 1)				// If user says pendulum is upright or angle = 720;
 				{
 					transition_to(3);
 				}
-												// If user consents pendulum is hanging low
+												
 			break;
 			
-			// Pendulum Balance
+			// Pendulum Balance if user sets pendulum "Inverted" and presses go
 			case(3) :
+				go.put(0);										// turn off flag
 				angle_error = angle_set - thPendulum.get();
 				position_set = position_midpoint + angle_error*KP_angle/1000;
 				position_error = position_set - linear_position.get();  // 
 				omegam_set = position_error*KP_pos/1000;
+			
+			if (stop.get())												// If emergency stop button was hit
+			{
+				TCC0.CCA = 0;											// PWM  = 0
+				TCC0.CCB = 0;
 				
-			//transition_to(4);											// If user sets pendulum "Inverted" and presses go
+				if (reset.get())										// if user hits reset
+				{
+					transition_to(0);
+				}
+			}
 			break;
 			
-			//default : 
-				//break;													// PWM  = 0
+			default :
+				TCC0.CCA = 0;											// PWM  = 0
+				TCC0.CCB = 0;
+				break;													
 		
 		};
 
@@ -217,11 +246,11 @@ void Motor::run(void){
 				//*p_serial << "right: " << rightLimitSwitch.get() << endl;
 				//*p_serial << "left: " << leftLimitSwitch.get() << endl;
 				//*p_serial << "linear pos: " << linear_position.get() << endl;
-				*p_serial << "linear set: " << position_set << endl;
+				//*p_serial << "linear set: " << position_set << endl;
 				//*p_serial << "angle error: " << angle_error << endl;
 			}
 		
-		/*
+		
 		if (leftLimitSwitch.get() || rightLimitSwitch.get())
 		{
 			//omegam_set = 0; // [ticks/ms]
@@ -229,10 +258,6 @@ void Motor::run(void){
 			//Iout = 0;
 			_integral = 0;
 			output_correct = 0;
-			if (runs%10 == 0)
-					{
-						*p_serial << "third loop" << endl;
-					}
 			//omegam_measured = 0; // [ticks/ms]
 			//*p_serial << "Left" << leftLimitSwitch.get() << endl;
 			//*p_serial << "Right" << rightLimitSwitch.get() << endl;
@@ -244,7 +269,7 @@ void Motor::run(void){
 		
 		// int16_t Tset = (pidTorque.calculate(omegam_set, omegam_measured));
 		//PWMvalue.put(output_correct);
-		*/
+		
 					
 		K_T = 0.065; // Nm/A. Taken from Pittman 14203 series motor documentation page G 21
 		Im_set = Tset/K_T;
