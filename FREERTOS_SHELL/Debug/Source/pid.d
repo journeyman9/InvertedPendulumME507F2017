@@ -36,7 +36,7 @@ Source/pid.d Source/pid.o: ../Source/pid.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  ../Source/EncoderMotor.h ../Source/Motor.h ../Source/EncoderPendulum.h \
- ../Source/LimitSwitches.h ../Source/PWMdriver.h ../Source/pid.h
+ ../Source/LimitSwitches.h ../Source/pid.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -139,7 +139,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Source/EncoderPendulum.h:
 
 ../Source/LimitSwitches.h:
-
-../Source/PWMdriver.h:
 
 ../Source/pid.h:

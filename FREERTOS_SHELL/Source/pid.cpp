@@ -28,7 +28,6 @@
 #include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
 #include "LimitSwitches.h"					// Inverted Pendulum file
-#include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 
 //#include <iostream>
@@ -52,6 +51,7 @@ class PIDImpl
         int16_t _Ki;
         int16_t _pre_error;
         int16_t _integral;
+		int16_t arbitraryNumber;
 };
 
 
@@ -96,6 +96,14 @@ int16_t PIDImpl::calculate( int16_t setpoint, int16_t pv )
 
     // Integral term
     _integral += error * _dt;
+	
+	// Restrict to _integral term
+	arbitraryNumber = 327676;
+	if( _integral > arbitraryNumber )
+	_integral = arbitraryNumber;
+	else if( _integral < arbitraryNumber )
+	_integral = arbitraryNumber;
+	
     int16_t Iout = _Ki * _integral;
 
     // Derivative term

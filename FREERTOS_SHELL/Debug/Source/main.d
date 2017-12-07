@@ -34,7 +34,7 @@ Source/main.d Source/main.o: ../Source/main.cpp \
  ../Source/EncoderMotor.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  ../Source/LimitSwitches.h ../Source/Motor.h ../Source/EncoderPendulum.h \
- ../Source/PWMdriver.h ../Source/pid.h
+ ../Source/pid.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -133,7 +133,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Source/Motor.h:
 
 ../Source/EncoderPendulum.h:
-
-../Source/PWMdriver.h:
 
 ../Source/pid.h:

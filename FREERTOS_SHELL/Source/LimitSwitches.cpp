@@ -24,7 +24,6 @@
 #include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
 #include "LimitSwitches.h"					// Inverted Pendulum file
-#include "PWMdriver.h"						// Inverted Pendulum file
 #include "pid.h"							// Inverted Pendulum file
 
 LimitSwitches::LimitSwitches(const char* a_name,
@@ -54,10 +53,10 @@ void LimitSwitches::run(void){
 		
 	while(1){
 		
+		
 		if(!(PORTD_IN & PIN0_bm))							// check whether limit is pressed (pin D0 is high)
 		{	
 			leftLimit = true;
-			//*p_serial << "leftLimit: " << leftLimit << endl;
 			leftLimitSwitch.put(leftLimit);
 			
 		}
@@ -65,35 +64,44 @@ void LimitSwitches::run(void){
 		{
 			leftLimit = false;
 			leftLimitSwitch.put(leftLimit);
-			//*p_serial << "limits: " << rightLimit << leftLimit << endl;
+
 		}
 		
 		
 		if (!(PORTD_IN & PIN2_bm))						// check whether limit is pressed (pin D1 is high)
 		{
 			rightLimit = true;
-			//*p_serial << "rightLimit: " << rightLimit << endl;
+			
 			rightLimitSwitch.put(rightLimit);
+
 		}
 		else
 		{
 			rightLimit = false;
 			rightLimitSwitch.put(rightLimit);
-			//*p_serial << "limits: " << rightLimit << leftLimit << endl;
+
 		}
 		
-		//*p_serial << "Left" << leftLimitSwitch.get() << "\t";
-		//*p_serial << "Right" << rightLimitSwitch.get() << endl;
+					/*
+			if(runs%100==0)
+			{
+				*p_serial << "Left" << leftLimitSwitch.get() << "\t";
+				*p_serial << "Right" << rightLimitSwitch.get() << endl;
+				*p_serial << "leftLimit: " << leftLimit << endl;
+				*p_serial << "limits: " << rightLimit << leftLimit << endl;
+				*p_serial << "rightLimit: " << rightLimit << endl;
+			}
+			*/
+
 		
 		// Increment counter for debugging
 		runs++;
 		
-		//*p_serial << "Econder Pulses" << encoder_count << endl;
 		
 		// set dt
 		//_delay_ms(1);
 		// This is a method we use to cause a task to make one run through its task
 		// loop every N milliseconds and let other tasks run at other times
-		delay_from_to (previousTicks, configMS_TO_TICKS (5));
+		delay_from_to (previousTicks, configMS_TO_TICKS (1));
 	}	
 }

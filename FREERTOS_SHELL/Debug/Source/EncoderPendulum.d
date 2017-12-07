@@ -35,7 +35,7 @@ Source/EncoderPendulum.d Source/EncoderPendulum.o: \
  ../Source/lib/frtcpp/base_data_receiver.h ../Source/EncoderMotor.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  ../Source/Motor.h ../Source/EncoderPendulum.h ../Source/LimitSwitches.h \
- ../Source/PWMdriver.h ../Source/pid.h
+ ../Source/pid.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -134,7 +134,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Source/EncoderPendulum.h:
 
 ../Source/LimitSwitches.h:
-
-../Source/PWMdriver.h:
 
 ../Source/pid.h:
