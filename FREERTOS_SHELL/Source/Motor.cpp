@@ -60,13 +60,13 @@ void Motor::run(void){
 	linear_offset.put(0);								// Initialize motor offset	
 	int16_t left_home;									// Initialize left distance to calculate center
 	int16_t position_set;								// Setpoint of cart's position
-	int16_t KP_pos = 0.5*256;							// P gain for cart position				
+	int16_t KP_pos = 0.4*256;							// P gain for cart position				
 	int16_t position_error = 0;							// positional error	
 	int16_t position_midpoint = 0;						// midpoint calculated from homing sequence
 	int16_t angle_error = 0;							// pendulum angle error
-	int16_t KP_angle = -3.9*256;							// Already multiplied by 256 3.9
+	int16_t KP_angle = -2.5*256;							// Already multiplied by 256 3.9
 	int16_t angle_set = 720;							// vertical setpoint for pendulum
-	int16_t _Kd_angle = -0.1*256;
+	int16_t _Kd_angle = -0.25*256;
 	int16_t _pre_angle_error;
 	int16_t Pang_out;
 	int16_t angle_derivative;
@@ -334,17 +334,16 @@ void Motor::run(void){
 		antiwind_correct = (antiwind_error*antiwind_gain)/256;
 		
 		
-			if(runs%150 == 0){
+			if(runs%100 == 0){
 				//*p_serial << "Ierror: " << Iout << endl;
 				//*p_serial << "Pout: " << Pout << endl;
 				//*p_serial << "error: " << error << endl;
 				//*p_serial << "Integral: " << _integral << endl;
 				//*p_serial << "Measured: " << omegam_measured << endl;
 				//*p_serial << "PWM Signal: " << output_correct << endl;
-				//*p_serial << omegam_measured << endl;
-				//*p_serial << omegam_set << endl;
-				//*p_serial << thPendulum.get() << endl;
 				//*p_serial << angle_error << endl;
+				//*p_serial << position_set << endl;
+				*p_serial << thPendulum.get() << endl;
 				//*p_serial << "right: " << rightLimitSwitch.get() << endl;
 				//*p_serial << "left: " << leftLimitSwitch.get() << endl;
 				//*p_serial << "linear pos: " << linear_position.get() << endl;
@@ -354,7 +353,7 @@ void Motor::run(void){
 				//*p_serial << "go flag " << go.get() << endl;
 				//*p_serial << "stop flag" << stop.get() << endl;
 				//*p_serial << "reset flag " << reset.get() << endl;
-				*p_serial << position_midpoint << endl;
+				//*p_serial << position_midpoint << endl;
 			}
 		
 		if (leftLimitSwitch.get() || rightLimitSwitch.get() || stop.get())		// If limit switch or If emergency stop button was hit
