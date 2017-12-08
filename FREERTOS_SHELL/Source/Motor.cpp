@@ -64,13 +64,17 @@ void Motor::run(void){
 	int16_t position_error = 0;							// positional error	
 	int16_t position_midpoint = 0;						// midpoint calculated from homing sequence
 	int16_t angle_error = 0;							// pendulum angle error
-	int16_t KP_angle = -1000;							// Already multiplied by 256
+	int16_t KP_angle = -3.9*256;							// Already multiplied by 256 3.9
 	int16_t angle_set = 720;							// vertical setpoint for pendulum
+	int16_t _Kd_angle = -0.1*256;
+	int16_t _pre_angle_error;
+	int16_t Pang_out;
+	int16_t angle_derivative;
+	int16_t angle_Dout;
 	
 	int16_t _Ki_position = 0*256;						// Integral gain
 	int16_t omegam_set_Ki = 0;
 	int16_t angle_pre_error = 0;
-	int16_t _Kd_angle = 100;
 	int16_t omegam_set_Kp = 0;
 	int16_t position_windup = 0;
 	int16_t position_windup_integral = 0;
@@ -78,15 +82,12 @@ void Motor::run(void){
 	int16_t position_set_derivative = 0;
 	int16_t position_set_Kp = 0;
 	int16_t position_set_Kd = 0;
-	int16_t switchcountleft;
-	int16_t switchcountright;
 	int16_t omegam_set_windup;
 	int16_t antiwind_position;
 	int16_t antiwind_pos_correct;
 	int16_t position_error_windup;
 	int16_t omegam_saturation_point;
 	int16_t K_position_antiwind = 0*256;				// position anti windup gain
-	int16_t position_saturation_point;
 	
 	while(1){
 		// Increment counter for debugging
@@ -96,6 +97,7 @@ void Motor::run(void){
 		{
 			// Home right
 			case(0) :
+				linear_offset.put(0);										// re initialize
 				if (begin.get())											// If user begins Calibration Sequence
 				{
 					reset.put(0);											// turn off flag
@@ -190,7 +192,17 @@ void Motor::run(void){
 			case(4) :
 				go.put(0);										// turn off flag
 				angle_error = angle_set - thPendulum.get();
-				position_set = position_midpoint + (angle_error*KP_angle)/256;
+				
+				// Derivative term
+				angle_derivative = (angle_error-_pre_angle_error) / dt;
+				_pre_angle_error = angle_error;
+				angle_Dout = (_Kd_angle * angle_derivative)/256;
+
+				output_correct = output;
+				Pang_out = position_midpoint + (angle_error*KP_angle)/256;
+				
+				// Calculate total output
+				position_set = ssadd(Pang_out, angle_Dout);
 				
 				// Saturation for limits of tracks
 				
@@ -336,12 +348,13 @@ void Motor::run(void){
 				//*p_serial << "right: " << rightLimitSwitch.get() << endl;
 				//*p_serial << "left: " << leftLimitSwitch.get() << endl;
 				//*p_serial << "linear pos: " << linear_position.get() << endl;
-				*p_serial << "linear set: " << position_set << endl;
+				//*p_serial << "linear set: " << position_set << endl;
 				//*p_serial << "angle error: " << angle_error << endl;
 				//*p_serial << "begin flag" << begin.get() << endl;
 				//*p_serial << "go flag " << go.get() << endl;
 				//*p_serial << "stop flag" << stop.get() << endl;
 				//*p_serial << "reset flag " << reset.get() << endl;
+				*p_serial << position_midpoint << endl;
 			}
 		
 		if (leftLimitSwitch.get() || rightLimitSwitch.get() || stop.get())		// If limit switch or If emergency stop button was hit
