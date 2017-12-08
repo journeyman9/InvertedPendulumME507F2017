@@ -60,26 +60,33 @@ void Motor::run(void){
 	linear_offset.put(0);								// Initialize motor offset	
 	int16_t left_home;									// Initialize left distance to calculate center
 	int16_t position_set;								// Setpoint of cart's position
-	int16_t KP_pos = 100;								// P gain for cart position				
+	int16_t KP_pos = 0.5*256;							// P gain for cart position				
 	int16_t position_error = 0;							// positional error	
 	int16_t position_midpoint = 0;						// midpoint calculated from homing sequence
 	int16_t angle_error = 0;							// pendulum angle error
 	int16_t KP_angle = -1000;							// Already multiplied by 256
 	int16_t angle_set = 720;							// vertical setpoint for pendulum
 	
-	int16_t _Ki_position = 0*256;
+	int16_t _Ki_position = 0*256;						// Integral gain
 	int16_t omegam_set_Ki = 0;
 	int16_t angle_pre_error = 0;
 	int16_t _Kd_angle = 100;
 	int16_t omegam_set_Kp = 0;
 	int16_t position_windup = 0;
-	int16_t position_windup_Ki = 0*256;
+	int16_t position_windup_integral = 0;
 	int16_t state_motor = 0;
 	int16_t position_set_derivative = 0;
 	int16_t position_set_Kp = 0;
 	int16_t position_set_Kd = 0;
 	int16_t switchcountleft;
 	int16_t switchcountright;
+	int16_t omegam_set_windup;
+	int16_t antiwind_position;
+	int16_t antiwind_pos_correct;
+	int16_t position_error_windup;
+	int16_t omegam_saturation_point;
+	int16_t K_position_antiwind = 0*256;				// position anti windup gain
+	int16_t position_saturation_point;
 	
 	while(1){
 		// Increment counter for debugging
@@ -94,7 +101,6 @@ void Motor::run(void){
 					reset.put(0);											// turn off flag
 					stop.put(0);
 					omegam_set = 10;	// [ticks/ms]
-					switchcountright = 0;
 
 					if (rightLimitSwitch.get())
 					{
@@ -110,7 +116,6 @@ void Motor::run(void){
 			case(1) :
 				begin.put(0);		// turn off flag
 				omegam_set = -10;	// [ticks/ms]
-				switchcountleft = 0;
 				
 				if (leftLimitSwitch.get())
 				{
@@ -129,7 +134,7 @@ void Motor::run(void){
 			
 			// Delay loop 
 			case (2) :
-				delay_ms(200);
+				delay_ms(500);
 				_integral = 0;
 				omegam_set = 0;
 				transition_to(3);
@@ -141,13 +146,31 @@ void Motor::run(void){
 				position_midpoint = left_home/2;
 				position_set = position_midpoint;
 				position_error = position_set - linear_position.get();  // 
-				omegam_set_Kp = position_error*KP_pos/1000;
+				omegam_set_Kp = position_error*KP_pos/256;				// Uses gain
 				
-				position_windup = position_error - antiwind_correct;
-				position_windup_Ki = (_Ki_position * position_windup);
+				position_error_windup = position_error - antiwind_pos_correct;			// Subtracts omegam_set windup
+				position_windup_integral = (_Ki_position * position_error_windup);	// Integral gain on omegam_set windup difference
 				//position_windup_Ki = (_Ki_position * position_error);
-				omegam_set_Ki += (position_windup_Ki * dt)/256;
-				omegam_set = ssadd(omegam_set_Kp, omegam_set_Ki);
+				omegam_set_Ki += (position_windup_integral * dt)/256;						// Integrates omegam_set windup difference with gain
+				omegam_set_windup = ssadd(omegam_set_Kp, omegam_set_Ki);					// Add proportionality and integral gain
+				omegam_set = omegam_set_windup;												// Set desired to requested
+				
+				omegam_saturation_point = 40;
+				if( omegam_set > omegam_saturation_point )														// Saturate requested omegam_set
+				{
+					omegam_set = omegam_saturation_point;
+				}
+				else if( omegam_set < -omegam_saturation_point )
+				{
+					omegam_set = -omegam_saturation_point;
+				}
+				else
+				{
+					omegam_set = omegam_set;
+				}
+				
+				antiwind_position = omegam_set_windup - omegam_set;					// Calculate windup error between desired and requested
+				antiwind_pos_correct = (antiwind_error*K_position_antiwind)/256;
 				
 				if (reset.get() == 1)			// if user hits reset
 				{
@@ -167,9 +190,28 @@ void Motor::run(void){
 			case(4) :
 				go.put(0);										// turn off flag
 				angle_error = angle_set - thPendulum.get();
-				position_set = position_midpoint + angle_error*KP_angle/1000;
+				position_set = position_midpoint + (angle_error*KP_angle)/256;
+				
+				// Saturation for limits of tracks
+				
+				if (position_set >= -150) //20
+				{
+					position_set = -150;
+					omegam_set = 0;
+				}
+				else if (position_set <= -250) //325
+				{
+					position_set = -250; //352
+					omegam_set = 0;
+				}
+				else 
+				{
+					position_set = position_set;
+				}
+				
 				position_error = position_set - linear_position.get();  // 
-				omegam_set = position_error*KP_pos/1000;
+				omegam_set_windup = position_error*KP_pos/256;
+				omegam_set = omegam_set_windup;
 				
 				if (reset.get())
 				{
@@ -260,11 +302,16 @@ void Motor::run(void){
 		output = ssadd(Pout, _integral);
 
 		output_correct = output;
+		
 		// Restrict to max/min
 		if( output_correct > _max )
+		{
 		output_correct = _max;
+		}
 		else if( output_correct < _min )
+		{
 		output_correct = _min;
+		}
 
 		// Save error to previous error
 		_pre_error = error;
@@ -285,10 +332,11 @@ void Motor::run(void){
 				//*p_serial << omegam_measured << endl;
 				//*p_serial << omegam_set << endl;
 				//*p_serial << thPendulum.get() << endl;
+				//*p_serial << angle_error << endl;
 				//*p_serial << "right: " << rightLimitSwitch.get() << endl;
 				//*p_serial << "left: " << leftLimitSwitch.get() << endl;
 				//*p_serial << "linear pos: " << linear_position.get() << endl;
-				//*p_serial << "linear set: " << position_set << endl;
+				*p_serial << "linear set: " << position_set << endl;
 				//*p_serial << "angle error: " << angle_error << endl;
 				//*p_serial << "begin flag" << begin.get() << endl;
 				//*p_serial << "go flag " << go.get() << endl;
