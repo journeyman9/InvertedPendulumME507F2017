@@ -12,8 +12,6 @@ Source\LimitSwitches.cpp
 
 Source\Motor.cpp
 
-Source\pid.cpp
-
 Source\satmath.cpp
 
 Source\task_user.cpp

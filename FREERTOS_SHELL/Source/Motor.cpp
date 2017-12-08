@@ -24,7 +24,6 @@
 #include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
 #include "LimitSwitches.h"					// Inverted Pendulum file
-#include "pid.h"							// Inverted Pendulum file
 #include "satmath.h"
 
 
@@ -343,7 +342,7 @@ void Motor::run(void){
 				//*p_serial << "PWM Signal: " << output_correct << endl;
 				//*p_serial << angle_error << endl;
 				//*p_serial << position_set << endl;
-				*p_serial << thPendulum.get() << endl;
+				//*p_serial << thPendulum.get() << endl;
 				//*p_serial << "right: " << rightLimitSwitch.get() << endl;
 				//*p_serial << "left: " << leftLimitSwitch.get() << endl;
 				//*p_serial << "linear pos: " << linear_position.get() << endl;
@@ -358,15 +357,12 @@ void Motor::run(void){
 		
 		if (leftLimitSwitch.get() || rightLimitSwitch.get() || stop.get())		// If limit switch or If emergency stop button was hit
 		{
-			//omegam_set = 0; // [ticks/ms]
-			//Pout = 0;
-			//Iout = 0;
-			_integral = 0;
-			output_correct = 0;
+			_integral = 0;														// prevent anti-wind up
+			output_correct = 0;													// no PWM signal to motor
 			
-			if (state == 4 || state == 3)
+			if (state == 4 || state == 3)										// if in position or balance mode
 			{
-				transition_to(100);
+				transition_to(100);												// transition to error state to make omegam_set=0
 			}
 
 		}

@@ -24,7 +24,6 @@
 #include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
 #include "LimitSwitches.h"					// Inverted Pendulum file
-#include "pid.h"							// Inverted Pendulum file
 
 LimitSwitches::LimitSwitches(const char* a_name,
 								unsigned portBASE_TYPE a_priority,

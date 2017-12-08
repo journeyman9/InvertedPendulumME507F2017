@@ -48,7 +48,6 @@ C_SRCS +=  \
 ../Source/lib/freertos/croutine.c \
 ../Source/LimitSwitches.cpp \
 ../Source/Motor.cpp \
-../Source/pid.cpp \
 ../Source/satmath.cpp \
 ../Source/task_user.cpp \
 ../Source/lib/freertos/heap_2.c \
@@ -110,7 +109,6 @@ Source/EncoderPendulum.o \
 Source/lib/freertos/croutine.o \
 Source/LimitSwitches.o \
 Source/Motor.o \
-Source/pid.o \
 Source/satmath.o \
 Source/task_user.o \
 Source/lib/freertos/heap_2.o \
@@ -165,7 +163,6 @@ Source/EncoderPendulum.o \
 Source/lib/freertos/croutine.o \
 Source/LimitSwitches.o \
 Source/Motor.o \
-Source/pid.o \
 Source/satmath.o \
 Source/task_user.o \
 Source/lib/freertos/heap_2.o \
@@ -220,7 +217,6 @@ Source/EncoderPendulum.d \
 Source/lib/freertos/croutine.d \
 Source/LimitSwitches.d \
 Source/Motor.d \
-Source/pid.d \
 Source/satmath.d \
 Source/task_user.d \
 Source/lib/freertos/heap_2.d \
@@ -275,7 +271,6 @@ Source/EncoderPendulum.d \
 Source/lib/freertos/croutine.d \
 Source/LimitSwitches.d \
 Source/Motor.d \
-Source/pid.d \
 Source/satmath.d \
 Source/task_user.d \
 Source/lib/freertos/heap_2.d \
@@ -338,8 +333,6 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-
-
 
 
 

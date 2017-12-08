@@ -272,12 +272,6 @@
     <Compile Include="Source\Motor.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Source\pid.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Source\pid.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Source\satmath.cpp">
       <SubType>compile</SubType>
     </Compile>

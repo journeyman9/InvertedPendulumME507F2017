@@ -39,7 +39,6 @@
 #include "LimitSwitches.h"					// Header for Limit Switches
 #include "Motor.h"							// Inverted Pendulum file
 #include "EncoderPendulum.h"				// Inverted Pendulum file
-#include "pid.h"							// Inverted Pendulum file
 
 volatile int counter;
 frt_text_queue print_ser_queue (32, NULL, 10);
