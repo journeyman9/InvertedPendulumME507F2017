@@ -64,8 +64,22 @@ void Motor::run(void){
 	int16_t position_error = 0;							// positional error	
 	int16_t position_midpoint = 0;						// midpoint calculated from homing sequence
 	int16_t angle_error = 0;							// pendulum angle error
-	int16_t KP_angle = -1000;
+	int16_t KP_angle = -1000;							// Already multiplied by 256
 	int16_t angle_set = 720;							// vertical setpoint for pendulum
+	
+	int16_t _Ki_position = 0*256;
+	int16_t omegam_set_Ki = 0;
+	int16_t angle_pre_error = 0;
+	int16_t _Kd_angle = 100;
+	int16_t omegam_set_Kp = 0;
+	int16_t position_windup = 0;
+	int16_t position_windup_Ki = 0*256;
+	int16_t state_motor = 0;
+	int16_t position_set_derivative = 0;
+	int16_t position_set_Kp = 0;
+	int16_t position_set_Kd = 0;
+	int16_t switchcountleft;
+	int16_t switchcountright;
 	
 	while(1){
 		// Increment counter for debugging
@@ -80,6 +94,7 @@ void Motor::run(void){
 					reset.put(0);											// turn off flag
 					stop.put(0);
 					omegam_set = 10;	// [ticks/ms]
+					switchcountright = 0;
 
 					if (rightLimitSwitch.get())
 					{
@@ -95,7 +110,8 @@ void Motor::run(void){
 			case(1) :
 				begin.put(0);		// turn off flag
 				omegam_set = -10;	// [ticks/ms]
-			
+				switchcountleft = 0;
+				
 				if (leftLimitSwitch.get())
 				{
 					left_home = linear_position.get();			// Store end of rail distance
@@ -111,12 +127,27 @@ void Motor::run(void){
 							
 				break;
 			
+			// Delay loop 
+			case (2) :
+				delay_ms(200);
+				_integral = 0;
+				omegam_set = 0;
+				transition_to(3);
+				break;
+				
+			
 			// Center Cart - Position Loop included
-			case(2) :
+			case(3) :
 				position_midpoint = left_home/2;
 				position_set = position_midpoint;
 				position_error = position_set - linear_position.get();  // 
-				omegam_set = position_error*KP_pos/1000;
+				omegam_set_Kp = position_error*KP_pos/1000;
+				
+				position_windup = position_error - antiwind_correct;
+				position_windup_Ki = (_Ki_position * position_windup);
+				//position_windup_Ki = (_Ki_position * position_error);
+				omegam_set_Ki += (position_windup_Ki * dt)/256;
+				omegam_set = ssadd(omegam_set_Kp, omegam_set_Ki);
 				
 				if (reset.get() == 1)			// if user hits reset
 				{
@@ -127,13 +158,13 @@ void Motor::run(void){
 				
 				if(go.get() == 1)				// If user says pendulum is upright or angle = 720;
 				{
-					transition_to(3);
+					transition_to(4);
 				}
 												
 			break;
 			
 			// Pendulum Balance if user sets pendulum "Inverted" and presses go
-			case(3) :
+			case(4) :
 				go.put(0);										// turn off flag
 				angle_error = angle_set - thPendulum.get();
 				position_set = position_midpoint + angle_error*KP_angle/1000;
@@ -147,11 +178,28 @@ void Motor::run(void){
 					
 			break;
 			
+			case(100) :
+			omegam_set = 0;
+			
+			if (runs%300 == 0)
+			{
+				*p_serial << "Error State" << endl;
+			}
+			
+				if (reset.get())										// if user hits reset
+				{
+					reset.put(0);
+					transition_to(0);
+				}
+
+			break;
+			
 			default :
 				break;													
 		
 		};
 
+		
 		// omegam_measured will be the derivative of theta_measured from the encoder
 		omegam_measured = thdMotor.get();
 		
@@ -248,7 +296,6 @@ void Motor::run(void){
 				//*p_serial << "reset flag " << reset.get() << endl;
 			}
 		
-		
 		if (leftLimitSwitch.get() || rightLimitSwitch.get() || stop.get())		// If limit switch or If emergency stop button was hit
 		{
 			//omegam_set = 0; // [ticks/ms]
@@ -257,11 +304,11 @@ void Motor::run(void){
 			_integral = 0;
 			output_correct = 0;
 			
-			if (reset.get())										// if user hits reset
+			if (state == 4 || state == 3)
 			{
-				reset.put(0);
-				transition_to(0);
+				transition_to(100);
 			}
+
 		}
 		else
 		{
