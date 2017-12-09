@@ -59,13 +59,13 @@ void Motor::run(void){
 	linear_offset.put(0);								// Initialize motor offset	
 	int16_t left_home;									// Initialize left distance to calculate center
 	int16_t position_set;								// Setpoint of cart's position
-	int16_t KP_pos = 0.4*256;							// P gain for cart position				
+	int16_t KP_pos = 0.4*256;							// P gain for cart position	0.4			
 	int16_t position_error = 0;							// positional error	
 	int16_t position_midpoint = 0;						// midpoint calculated from homing sequence
 	int16_t angle_error = 0;							// pendulum angle error
-	int16_t KP_angle = -2.5*256;							// Already multiplied by 256 3.9
+	int16_t KP_angle = -12*256;							// P gain for angle -8
 	int16_t angle_set = 720;							// vertical setpoint for pendulum
-	int16_t _Kd_angle = -0.25*256;
+	int16_t _Kd_angle = -0.3*256;						// 0.3
 	int16_t _pre_angle_error;
 	int16_t Pang_out;
 	int16_t angle_derivative;
@@ -156,7 +156,7 @@ void Motor::run(void){
 				omegam_set_windup = ssadd(omegam_set_Kp, omegam_set_Ki);					// Add proportionality and integral gain
 				omegam_set = omegam_set_windup;												// Set desired to requested
 				
-				omegam_saturation_point = 40;
+				omegam_saturation_point = 30;
 				if( omegam_set > omegam_saturation_point )														// Saturate requested omegam_set
 				{
 					omegam_set = omegam_saturation_point;
@@ -205,14 +205,14 @@ void Motor::run(void){
 				
 				// Saturation for limits of tracks
 				
-				if (position_set >= -150) //20
+				if (position_set >= -100) //20
 				{
-					position_set = -150;
+					position_set = -100;
 					omegam_set = 0;
 				}
-				else if (position_set <= -250) //325
+				else if (position_set <= -300) //325
 				{
-					position_set = -250; //352
+					position_set = -300; //352
 					omegam_set = 0;
 				}
 				else 
@@ -333,7 +333,7 @@ void Motor::run(void){
 		antiwind_correct = (antiwind_error*antiwind_gain)/256;
 		
 		
-			if(runs%100 == 0){
+			if(runs%500 == 0){
 				//*p_serial << "Ierror: " << Iout << endl;
 				//*p_serial << "Pout: " << Pout << endl;
 				//*p_serial << "error: " << error << endl;

@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000006a0  00000000  00000000  00004890  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0001276e  00000000  00000000  00004f30  2**0
+  6 .debug_info   0001276f  00000000  00000000  00004f30  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000634d  00000000  00000000  0001769e  2**0
+  7 .debug_abbrev 0000634d  00000000  00000000  0001769f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00005572  00000000  00000000  0001d9eb  2**0
+  8 .debug_line   00005572  00000000  00000000  0001d9ec  2**0
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  00001244  00000000  00000000  00022f60  2**2
                   CONTENTS, READONLY, DEBUGGING
  10 .debug_str    000062ce  00000000  00000000  000241a4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00005ffa  00000000  00000000  0002a472  2**0
+ 11 .debug_loc    00005ff9  00000000  00000000  0002a472  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000568  00000000  00000000  0003046c  2**0
+ 12 .debug_ranges 00000568  00000000  00000000  0003046b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1246,7 +1246,7 @@ void Motor::run(void){
 	linear_offset.put(0);								// Initialize motor offset	
 	int16_t left_home;									// Initialize left distance to calculate center
 	int16_t position_set;								// Setpoint of cart's position
-	int16_t KP_pos = 0.4*256;							// P gain for cart position				
+	int16_t KP_pos = 0.4*256;							// P gain for cart position	0.4			
 	int16_t position_error = 0;							// positional error	
 	int16_t position_midpoint = 0;						// midpoint calculated from homing sequence
      ab0:	1d 8a       	std	Y+21, r1	; 0x15
@@ -1715,14 +1715,14 @@ void Motor::run(void){
      ce2:	0e 94 2f 09 	call	0x125e	; 0x125e <_ZN7satmath20signed_saturated_addEii>
 				omegam_set = omegam_set_windup;												// Set desired to requested
 				
-				omegam_saturation_point = 40;
+				omegam_saturation_point = 30;
 				if( omegam_set > omegam_saturation_point )														// Saturate requested omegam_set
-     ce6:	89 32       	cpi	r24, 0x29	; 41
+     ce6:	8f 31       	cpi	r24, 0x1F	; 31
      ce8:	91 05       	cpc	r25, r1
      cea:	44 f0       	brlt	.+16     	; 0xcfc <_ZN5Motor3runEv+0x2ca>
 				{
 					omegam_set = omegam_saturation_point;
-     cec:	88 e2       	ldi	r24, 0x28	; 40
+     cec:	8e e1       	ldi	r24, 0x1E	; 30
      cee:	90 e0       	ldi	r25, 0x00	; 0
      cf0:	d8 01       	movw	r26, r16
      cf2:	5a 96       	adiw	r26, 0x1a	; 26
@@ -1732,7 +1732,7 @@ void Motor::run(void){
      cfa:	0f c0       	rjmp	.+30     	; 0xd1a <_ZN5Motor3runEv+0x2e8>
 				}
 				else if( omegam_set < -omegam_saturation_point )
-     cfc:	88 3d       	cpi	r24, 0xD8	; 216
+     cfc:	82 3e       	cpi	r24, 0xE2	; 226
      cfe:	bf ef       	ldi	r27, 0xFF	; 255
      d00:	9b 07       	cpc	r25, r27
      d02:	24 f0       	brlt	.+8      	; 0xd0c <_ZN5Motor3runEv+0x2da>
@@ -1752,7 +1752,7 @@ void Motor::run(void){
 				else if( omegam_set < -omegam_saturation_point )
 				{
 					omegam_set = -omegam_saturation_point;
-     d0c:	88 ed       	ldi	r24, 0xD8	; 216
+     d0c:	82 ee       	ldi	r24, 0xE2	; 226
      d0e:	9f ef       	ldi	r25, 0xFF	; 255
      d10:	d8 01       	movw	r26, r16
      d12:	5a 96       	adiw	r26, 0x1a	; 26
@@ -1889,7 +1889,7 @@ void Motor::run(void){
      da4:	4d 91       	ld	r20, X+
      da6:	5c 91       	ld	r21, X
      da8:	0e 94 77 22 	call	0x44ee	; 0x44ee <__divmodsi4>
-     dac:	60 ec       	ldi	r22, 0xC0	; 192
+     dac:	64 eb       	ldi	r22, 0xB4	; 180
      dae:	62 03       	mulsu	r22, r18
      db0:	c0 01       	movw	r24, r0
      db2:	63 9f       	mul	r22, r19
@@ -1916,8 +1916,8 @@ void Motor::run(void){
 				
 				// Calculate total output
 				position_set = ssadd(Pang_out, angle_Dout);
-     dd6:	20 e8       	ldi	r18, 0x80	; 128
-     dd8:	3d ef       	ldi	r19, 0xFD	; 253
+     dd6:	20 e0       	ldi	r18, 0x00	; 0
+     dd8:	34 ef       	ldi	r19, 0xF4	; 244
      dda:	e2 9e       	mul	r14, r18
      ddc:	c0 01       	movw	r24, r0
      dde:	e3 9e       	mul	r14, r19
@@ -1940,32 +1940,32 @@ void Motor::run(void){
 				
 				// Saturation for limits of tracks
 				
-				if (position_set >= -150) //20
-     e02:	8a 36       	cpi	r24, 0x6A	; 106
+				if (position_set >= -100) //20
+     e02:	8c 39       	cpi	r24, 0x9C	; 156
      e04:	ff ef       	ldi	r31, 0xFF	; 255
      e06:	9f 07       	cpc	r25, r31
      e08:	3c f4       	brge	.+14     	; 0xe18 <_ZN5Motor3runEv+0x3e6>
 				{
-					position_set = -150;
+					position_set = -100;
 					omegam_set = 0;
 				}
-				else if (position_set <= -250) //325
-     e0a:	87 30       	cpi	r24, 0x07	; 7
-     e0c:	2f ef       	ldi	r18, 0xFF	; 255
+				else if (position_set <= -300) //325
+     e0a:	85 3d       	cpi	r24, 0xD5	; 213
+     e0c:	2e ef       	ldi	r18, 0xFE	; 254
      e0e:	92 07       	cpc	r25, r18
      e10:	2c f4       	brge	.+10     	; 0xe1c <_ZN5Motor3runEv+0x3ea>
 				{
-					position_set = -250; //352
-     e12:	86 e0       	ldi	r24, 0x06	; 6
-     e14:	9f ef       	ldi	r25, 0xFF	; 255
+					position_set = -300; //352
+     e12:	84 ed       	ldi	r24, 0xD4	; 212
+     e14:	9e ef       	ldi	r25, 0xFE	; 254
      e16:	02 c0       	rjmp	.+4      	; 0xe1c <_ZN5Motor3runEv+0x3ea>
 				
 				// Saturation for limits of tracks
 				
-				if (position_set >= -150) //20
+				if (position_set >= -100) //20
 				{
-					position_set = -150;
-     e18:	8a e6       	ldi	r24, 0x6A	; 106
+					position_set = -100;
+     e18:	8c e9       	ldi	r24, 0x9C	; 156
      e1a:	9f ef       	ldi	r25, 0xFF	; 255
 			// It's necessary to make an extra, temporary copy of the data so that the
 			// temporary copy can be returned. We can't call return() from within the
